@@ -1,19 +1,17 @@
-![클린코드 DAY 1](images/cleancode_day1.png)
-
 ### 목차
 
 
-- [개요](#--)
-- [클린 코드란?](#-------)
-  * [클린 코드 첫걸음으로 !! 😏](#-----------------)
-    + [1. 의미 있는 이름을 짓자.](#1-------------)
-      - [💁‍♂️ 변수명만 해도 바로 알 수 있다.](#-----------------------)
-    + [2. 루프 속 i, j, k 사용하지 않기](#2------i--j--k--------)
-    + [3. 통일성 있는 단어 사용하기](#3---------------)
-    + [4. 변수명에 타입 넣지 않기](#4--------------)
-    + [5. 패키지 네이밍 가이드](#5------------)
-    + [6. 클래스 네이밍 가이드](#6------------)
-    + [7. 메소드 네이밍 가이드](#7------------)
+- [개요](#개요)
+- [클린 코드란?](#클린-코드란)
+  * [클린 코드 첫걸음으로 !! 😏](#클린-코드-첫걸음으로--😏)
+    + [1. 의미 있는 이름을 짓자.](#1-의미-있는-이름을-짓자)
+      - [💁‍♂️ 변수명만 해도 바로 알 수 있다.](#💁‍♂️-변수명만-해도-바로-알-수-있다)
+    + [2. 루프 속 i, j, k 사용하지 않기](#2-루프-속-i-j-k-사용하지-않기)
+    + [3. 통일성 있는 단어 사용하기](#3-통일성-있는-단어-사용하기)
+    + [4. 변수명에 타입 넣지 않기](#4-변수명에-타입-넣지-않기)
+    + [5. 패키지 네이밍 가이드](#5-패키지-네이밍-가이드)
+    + [6. 클래스 네이밍 가이드](#6-클래스-네이밍-가이드)
+    + [7. 메소드 네이밍 가이드](#7-메소드-네이밍-가이드)
 ---
 
 # 개요
@@ -98,37 +96,37 @@
 - **advanced for문**으로 대체하자
 ```java
     for (int i = 0; i < messages.size(); i++ ) {
-    	// ..
-    }
-  
-  를
-  
-	for (String message : messages) {
-    	// ..
-    }
-  
-  로 바꿔써준다.
+        // ..
+        }
+
+        를
+
+        for (String message : messages) {
+        // ..
+        }
+
+        로 바꿔써준다.
 ```
 - **lamda**를 사용하자
 ```java
     for (String message : messages) {
-    	// ..
-    }
-    
-    를
-    
-    messages.stream().forEach(
-    	message -> // ..
-    }
-    
-    로 바꿔써준다.
+        // ..
+        }
+
+        를
+
+        messages.stream().forEach(
+        message -> // ..
+        }
+
+        로 바꿔써준다.
 
 ```
 - i, j, k 대신 다른 변수명을 이용해보자 !
 ```java
     for (int row = 0; row < 100; row++) {
-    	// ..
-    }
+        // ..
+        }
 ```
 
 ---
@@ -139,7 +137,7 @@
 이런 경우에는 팀원들과 단어 약속을 하는게 좋다.
 
 - Member / Customer / User
-    - 팀이랑 상의해서 공통 변수명을 결정
+  - 팀이랑 상의해서 공통 변수명을 결정
 
 ---
 
@@ -153,14 +151,14 @@
 
 ```java
     String nameString	(😡) -> name 	  (😆)
-    int itemPriceAmount	(😡) -> itemPrice (😆)
-    
-    Account[] accountArray	  (😡) -> accounts (😆)
-    List<Account> accountList (😆) -> accounts (😆), accountList (😆)
-    Map<Account> accountMap   (😆)
-    
-    public interface IShapeFactory (😡) -> ShapeFactory   (😆)
-    public class ShapeFacotoryImpl (세모) -> CircleFactory (😆)
+        int itemPriceAmount	(😡) -> itemPrice (😆)
+
+        Account[] accountArray	  (😡) -> accounts (😆)
+        List<Account> accountList (😆) -> accounts (😆), accountList (😆)
+        Map<Account> accountMap   (😆)
+
+public interface IShapeFactory (😡) -> ShapeFactory   (😆)
+public class ShapeFacotoryImpl (세모) -> CircleFactory (😆)
 ```
 
 ---
@@ -172,8 +170,8 @@
 
 ```java
     com.example.minishop  (😆)
-    com.example.miniShop  (😡)
-    com.example.mini_shop (😡)
+        com.example.miniShop  (😡)
+        com.example.mini_shop (😡)
 ```
 
 ---
@@ -185,12 +183,12 @@
 ```java
     // 클래스는 명사, 명사구
     Character, ImmutableList
-    
-    // 인터페이스는 명사, 명사구, (형용사)
-    List, Readable
-    
-    // 테스트 클래스는 Test로 끝나기
-    HashTest, HashIntegrationTest
+
+            // 인터페이스는 명사, 명사구, (형용사)
+            List, Readable
+
+            // 테스트 클래스는 Test로 끝나기
+            HashTest, HashIntegrationTest
 ```
 
 ---
@@ -202,8 +200,8 @@
 ```java
     // 메소드는 동사, 동사구
     sendMessage, stop
-    
-    // jUint 테스트에 underscore 사용되기도 한다.
-    // <methodUnderTest>_<state> 패턴
-    pop_emptyStack
+
+            // jUint 테스트에 underscore 사용되기도 한다.
+            // <methodUnderTest>_<state> 패턴
+            pop_emptyStack
 ```
