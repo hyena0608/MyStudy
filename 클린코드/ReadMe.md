@@ -13,3 +13,5 @@
 ### [5. [클린코드] 객체와 자료구조](https://github.com/hyena0608/TIL/blob/master/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/%5B%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C%5D_DAY5_%EA%B0%9D%EC%B2%B4%EC%99%80_%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0.md)
 
 ### [6. [클린코드] 예외처리](https://github.com/hyena0608/TIL/blob/master/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/%5B%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C%5D_DAY6_%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.md)
+
+### [7. [클린코드] 경계](https://github.com/hyena0608/TIL/blob/master/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/%5B%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C%5D_DAY7_%EA%B2%BD%EA%B3%84.md)
