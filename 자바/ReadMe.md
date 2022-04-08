@@ -97,7 +97,6 @@
 **이런걸 알 수 있어요 ! 🎉**
 
 - 상속
+- 단일 상속 (single inheritance)
 - 상속관계, 포함관계
 - 카드 예제로 사용법 익히기
-- 단일 상속 (single inheritance)
-- Object클래스 (simple)
