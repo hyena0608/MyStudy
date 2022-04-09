@@ -114,3 +114,17 @@
 - 패키지란 ?
 - import문
 - static import 란 ?
+
+<br>
+
+### [[자바] 제어자](./[자바]_제어자_(8).md)
+
+**이런걸 알 수 있어요 ! 🎉**
+
+- 제어자 (modifier)
+- static
+- 상수 (final)
+- 추상클래스, 추상메서드 (abstract)
+- 접근 제어자 (access modifier)
+    - 접근제어자를 이용한 캡슐화
+    - 생성자의 접근제어자
