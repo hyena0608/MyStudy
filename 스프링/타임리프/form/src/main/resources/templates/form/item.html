@@ -72,7 +72,7 @@
 
     <!-- SELECT -->
     <div>
-        <div>배송 방식</div>
+        <div>배송 방식1</div>
         <select th:field="${item.deliveryCode}" class="form-select" disabled>
             <option value="">==배송 방식 선택==</option>
             <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
