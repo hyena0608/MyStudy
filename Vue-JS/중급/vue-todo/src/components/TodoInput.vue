@@ -20,14 +20,14 @@
 import Modal from "./common/ModelApp.vue";
 
 export default {
-  data: function () {
+  data() {
     return {
       newTodoItem: "",
       showModal: false,
     };
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       // 저장하는 로직
       if (this.newTodoItem !== "") {
         this.$emit("addTodoItem", this.newTodoItem);
@@ -36,7 +36,7 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = "";
     },
   },
