@@ -24,18 +24,13 @@
 
 <script>
 export default {
-  props: ['propsdata'],
+  props: ["propsdata"],
   methods: {
     removeTodo: function (todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit('removeItem', todoItem, index);
     },
     toggleComplete: function (todoItem, index) {
-      console.log(index);
-      todoItem.completed = !todoItem.completed;
-      // 로컬 스토리지 데이터 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleItem', todoItem, index);
     },
   },
 };
