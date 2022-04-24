@@ -12,14 +12,13 @@ export default {
   data: function () {
     return {
       newTodoItem: "",
-    };
+    }
   },
   methods: {
     addTodo: function () {
       // 저장하는 로직
       if (this.newTodoItem !== "") {
-        var obj = { completed: false, item: this.newTodoItem };
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
       }
     },
