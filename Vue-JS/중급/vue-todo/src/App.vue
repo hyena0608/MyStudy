@@ -56,10 +56,10 @@ export default {
     }
   },
   components: {
-    TodoHeader: TodoHeader,
-    TodoList: TodoList,
-    TodoInput: TodoInput,
-    TodoFooter: TodoFooter,
+    TodoHeader,
+    TodoList,
+    TodoInput,
+    TodoFooter,
   },
 };
 </script>
