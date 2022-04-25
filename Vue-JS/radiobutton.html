@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ order.method }}
+        <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
+        <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                order: {
+                    method: '자택',
+                    home: '서울시',
+                    business: '독산역'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ counter }}
+        <br>
+        <button @click="incrementCounter">카운터증가</button>
+        <my-component v-on:increment-me="incrementCounter"></my-component>
+        <h1>{{ header }}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const MyComponent = {
+            template: '<div><button @click="childIncrementCounter">자식으로부터 증가</button></div>',
+            methods: {
+                childIncrementCounter() {
+                    this.$emit('increment-me');
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                incrementCounter() {
+                    this.counter++;
+                }
+            },
+            components: {
+                'my-component': MyComponent
+            }
+        })
+    </script>
+</body>
+</html>

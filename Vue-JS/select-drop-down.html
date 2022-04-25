@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <select v-model="order.state">
+        <option disabled value="">주</option>
+        <option v-for="(state, key) in order.states" v-bind:value="state">
+          {{ state }}
+        </option>
+      </select>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          order: {
+            states: {
+              SP: "스프링필드",
+              HL: "할리우드",
+              KR: "대한민국",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <form-component :author="authorLabel" :title="titleLable">
+      </form-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const FormComponent = {
+        template: `<div>
+                <form>
+                <slot></slot>
+                  <lable for="title">{{ title }}</lable><input id="title" type="text" /><br />
+                  <lable for="author">{{ author }}</lable><input id="author" type="text" /><br />
+                  <button>제출하기</button>
+              </form>
+          </div>`,
+        props: ["title", "author"],
+      };
+
+      new Vue({
+        el: "#app",
+        components: { "form-component": FormComponent },
+        data() {
+          return {
+            titleLable: "제목:",
+            authorLabel: "저자:",
+            header: '책 저자 폼',
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
