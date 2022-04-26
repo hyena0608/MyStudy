@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <book-component :books="books">
+            <h1 slot="header">{{ header }}</h1>
+            <template slot="book" slot-scope="props">
+                <h2>
+                    <i>{{ props.text.title }}</i>
+                    <small>by: {{ props.text.author }}</small>
+                </h2>
+            </template>
+        </book-component>        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const BookComponent = {
+            template: `
+            <div>
+                <slot name="header"></slot>
+                <slot name="book" v-for="book in books" :text="book"></slot>
+            </div>
+            `,
+            props: ['books']
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                BookComponent
+            },
+            data() {
+                return {
+                    header: '책 목록',
+                    books: [
+                        {author: '박현서', title: '바박'},
+                        {author: '자바', title: '자바지기'},
+                        {author: '뷰', title: '뷰공작소'}
+                ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>
