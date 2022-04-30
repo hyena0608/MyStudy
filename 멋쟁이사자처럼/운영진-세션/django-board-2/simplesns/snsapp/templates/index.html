@@ -3,7 +3,7 @@
 
 <!-- 게시글 목록이 나올 예정 -->
 {% for post in posts %}
-    <h3>{{ post.title }}</h3>
+    <a href="{{ post.id }}"><h3>{{ post.title }}</h3></a>
     <h4>{{ post.date }}</h4>
     <br>
 {% endfor %}

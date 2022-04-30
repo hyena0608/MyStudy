@@ -8,5 +8,6 @@ urlpatterns = [
     # snsapp
     path('', views.home, name='home'),
     path('new/', views.new, name='new'),
-    path('create/', views.create, name='create')
+    path('create/', views.create, name='create'),
+    path('<int:post_id>', views.detail, name='detail'),
 ]

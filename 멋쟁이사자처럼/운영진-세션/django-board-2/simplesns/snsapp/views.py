@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Board
 from django.utils import timezone
 
@@ -19,3 +19,7 @@ def create(request):
 		post.save()
 	
 	return redirect('home')
+
+def detail(request, post_id):
+    post_detail = get_object_or_404(Board, pk=post_id)
+    return render(request, 'detail.html', {'post_detail' : post_detail})
