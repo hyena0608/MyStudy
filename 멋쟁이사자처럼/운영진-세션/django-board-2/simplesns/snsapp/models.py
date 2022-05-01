@@ -8,3 +8,11 @@ class Board(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Comment(models.Model):
+    comment = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    board = models.ForeignKey(Board, null=True, blank=True, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.comment

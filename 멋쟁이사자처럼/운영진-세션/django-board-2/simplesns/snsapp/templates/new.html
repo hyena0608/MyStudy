@@ -1,14 +1,20 @@
-<form action="{% url 'create' %}" method="post">
-    {% csrf_token %}
-    <div>
-        <label for="title">제목</label>
-        <br/>
-        <input type="text" name="title" id="title">
-    </div>
-    <div>
-        <label for="body">내용</label>
-        <br/>
-        <textarea name="body" id="body" cols="30" rows="10"></textarea>
-    </div>
-    <input type="submit" value="글 생성하기">
-</form>
+{% extends './layouts/header.html' %}
+{% block content %}
+<br>
+<div class="d-flex align-items-center flex-column">
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="title">제목</label>
+            <br />
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="body">내용</label>
+            <br />
+            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+        </div>
+        <input type="submit" value="글 생성하기">
+    </form>
+</div>
+{% endblock %}
