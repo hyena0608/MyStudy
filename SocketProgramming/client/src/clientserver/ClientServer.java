@@ -9,9 +9,11 @@ public class ClientServer {
         try {
             Socket socket = new Socket("localhost", 7777);
             ClientSender clientSender = new ClientSender(socket);
+            ClientReceiver clientReceiver = new ClientReceiver(socket);
             System.out.println("[" + socket.getInetAddress() + "] 으로 접속하였습니다");
 
             clientSender.run();
+            clientReceiver.run();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
