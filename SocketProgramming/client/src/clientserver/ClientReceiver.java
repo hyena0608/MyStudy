@@ -1,2 +1,4 @@
-package clientserver;public class ClientReceiver {
+package clientserver;
+
+public class ClientReceiver {
 }
