@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client implements Runnable {
+public class Client {
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
@@ -20,27 +20,21 @@ public class Client implements Runnable {
 
     public void sendMessage(String message) {
         try {
+            System.out.println("[서버] : '" + message + "' 라는 메시지를 전송합니다.");
             out.writeUTF(message);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void receiveMessage() {
+    public String receiveMessage() {
+        String message = null;
         try {
-            while (in != null) {
-                System.out.println(in.readUTF());
-            }
+            message = in.readUTF();
+            System.out.println("[서버] : '" + message + "' 라는 메시지를 입력 받았습니다.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-
-
-
-    @Override
-    public void run() {
-        receiveMessage();
+        return message;
     }
 }

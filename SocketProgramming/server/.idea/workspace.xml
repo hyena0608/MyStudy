@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="695d4b47-8489-4f1e-abb6-deb1eedc51f7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../client/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/out/production/client/clientserver/ClientSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/out/production/client/clientserver/ClientSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/out/production/client/clientserver/ClientServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/out/production/client/clientserver/ClientServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/clientserver/ClientReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/clientserver/ClientReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/clientserver/ClientSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/clientserver/ClientSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/clientserver/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/clientserver/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/chatserver/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/chatserver/ChatServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/chatserver/ClientManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/chatserver/ClientManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatserver/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/ChatServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatserver/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatserver/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/ClientManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29JWprCUrfJhXEMI4YtNZKG2B70" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ChatServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChatServerApplication" />
+      <module name="server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChatServerApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="695d4b47-8489-4f1e-abb6-deb1eedc51f7" name="Changes" comment="" />
+      <created>1652831854779</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652831854779</updated>
+      <workItem from="1652831856140" duration="466000" />
+      <workItem from="1652832345461" duration="2832000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
