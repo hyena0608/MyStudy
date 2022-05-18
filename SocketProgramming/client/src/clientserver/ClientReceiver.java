@@ -12,10 +12,16 @@ public class ClientReceiver implements Runnable {
         this.socket = socket;
     }
 
+    private void setDataIn() {
+        try {
+            in = new DataInputStream(socket.getInputStream());
+            System.out.println("[클라 서버] : ClientReceiver가 메시지를 받을 준비가 됐습니다.");
+        } catch (IOException e) {}
+    }
+
     public void receiveMessage() {
         try {
-            this.in = new DataInputStream(socket.getInputStream());
-
+            setDataIn();
             while(this.in != null) {
                 System.out.println(socket.getInetAddress() + " : " + in.readUTF());
             }
@@ -26,6 +32,7 @@ public class ClientReceiver implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("[클라 서버] : ClientReceiver 실행");
         receiveMessage();
     }
 }

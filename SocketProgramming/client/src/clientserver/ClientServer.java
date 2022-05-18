@@ -4,16 +4,23 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ClientServer {
+    private ClientSender clientSender;
+    private ClientReceiver clientReceiver;
+    private Thread clientSenderThread;
+    private Thread clientReceiverThread;
 
     public void clientServerStart() {
         try {
             Socket socket = new Socket("localhost", 7777);
-            ClientSender clientSender = new ClientSender(socket);
-            ClientReceiver clientReceiver = new ClientReceiver(socket);
+            clientSender = new ClientSender(socket);
+            clientReceiver = new ClientReceiver(socket);
+            clientSenderThread = new Thread(clientSender);
+            clientReceiverThread = new Thread(clientReceiver);
             System.out.println("[" + socket.getInetAddress() + "] 으로 접속하였습니다");
 
-            clientSender.run();
-            clientReceiver.run();
+
+            clientSenderThread.start();
+            clientReceiverThread.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
