@@ -5,17 +5,22 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client {
-    private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
+public class Client extends Thread {
+    private Socket socket = null;
+    private DataInputStream in = null;
+    private DataOutputStream out = null;
+
+    public Socket getSocket() {
+        return socket;
+    }
 
     public Client(Socket socket) {
         this.socket = socket;
         try {
-            this.in = new DataInputStream(socket.getInputStream());
-            this.out = new DataOutputStream(socket.getOutputStream());
-        } catch (Exception e) {}
+            in = new DataInputStream(this.socket.getInputStream());
+            out = new DataOutputStream(this.socket.getOutputStream());
+        } catch (Exception e) {
+        }
     }
 
     public void sendMessage(String message) {
@@ -33,8 +38,10 @@ public class Client {
             message = in.readUTF();
             System.out.println("[서버] : '" + message + "' 라는 메시지를 입력 받았습니다.");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return message;
     }
+
+
 }
