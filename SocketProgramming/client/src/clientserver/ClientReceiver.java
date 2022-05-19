@@ -23,7 +23,7 @@ public class ClientReceiver implements Runnable {
         try {
             setDataIn();
             while(this.in != null) {
-                System.out.println(socket.getInetAddress() + " : " + in.readUTF());
+                System.out.println("상대방 : " + in.readUTF());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

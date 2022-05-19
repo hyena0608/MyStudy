@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.history/src/clientserver/ClientServer_20220518171323.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.history/src/clientserver/ClientServer_20220518171410.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.history/src/clientserver/ClientServer_20220518171611.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/Client.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/chatserver/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/ClientManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,10 +37,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RunManager">
-    <configuration name="ClientServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientServerApplication" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientServerApplication" />
       <module name="client" />
       <method v="2">
@@ -55,7 +65,8 @@
       <option name="presentableId" value="Default" />
       <updated>1652831836355</updated>
       <workItem from="1652831838162" duration="484000" />
-      <workItem from="1652832345461" duration="23387000" />
+      <workItem from="1652832345461" duration="23715000" />
+      <workItem from="1652917678440" duration="4874000" />
     </task>
     <servers />
   </component>
@@ -72,5 +83,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/clientserver/ClientSender.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

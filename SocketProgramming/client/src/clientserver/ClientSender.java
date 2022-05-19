@@ -30,7 +30,7 @@ public class ClientSender implements Runnable {
         while (out != null) {
             try {
                 out.writeUTF(bufferedReader.readLine());
-                System.out.println("[자신] : 메시지를 전송했습니다.");
+//                System.out.println("[자신] : 메시지를 전송했습니다.");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
