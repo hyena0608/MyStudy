@@ -6,24 +6,24 @@ import java.net.Socket;
 
 public class ChatServer {
 
+    private ClientManager clientManager;
+
     public void chatServerStart() {
         Socket socket;
-        ClientManager manager = new ClientManager();
-        new Thread(manager).start();
         try {
-            ServerSocket serverSocket = new ServerSocket(7777);
-            System.out.println("while 밖");
+            ServerSocket serverSocket = new ServerSocket(8888);
             while (true) {
                 socket = serverSocket.accept();
-                System.out.println("[" + socket.getRemoteSocketAddress() + "] 에서 서버에 접근합니다.");
-                Client client = new Client(socket);
-                new Thread(client).start();
-                manager.addClient(client);
-
+                setClientManagerAndStart(socket);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private void setClientManagerAndStart(Socket socket) {
+        clientManager = new ClientManager(socket);
+        new Thread(clientManager).start();
+        System.out.println("[" + socket.getRemoteSocketAddress() + "] 에서 서버에 접근합니다.");
+    }
 }

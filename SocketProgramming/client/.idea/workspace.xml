@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" afterDir="false" />
@@ -33,6 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RunManager">
@@ -58,7 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652831836355</updated>
       <workItem from="1652831838162" duration="484000" />
-      <workItem from="1652832345461" duration="2918000" />
+      <workItem from="1652832345461" duration="23387000" />
     </task>
     <servers />
   </component>
