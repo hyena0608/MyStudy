@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../server/src/chatserver/ClientChannel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/chatserver/xx/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/chatserver/xx/ClientRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/chatserver/xx/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/MessageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/MessageParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/server/ChatServerApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ChatServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/ChatServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/ChatServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/ClientManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -31,7 +31,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -62,7 +62,8 @@
       <updated>1652831836355</updated>
       <workItem from="1652831838162" duration="484000" />
       <workItem from="1652832345461" duration="23715000" />
-      <workItem from="1652917678440" duration="20079000" />
+      <workItem from="1652917678440" duration="20978000" />
+      <workItem from="1653007531977" duration="8142000" />
     </task>
     <servers />
   </component>
