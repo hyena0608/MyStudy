@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="695d4b47-8489-4f1e-abb6-deb1eedc51f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/chatserver/ClientChannel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chatserver/xx/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chatserver/xx/ClientRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chatserver/xx/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/ChatServerApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/chatserver/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/chatserver/ChatServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/chatserver/ClientManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/chatserver/ClientManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatserver/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chatserver/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/ClientManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +79,7 @@
       <updated>1652831854779</updated>
       <workItem from="1652831856140" duration="466000" />
       <workItem from="1652832345461" duration="26395000" />
-      <workItem from="1652917678440" duration="27273000" />
+      <workItem from="1652917678440" duration="28282000" />
     </task>
     <servers />
   </component>

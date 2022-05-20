@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 
-import static chatserver.ClientChannel.channelMap;
 
 
 public class ClientChannel extends Thread {
@@ -98,7 +97,7 @@ class Client implements Runnable {
     }
 
     public void broadcastMessage(Client client, String messageFromClientServer) {
-        for (Client eachClient : channelMap.get(client.channelName).get(client.roomName)) {
+        for (Client eachClient : ClientChannel.channelMap.get(client.channelName).get(client.roomName)) {
             try {
                 if (!eachClient.equals(client)) {
                     System.out.println(client.channelName + "채널에 " + client.roomName + "방에 전달함");
