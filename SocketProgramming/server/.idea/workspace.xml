@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="695d4b47-8489-4f1e-abb6-deb1eedc51f7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/chatserver/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chatserver/ClientChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chatserver/ClientChannel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +39,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../client" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.ClientChannel">
+  <component name="RunManager" selected="Application.ChatServerApplication">
     <configuration name="ChatServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChatServerApplication" />
       <module name="server" />
@@ -64,8 +66,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientChannel" />
         <item itemvalue="Application.ChatServerApplication" />
+        <item itemvalue="Application.ClientChannel" />
       </list>
     </recent_temporary>
   </component>
@@ -80,6 +82,7 @@
       <workItem from="1652831856140" duration="466000" />
       <workItem from="1652832345461" duration="26395000" />
       <workItem from="1652917678440" duration="28282000" />
+      <workItem from="1653007383161" duration="562000" />
     </task>
     <servers />
   </component>
