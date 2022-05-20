@@ -44,7 +44,7 @@ public class Client implements Runnable {
                     System.out.println("[" + clientInfo.channel + "] 채널에 "
                             + "[" + clientInfo.room + "] 방에 '"
                             + messageFromClientServer + "'라는 메시지를 전달했습니다.");
-                    eachClient.out.writeUTF(messageFromClientServer);
+                    eachClient.out.writeUTF(clientInfo.username + "|" +messageFromClientServer);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
