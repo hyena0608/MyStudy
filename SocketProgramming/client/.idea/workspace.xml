@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/ClientReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/ClientReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/MessageParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/MessageParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/ClientReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/MessageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/MessageParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/chatserver/ClientInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +67,7 @@
       <workItem from="1652831838162" duration="484000" />
       <workItem from="1652832345461" duration="23715000" />
       <workItem from="1652917678440" duration="20978000" />
-      <workItem from="1653007531977" duration="8142000" />
+      <workItem from="1653007531977" duration="8507000" />
     </task>
     <servers />
   </component>

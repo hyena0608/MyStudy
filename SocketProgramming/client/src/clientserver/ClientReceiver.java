@@ -23,7 +23,8 @@ public class ClientReceiver implements Runnable {
         try {
             setDataIn();
             while(this.in != null) {
-                System.out.println("상대방 : " + in.readUTF());
+                String[] message = MessageParser.messageParse(in.readUTF());
+                System.out.println(message[0] + " : " + message[1]);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
