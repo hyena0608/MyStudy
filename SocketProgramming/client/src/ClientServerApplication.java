@@ -1,9 +1,9 @@
-import clientserver.ClientSender;
-import clientserver.ClientServer;
+import clientserver.BaseClientServer;
 
 public class ClientServerApplication {
 
     public static void main(String[] args) {
-        new ClientServer().clientServerStart();
+        new BaseClientServer().clientServerStart();
     }
+
 }
