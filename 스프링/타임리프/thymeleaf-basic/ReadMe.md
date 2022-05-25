@@ -187,56 +187,115 @@ html
 
 1. ***비교 연산***
 
-html
+    html
 
-```html
-<!-- 1 > 10 -->
-<span th:text="1 &gt; 10"></span>
-<!-- 1 < 10> -->
-<span th:text="1 &lt; 10"></span>
-<!-- 1 >= 10 -->
-<span th:text="1 &ge; 10"></span>
-<!-- 1 <= 10> -->
-<span th:text="1 &le; 10"></span>
-<!-- 1 ! 10 -->
-<span th:text="1 &not; 10"></span>
-<!-- 1 == 10 -->
-<span th:text="1 &eq; 10"></span>
-<!-- 1 != 10 -->
-<span th:text="1 &neq; 10"></span>
-```
+    ```html
+    <!-- 1 > 10 -->
+    <span th:text="1 &gt; 10"></span>
+    <!-- 1 < 10> -->
+    <span th:text="1 &lt; 10"></span>
+    <!-- 1 >= 10 -->
+    <span th:text="1 &ge; 10"></span>
+    <!-- 1 <= 10> -->
+    <span th:text="1 &le; 10"></span>
+    <!-- 1 ! 10 -->
+    <span th:text="1 &not; 10"></span>
+    <!-- 1 == 10 -->
+    <span th:text="1 &eq; 10"></span>
+    <!-- 1 != 10 -->
+    <span th:text="1 &neq; 10"></span>
+    ```
 
 1. ***조건식***
 
-html
+    html
 
-```html
-<!-- (10 % 2 == 0) ? '짝수' : '홀수' -->
-<span th:text="(10 % 2 == 0)?'짝수':'홀수'"></span>
-```
+    ```html
+    <!-- (10 % 2 == 0) ? '짝수' : '홀수' -->
+    <span th:text="(10 % 2 == 0)?'짝수':'홀수'"></span>
+    ```
 
 1. ***Elvis***
 
     조건식의 편의 버전
 
-    <br>
-
     html
     
     ```html
-
+    <span th:text="${data}?: '데이터가 없습니다.'"></span>
     ```
 
 1. ***No-Operation***
 
+    `_`인 경우 타임리프가 실행되지 않은 것 처럼 동작한다.
+
+    html
+
+    ```html
+    <span th:text="${data}?: _">데이터가 없습니다.</span>
+    ```
+
 <br>
 <br>
 
-### 8.
+### 8.속성 값 설정
 
+타임리프 태그 설정(Attribute)
 
+***`th:*`*** : 속성 지정 시 기존 속성 대체.
+
+***`th:attrappend`*** : 속성 값의 뒤에 값 추가
+
+***`th:attrprepend`*** : 속성 값의 앞에 값을 추가
+
+***`th:classappend`*** : class 속성에 추가
+
+***`th:checked="false"`*** : checked 속성 처리
+
+```html
+<input type="text" class="text" th:attrappend="class='large'" />
+<input type="text" class="text" th:attrprepend="class='large'" />
+<input type="text" class="text" th:classappend="large" />
+<input type="checknox" name="acitve" checked="false" />
+```
 
 <br>
 <br>
 
-### 9.
+### 9. 반복
+
+반복 ***`th:each`*** 를 사용한다.
+
+아래와 같은 객체에 반복을 사용할 수 있다.
+
+- List
+- Iterable
+- Enumeration
+
+반복의 두번째 parameter를 설정해서 반복의 상태를 확인 할 수 있다. (기본 생략)
+
+- `<tr th:each="user, userStat : ${userList}">`
+
+Controller
+```java
+@GetMapping("/each")
+public String each(Model model) {
+    List<User> userList = new ArrayList<>();
+    userList.add(new User("userA", 10));
+    userList.add(new User("userB", 20));
+    userList.add(new User("userC", 30));
+    
+    model.addAttribute("userList", userList);
+    return "basic/each:";
+}
+```
+
+html
+```html
+<table border="1">
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.age}">0</td>
+    </tr>
+</table>
+```
