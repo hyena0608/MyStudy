@@ -3,7 +3,6 @@ package clientserver.service.console.parser;
 import clientserver.UserSocket;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.entity.user.User;
 import clientserver.service.base.MessageParser;
 import com.google.gson.Gson;
 

@@ -1,18 +1,49 @@
 package clientserver.entity.user;
 
+import clientserver.entity.command.RoomChatting;
+
+import java.util.Scanner;
+
 public class User {
 
     private String username;
     private String userCondition;
     private String partnerUsername;
 
-    public User(String username) {
-        this.username = username;
-        this.userCondition = String.valueOf(UserCondition.ROOM);
+    private String channelTitle;
+    private String roomTitle;
+
+    public User() {
+        init();
+    }
+
+    void init() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("이름을 입력하세요 : ");
+        this.username = sc.nextLine();
+        System.out.print("\n들어갈 채널을 입력하세요 : ");
+        this.channelTitle = sc.nextLine();
+        System.out.print("\n들어갈 방을 입력하세요 : ");
+        this.roomTitle = sc.nextLine();
+        System.out.println();
+        this.userCondition = RoomChatting.condition;
     }
 
     public void setUserCondition(String userCondition) {
-        userCondition = userCondition;
+        this.userCondition = userCondition;
+    }
+
+    public void setPartnerUsername(String partnerUsername) {
+        this.partnerUsername = partnerUsername;
+    }
+
+    public void setChannelTitle(String channelTitle) {
+        this.channelTitle = channelTitle;
+    }
+
+    public void setRoomTitle(String roomTitle) {
+        this.roomTitle = roomTitle;
     }
 
     public String getUsername() {
@@ -24,14 +55,14 @@ public class User {
     }
 
     public String getPartnerUsername() {
-        return this.partnerUsername;
+        return partnerUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getChannelTitle() {
+        return channelTitle;
     }
 
-    public void setPartnerUsername(String partnerUsername) {
-        this.partnerUsername = partnerUsername;
+    public String getRoomTitle() {
+        return roomTitle;
     }
 }

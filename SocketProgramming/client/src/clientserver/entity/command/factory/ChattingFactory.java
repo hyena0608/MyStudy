@@ -4,7 +4,6 @@ import clientserver.UserSocket;
 import clientserver.entity.command.OneToOneChatting;
 import clientserver.entity.command.RoomChatting;
 import clientserver.entity.command.base.Chatting;
-import clientserver.entity.user.User;
 
 public class ChattingFactory {
     private Chatting chatting = null;

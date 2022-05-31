@@ -4,7 +4,6 @@ import clientserver.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.entity.user.User;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import com.google.gson.Gson;

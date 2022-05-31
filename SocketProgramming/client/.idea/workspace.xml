@@ -2,15 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/UserSetting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Channel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/OneToOneChatting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/RoomChatting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/base/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObjectBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/lib/gson-2.9.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/parser/UserSocketMessageParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/MainSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/UserSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/UserSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/UserSocket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/OneToOneChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/OneToOneChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObjectBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObjectBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/console/parser/ConsoleMessageParserImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/console/parser/ConsoleMessageParserImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/UserSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/UserSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObjectBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +70,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -102,7 +126,8 @@
       <workItem from="1653868601705" duration="29405000" />
       <workItem from="1653954988894" duration="46000" />
       <workItem from="1653955042376" duration="67000" />
-      <workItem from="1653955898720" duration="1904000" />
+      <workItem from="1653955898720" duration="3492000" />
+      <workItem from="1653959447127" duration="19513000" />
     </task>
     <servers />
   </component>

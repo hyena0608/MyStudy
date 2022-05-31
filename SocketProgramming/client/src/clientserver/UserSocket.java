@@ -1,5 +1,6 @@
 package clientserver;
 
+import clientserver.entity.command.UserSetting;
 import clientserver.entity.user.User;
 
 import java.io.DataInputStream;
@@ -13,20 +14,16 @@ public class UserSocket {
     static private DataOutputStream out;
     static private User user;
 
-
     static {
         try {
             socket = new Socket("localhost", 8888);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            user = new User("홍길동");
+            user = new User();
+            UserSetting.getInstance().changeMySetting();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static Socket getSocket() {
-        return socket;
     }
 
     public static DataInputStream getIn() {
