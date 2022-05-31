@@ -11,6 +11,7 @@ public class UserSocket {
     static private Socket socket;
     static private DataInputStream in;
     static private DataOutputStream out;
+    static private User user;
 
 
     static {
@@ -18,7 +19,7 @@ public class UserSocket {
             socket = new Socket("localhost", 8888);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            new User("홍길동");
+            user = new User("홍길동");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,5 +35,9 @@ public class UserSocket {
 
     public static DataOutputStream getOut() {
         return out;
+    }
+
+    public static User getUser() {
+        return user;
     }
 }

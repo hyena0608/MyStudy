@@ -2,36 +2,36 @@ package clientserver.entity.user;
 
 public class User {
 
-    private static String username;
-    private static String userCondition;
-    private static String partnerUsername;
+    private String username;
+    private String userCondition;
+    private String partnerUsername;
 
     public User(String username) {
         this.username = username;
         this.userCondition = String.valueOf(UserCondition.ROOM);
     }
 
-    public static void setUserCondition(String userCondition) {
+    public void setUserCondition(String userCondition) {
         userCondition = userCondition;
     }
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static String getUserCondition() {
+    public String getUserCondition() {
         return userCondition;
     }
 
-    public static void setUsername(String username) {
-        User.username = username;
+    public String getPartnerUsername() {
+        return this.partnerUsername;
     }
 
-    public static String getPartnerUsername() {
-        return partnerUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static void setPartnerUsername(String partnerUsername) {
-        User.partnerUsername = partnerUsername;
+    public void setPartnerUsername(String partnerUsername) {
+        this.partnerUsername = partnerUsername;
     }
 }

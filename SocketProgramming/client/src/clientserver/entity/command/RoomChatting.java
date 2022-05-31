@@ -1,5 +1,6 @@
 package clientserver.entity.command;
 
+import clientserver.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
@@ -32,8 +33,7 @@ public class RoomChatting implements Chatting {
     public void sendChattingMessage(MessageObject messageObject) {
         MessageObject roomMessageObject = new MessageObjectBuilder()
                 .setContent(messageObject.getContent())
-                .setMessageType(User.getUserCondition())
-                .setSender(User.getUsername())
+                .setMessageType(UserSocket.getUser().getUserCondition())
                 .build();
 
         socketMessageHandler.send(new Gson().toJson(roomMessageObject));
@@ -44,7 +44,7 @@ public class RoomChatting implements Chatting {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append("[")
-                .append(messageObject.getSender())
+                .append(messageObject.getUser().getUsername())
                 .append("] : ")
                 .append(messageObject.getContent());
 

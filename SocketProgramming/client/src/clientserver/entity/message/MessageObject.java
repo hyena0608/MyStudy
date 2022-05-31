@@ -1,25 +1,21 @@
 package clientserver.entity.message;
 
+import clientserver.UserSocket;
+import clientserver.entity.user.User;
+
 import java.time.LocalDateTime;
 
 public class  MessageObject {
     private final LocalDateTime localDateTime;
     private final String messageType;
-    private final String sender;
-    private final String receiver;
-    private final String channelNumber;
-    private final String roomNumber;
     private final String content;
     private final String country;
     private final String language;
+    private User user = UserSocket.getUser();
 
-    public MessageObject(LocalDateTime localDateTime, String messageType, String sender, String receiver, String channelNumber, String roomNumber, String content, String country, String language) {
+    public MessageObject(LocalDateTime localDateTime, String messageType, String content, String country, String language) {
         this.localDateTime = localDateTime;
         this.messageType = messageType;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.channelNumber = channelNumber;
-        this.roomNumber = roomNumber;
         this.content = content;
         this.country = country;
         this.language = language;
@@ -33,22 +29,6 @@ public class  MessageObject {
         return messageType;
     }
 
-    public String getSender() {
-        return sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public String getChannelNumber() {
-        return channelNumber;
-    }
-
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
     public String getContent() {
         return content;
     }
@@ -59,5 +39,9 @@ public class  MessageObject {
 
     public String getLanguage() {
         return language;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }

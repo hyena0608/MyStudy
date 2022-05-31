@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="" />
+    <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/UserSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/UserSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,18 +39,21 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="29j8Lg98QLb5iPe6eSrzRuE4Upp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -64,7 +78,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application" />
-      <module name="SocketProgrammingVer2" />
+      <module name="client" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -88,10 +102,22 @@
       <workItem from="1653868601705" duration="29405000" />
       <workItem from="1653954988894" duration="46000" />
       <workItem from="1653955042376" duration="67000" />
+      <workItem from="1653955898720" duration="1904000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

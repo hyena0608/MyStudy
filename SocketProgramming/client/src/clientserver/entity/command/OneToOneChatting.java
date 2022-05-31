@@ -1,5 +1,6 @@
 package clientserver.entity.command;
 
+import clientserver.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
@@ -31,9 +32,7 @@ public class OneToOneChatting implements Chatting {
     @Override
     public void sendChattingMessage(MessageObject messageObject) {
         MessageObject oneToOneMessageObject = new MessageObjectBuilder()
-                .setMessageType(User.getUserCondition())
-                .setSender(User.getUsername())
-                .setReceiver(User.getPartnerUsername())
+                .setMessageType(UserSocket.getUser().getUserCondition())
                 .setContent(messageObject.getContent())
                 .build();
 
@@ -45,7 +44,7 @@ public class OneToOneChatting implements Chatting {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append("[귓속말 - ")
-                .append(messageObject.getSender())
+                .append(messageObject.getUser())
                 .append("] : ")
                 .append(messageObject.getContent());
 

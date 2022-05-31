@@ -33,9 +33,9 @@ public class OneToOneSetting implements Setting {
 
     @Override
     public void changeMySetting() {
-        if (User.getPartnerUsername() == null) {
+        if (UserSocket.getUser().getPartnerUsername() == null) {
             connectPartner();
-        } else if (User.getPartnerUsername() != null) {
+        } else if (UserSocket.getUser().getPartnerUsername() != null) {
             System.out.println("연결을 끊으시겠습니까? y/n");
             String answer = sc.nextLine();
             if (answer.equals("y")) {
@@ -49,7 +49,7 @@ public class OneToOneSetting implements Setting {
         // 이름 입력
         System.out.print("상대이름을 입력하세요. : ");
         String partnerUsername = sc.nextLine();
-        User.setPartnerUsername(partnerUsername);
+        UserSocket.getUser().setPartnerUsername(partnerUsername);
 
         // 서버 소켓 오픈
         System.out.println("소켓을 엽니다.");
@@ -64,8 +64,6 @@ public class OneToOneSetting implements Setting {
         // JSON 형태로 변경합니다.
         MessageObject messageObject = new MessageObjectBuilder()
                 .setContent("10000")
-                .setSender(User.getUsername())
-                .setReceiver(partnerUsername)
                 .setMessageType(OneToOneSetting.condition)
                 .build();
 
@@ -76,13 +74,13 @@ public class OneToOneSetting implements Setting {
             e.printStackTrace();
         }
 
-        System.out.println("포트 번호 : [" + messageObject.getContent() + "], " + messageObject.getReceiver() + "님에게 귓속말 정보가 전달 되었습니다.");
+        System.out.println("포트 번호 : [" + messageObject.getContent() + "], " + messageObject.getUser() + "님에게 귓속말 정보가 전달 되었습니다.");
     }
 
     private void disconnectPartner() {
         try {
             System.out.println("귓속말 연결을 끊습니다.");
-            User.setPartnerUsername(null);
+            UserSocket.getUser().setPartnerUsername(null);
             serverSocket.close();
             serverSocket = null;
         } catch (IOException e) {
