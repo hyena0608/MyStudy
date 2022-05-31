@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientReceiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/client/ClientSender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/JsonParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/MessageForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/type/MessageConsole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/type/MessageParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/type/OneToOne.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/message/type/Room.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/client/ClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/client/ClientInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/client/ClientReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/client/ClientReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/client/ClientSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/client/ClientSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/MessageForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/form/MessageForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/MessageFormBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/form/MessageFormBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/MessageJsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/utility/MyJsonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/type/MessageConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/console/MessageConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/type/MessageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/console/MessageParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/type/OneToOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/console/OneToOne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/message/type/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/message/console/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/chatserver/client/ClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/chatserver/client/ClientInfo.java" afterDir="false" />
-    </list>
+    <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,8 +10,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -49,78 +24,74 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../../../../Program Files/Java/jdk-11.0.14/lib/src.zip!/java.base/java/util/Locale.java" root0="SKIP_INSPECTION" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="29JWndpnkBy5xoRPZZUXwA0GXzS" />
+  <component name="ProjectId" id="29j8Lg98QLb5iPe6eSrzRuE4Upp" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="copyright" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="clientserver.service.handler" />
+      <recent name="clientserver.command.type" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\repure001\Desktop\업무\MyStudy\SocketProgramming\client\src" />
-      <recent name="C:\Users\repure001\Desktop\업무\MyStudy\SocketProgramming\client\src\clientserver" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\entity\command" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\service\command" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\service\console" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\new" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\new\service\handler" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2\src\clientserver\entity\command" />
+      <recent name="C:\Users\repure001\Desktop\SocketProgrammingVer2" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="clientserver.entity.command" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="ClientServerApplication" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ClientServerApplication" />
-      <module name="client" />
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Application" />
+      <module name="SocketProgrammingVer2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientServerApplication" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="96e50d57-7e18-4ed1-ba15-5b9f292aa007" name="Changes" comment="" />
-      <created>1652831836355</created>
+      <changelist id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="" />
+      <created>1653615082284</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1652831836355</updated>
-      <workItem from="1652831838162" duration="484000" />
-      <workItem from="1652832345461" duration="23715000" />
-      <workItem from="1652917678440" duration="20978000" />
-      <workItem from="1653007531977" duration="12163000" />
-      <workItem from="1653263453317" duration="13705000" />
-      <workItem from="1653436410356" duration="596000" />
-      <workItem from="1653437679706" duration="13094000" />
+      <updated>1653615082284</updated>
+      <workItem from="1653615083417" duration="19303000" />
+      <workItem from="1653639896655" duration="1754000" />
+      <workItem from="1653868601705" duration="29405000" />
+      <workItem from="1653954988894" duration="46000" />
+      <workItem from="1653955042376" duration="67000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
