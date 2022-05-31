@@ -1,2 +1,4 @@
-package com.hyunseo.service.user.parser;public class UserSocketMessageParser {
+package com.hyunseo.service.user.parser;
+
+public class UserSocketMessageParser {
 }

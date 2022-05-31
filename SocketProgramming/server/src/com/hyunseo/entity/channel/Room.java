@@ -2,15 +2,14 @@ package com.hyunseo.entity.channel;
 
 import com.hyunseo.socket.UserSocket;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
 
-    private static Map<String, Map<String, UserSocket>> roomMap = new HashMap<>();
+    private List<UserSocket> userSocketList = new ArrayList<>();
 
-    public static Map<String, Map<String, UserSocket>> getRoomMap() {
-        return roomMap;
+    public List<UserSocket> getUserSocketList() {
+        return userSocketList;
     }
-
 }

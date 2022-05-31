@@ -1,7 +1,6 @@
-package clientserver.entity.message;
+package com.hyunseo.entity.message;
 
-import clientserver.UserSocket;
-import clientserver.entity.user.User;
+import com.hyunseo.entity.user.User;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +10,16 @@ public class  MessageObject {
     private final String content;
     private final String country;
     private final String language;
-    private User user = UserSocket.getUser();
+    private User user;
 
-    public MessageObject(LocalDateTime localDateTime, String messageType, String content, String country, String language) {
+
+    public MessageObject(LocalDateTime localDateTime, String messageType, String content, String country, String language, User user) {
         this.localDateTime = localDateTime;
         this.messageType = messageType;
         this.content = content;
         this.country = country;
         this.language = language;
+        this.user = user;
     }
 
     public LocalDateTime getLocalDateTime() {

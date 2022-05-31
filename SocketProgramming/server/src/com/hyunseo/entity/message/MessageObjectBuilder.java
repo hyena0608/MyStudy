@@ -1,6 +1,6 @@
-package clientserver.entity.message;
+package com.hyunseo.entity.message;
 
-import clientserver.entity.user.User;
+import com.hyunseo.entity.user.User;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -13,6 +13,7 @@ public class MessageObjectBuilder {
     private final LocalDateTime localDateTime = LocalDateTime.now();
     private String messageType;
     private String content;
+    private User user;
 
     public MessageObjectBuilder setMessageType(String messageType) {
         this.messageType = messageType;
@@ -24,7 +25,12 @@ public class MessageObjectBuilder {
         return this;
     }
 
+    public MessageObjectBuilder setUser(User user) {
+        this.user = user;
+        return this;
+    }
+
     public MessageObject build() {
-        return new MessageObject(localDateTime, messageType, content, country, language);
+        return new MessageObject(localDateTime, messageType, content, country, language, user);
     }
 }

@@ -1,7 +1,11 @@
-package com.hyunseo.service.socket;
+package com.hyunseo.socket;
 
-import com.hyunseo.service.channel.ChannelHandler;
+import com.google.gson.Gson;
+import com.hyunseo.entity.message.MessageObject;
+import com.hyunseo.service.channel.handler.ChannelHandler;
+import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,12 +13,21 @@ import java.net.Socket;
 public class MainSocket {
 
     public void init() throws IOException {
-        new ChannelHandler().init();
+        ChannelHandler.init();
         ServerSocket serverSocket = new ServerSocket(8888);
+        new Thread(new UserSocketMessageHandler()).start();
 
         while (true) {
             Socket socket = serverSocket.accept();
-            UserSocket userSocket = new UserSocket(socket);
+
+            String messageJson = new DataInputStream(socket.getInputStream()).readUTF();
+            System.out.println("messageJson = " + messageJson);
+            MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
+
+            UserSocket userSocket = new UserSocket(socket, messageObject.getUser());
+            ChannelHandler.addUser(userSocket);
+            userSocket.start();
+
         }
     }
 }
