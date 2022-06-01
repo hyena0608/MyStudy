@@ -6,7 +6,7 @@
 
 현재 블로그 2개 운영 중에 있으며
 
-[박현서의 Notion Blog 🎉](hyena.oopy.io)은 자료 수집 및 빠르게 정리하는 용도로
+[박현서의 Notion Blog 🎉](https://hyena.oopy.io/)은 자료 수집 및 빠르게 정리하는 용도로
 
 [박현서의 Velog Blog 😋](https://velog.io/@hyena0608)는 이슈 대응 및 응용했던 내용을 정리하고 있습니다.
 
