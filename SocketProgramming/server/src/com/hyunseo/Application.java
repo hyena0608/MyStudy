@@ -1,6 +1,6 @@
 package com.hyunseo;
 
-import com.hyunseo.socket.MainSocket;
+import com.hyunseo.socket.main.MainSocket;
 
 import java.io.IOException;
 

@@ -52,6 +52,10 @@ public class UserSocketMessageHandler {
                     if (o.getUser().getUsername()
                             .equals(messageObject.getUser().getPartnerUsername())) {
                         try {
+                            messageObject.getUser().setPartnerUsername(messageObject.getUser().getUsername());
+                            messageObject.getUser().setUsername(o.getUser().getUsername());
+                            System.out.println(o.getUser().getUsername() + "의 파트너는 " + o.getUser().getPartnerUsername() + "이다.");
+                            System.out.println(messageObject.getUser().getUsername() + "의 파트너는 " + messageObject.getUser().getPartnerUsername() + "이다.");
                             o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();

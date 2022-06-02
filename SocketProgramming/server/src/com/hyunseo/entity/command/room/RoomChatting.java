@@ -1,4 +1,4 @@
-package com.hyunseo.entity.command;
+package com.hyunseo.entity.command.room;
 
 import com.google.gson.Gson;
 import com.hyunseo.entity.command.base.Command;
@@ -9,7 +9,7 @@ public class RoomChatting implements Command {
 
     private static volatile RoomChatting instance;
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
-    public static final String condition = "ROOMCHATTING";
+    public static final String condition = "ROOM_CHATTING";
 
     private RoomChatting() {
     }

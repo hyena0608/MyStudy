@@ -1,6 +1,6 @@
 package com.hyunseo.entity.channel;
 
-import com.hyunseo.socket.UserSocket;
+import com.hyunseo.socket.user.UserSocket;
 
 import java.util.ArrayList;
 import java.util.List;

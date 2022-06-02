@@ -1,4 +1,4 @@
-package com.hyunseo.entity.command;
+package com.hyunseo.entity.command.onetoone;
 
 import com.google.gson.Gson;
 import com.hyunseo.entity.command.base.Command;
@@ -8,7 +8,7 @@ import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 public class OneToOneChatting implements Command {
 
     private static volatile OneToOneChatting instance;
-    public static final String condition = "ONETOONECHATTING";
+    public static final String condition = "ONETOONE_CHATTING";
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
     private OneToOneChatting() {}

@@ -32,4 +32,16 @@ public class User {
     public String getRoomTitle() {
         return roomTitle;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setUserCondition(String userCondition) {
+        this.userCondition = userCondition;
+    }
+
+    public void setPartnerUsername(String partnerUsername) {
+        this.partnerUsername = partnerUsername;
+    }
 }

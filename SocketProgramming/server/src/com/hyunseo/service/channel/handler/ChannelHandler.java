@@ -2,7 +2,7 @@ package com.hyunseo.service.channel.handler;
 
 import com.hyunseo.entity.channel.Channel;
 import com.hyunseo.entity.channel.Room;
-import com.hyunseo.socket.UserSocket;
+import com.hyunseo.socket.user.UserSocket;
 
 import java.util.Collections;
 import java.util.HashMap;
