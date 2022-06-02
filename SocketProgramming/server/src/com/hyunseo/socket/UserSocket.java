@@ -2,6 +2,7 @@ package com.hyunseo.socket;
 
 import com.hyunseo.entity.command.factory.CommandFactory;
 import com.hyunseo.entity.user.User;
+import com.hyunseo.service.user.parser.UserSocketMessageParser;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,12 +17,12 @@ public class UserSocket implements Runnable {
     private DataOutputStream out;
     private CommandFactory commandFactory = new CommandFactory();
 
-    public UserSocket(Socket socket, User user) {
+    public UserSocket(Socket socket) {
         try {
             this.socket = socket;
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
-            this.user = user;
+            this.user = getUserFromClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,8 +59,21 @@ public class UserSocket implements Runnable {
     }
 
     private void tossMessageJson(String messageJson) {
-        System.out.println("[서버] : " + messageJson + " 를 전달합니다.");
+//        System.out.println("[서버] : " + messageJson + " 를 전달합니다.");
         commandFactory.createCommand(messageJson).send(messageJson);
+    }
+
+    private User getUserFromClient() {
+        User user = null;
+        try {
+            String messageJson = new DataInputStream(socket.getInputStream()).readUTF();
+            user = UserSocketMessageParser
+                    .toObject(messageJson)
+                    .getUser();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override

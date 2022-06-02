@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class UserSocketMessageHandler {
 
-    private UserSocketMessageParser userSocketMessageParser = new UserSocketMessageParser();
     private Map<String, Map<String, Room>> channelMap = ChannelHandler.getChannelMap();
 
     public void broadcastMessage(MessageObject messageObject) {
@@ -21,7 +20,7 @@ public class UserSocketMessageHandler {
                     if (!o.getUser().getUsername()
                             .equals(messageObject.getUser().getUsername())) {
                         try {
-                            o.getOut().writeUTF(userSocketMessageParser.toJson(messageObject));
+                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -37,12 +36,29 @@ public class UserSocketMessageHandler {
                     if (o.getUser().getUsername()
                             .equals(messageObject.getUser().getPartnerUsername())) {
                         try {
-                            o.getOut().writeUTF(userSocketMessageParser.toJson(messageObject));
+                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                 });
     }
+
+    public void settingOneToOne(MessageObject messageObject) {
+        channelMap.get(messageObject.getUser().getChannelTitle())
+                .get(messageObject.getUser().getRoomTitle())
+                .getUserSocketList()
+                .forEach(o -> {
+                    if (o.getUser().getUsername()
+                            .equals(messageObject.getUser().getPartnerUsername())) {
+                        try {
+                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
 
 }

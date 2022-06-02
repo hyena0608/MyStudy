@@ -8,7 +8,7 @@ import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 public class OneToOneChatting implements Command {
 
     private static volatile OneToOneChatting instance;
-    public static final String condition = "ONETOONE";
+    public static final String condition = "ONETOONECHATTING";
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
     private OneToOneChatting() {}

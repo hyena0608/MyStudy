@@ -13,9 +13,6 @@ public class ChannelHandler {
     private static Map<String, Map<String, Room>> channelMap = new Channel().getChannelMap();
 
     public static void addUser(UserSocket userSocket) {
-        System.out.println("userSocket.getUser().getUsername() = " + userSocket.getUser().getUsername());
-        System.out.println("userSocket.getUser().getChannelTitle() = " + userSocket.getUser().getChannelTitle());
-        System.out.println("userSocket.getUser().getRoomTitle() = " + userSocket.getUser().getRoomTitle());
         channelMap.get(userSocket.getUser().getChannelTitle())
                 .get(userSocket.getUser().getRoomTitle())
                 .getUserSocketList()

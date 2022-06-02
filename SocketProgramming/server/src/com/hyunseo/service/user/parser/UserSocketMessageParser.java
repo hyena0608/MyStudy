@@ -5,13 +5,13 @@ import com.hyunseo.entity.message.MessageObject;
 
 public class UserSocketMessageParser  {
 
-    private Gson gson = new Gson();
+    private static Gson gson = new Gson();
 
-    public MessageObject toObject(String message) {
+    public static MessageObject toObject(String message) {
         return gson.fromJson(message, MessageObject.class);
     }
 
-    public String toJson(MessageObject messageObject) {
+    public static String toJson(MessageObject messageObject) {
         return gson.toJson(messageObject);
     }
 }

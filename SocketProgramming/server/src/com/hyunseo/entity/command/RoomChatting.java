@@ -9,7 +9,7 @@ public class RoomChatting implements Command {
 
     private static volatile RoomChatting instance;
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
-    public static final String condition = "ROOM";
+    public static final String condition = "ROOMCHATTING";
 
     private RoomChatting() {
     }
