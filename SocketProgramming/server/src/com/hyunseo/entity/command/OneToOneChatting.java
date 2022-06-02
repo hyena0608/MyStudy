@@ -26,7 +26,9 @@ public class OneToOneChatting implements Command {
 
     @Override
     public void send(String messageJson) {
-        MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
-        userSocketMessageHandler.sendOneToOneMessage(messageObject);
+        userSocketMessageHandler
+                .sendOneToOneMessage(
+                        new Gson().fromJson(messageJson, MessageObject.class)
+                );
     }
 }

@@ -11,7 +11,8 @@ public class RoomChatting implements Command {
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
     public static final String condition = "ROOM";
 
-    private RoomChatting() {}
+    private RoomChatting() {
+    }
 
     public static RoomChatting getInstance() {
         if (instance == null) {
@@ -27,7 +28,9 @@ public class RoomChatting implements Command {
 
     @Override
     public void send(String messageJson) {
-        MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
-        userSocketMessageHandler.broadcastMessage(messageObject);
+        userSocketMessageHandler
+                .broadcastMessage(
+                        new Gson().fromJson(messageJson, MessageObject.class)
+                );
     }
 }

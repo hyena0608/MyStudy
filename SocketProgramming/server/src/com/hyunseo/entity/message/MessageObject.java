@@ -10,8 +10,7 @@ public class  MessageObject {
     private final String content;
     private final String country;
     private final String language;
-    private User user;
-
+    private final User user;
 
     public MessageObject(LocalDateTime localDateTime, String messageType, String content, String country, String language, User user) {
         this.localDateTime = localDateTime;

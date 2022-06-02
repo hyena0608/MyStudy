@@ -15,19 +15,16 @@ public class MainSocket {
     public void init() throws IOException {
         ChannelHandler.init();
         ServerSocket serverSocket = new ServerSocket(8888);
-        new Thread(new UserSocketMessageHandler()).start();
 
         while (true) {
             Socket socket = serverSocket.accept();
 
             String messageJson = new DataInputStream(socket.getInputStream()).readUTF();
-            System.out.println("messageJson = " + messageJson);
             MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
 
             UserSocket userSocket = new UserSocket(socket, messageObject.getUser());
             ChannelHandler.addUser(userSocket);
-            userSocket.start();
-
+            new Thread(userSocket).start();
         }
     }
 }

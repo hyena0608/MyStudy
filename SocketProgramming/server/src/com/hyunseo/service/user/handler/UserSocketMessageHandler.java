@@ -1,36 +1,17 @@
 package com.hyunseo.service.user.handler;
 
-import com.google.gson.Gson;
 import com.hyunseo.entity.channel.Room;
-import com.hyunseo.entity.command.factory.CommandFactory;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.service.channel.handler.ChannelHandler;
-import com.hyunseo.socket.UserSocket;
+import com.hyunseo.service.user.parser.UserSocketMessageParser;
 
 import java.io.IOException;
 import java.util.Map;
 
-public class UserSocketMessageHandler implements Runnable {
+public class UserSocketMessageHandler {
 
-    private CommandFactory commandFactory = new CommandFactory();
-    private Gson gson = new Gson();
+    private UserSocketMessageParser userSocketMessageParser = new UserSocketMessageParser();
     private Map<String, Map<String, Room>> channelMap = ChannelHandler.getChannelMap();
-
-    private void receive() {
-
-        for (Map<String, Room> roomMap : channelMap.values()) {
-            for (Room room : roomMap.values()) {
-                for (UserSocket userSocket : room.getUserSocketList()) {
-                    try {
-                        String messageJson = userSocket.getIn().readUTF();
-                        commandFactory.createCommand(messageJson).send(messageJson);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
 
     public void broadcastMessage(MessageObject messageObject) {
         channelMap.get(messageObject.getUser().getChannelTitle())
@@ -40,7 +21,7 @@ public class UserSocketMessageHandler implements Runnable {
                     if (!o.getUser().getUsername()
                             .equals(messageObject.getUser().getUsername())) {
                         try {
-                            o.getOut().writeUTF(gson.toJson(messageObject));
+                            o.getOut().writeUTF(userSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -56,7 +37,7 @@ public class UserSocketMessageHandler implements Runnable {
                     if (o.getUser().getUsername()
                             .equals(messageObject.getUser().getPartnerUsername())) {
                         try {
-                            o.getOut().writeUTF(gson.toJson(messageObject));
+                            o.getOut().writeUTF(userSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -64,10 +45,4 @@ public class UserSocketMessageHandler implements Runnable {
                 });
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            receive();
-        }
-    }
 }

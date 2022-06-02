@@ -1,5 +1,6 @@
 package com.hyunseo.socket;
 
+import com.hyunseo.entity.command.factory.CommandFactory;
 import com.hyunseo.entity.user.User;
 
 import java.io.DataInputStream;
@@ -7,12 +8,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class UserSocket extends Thread {
+public class UserSocket implements Runnable {
 
     private User user;
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
+    private CommandFactory commandFactory = new CommandFactory();
 
     public UserSocket(Socket socket, User user) {
         try {
@@ -20,10 +22,6 @@ public class UserSocket extends Thread {
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
             this.user = user;
-            System.out.println("user.getChannelTitle() = " + user.getChannelTitle());
-            System.out.println("user.getRoomTitle() = " + user.getRoomTitle());
-            System.out.println("user.getUsername() = " + user.getUsername());
-            System.out.println("user.getUserCondition() = " + user.getUserCondition());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,5 +45,27 @@ public class UserSocket extends Thread {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    private String receive() {
+        String messageJson = null;
+        try {
+            messageJson = in.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return messageJson;
+    }
+
+    private void tossMessageJson(String messageJson) {
+        System.out.println("[서버] : " + messageJson + " 를 전달합니다.");
+        commandFactory.createCommand(messageJson).send(messageJson);
+    }
+
+    @Override
+    public void run() {
+        while (socket.isConnected()) {
+            tossMessageJson(receive());
+        }
     }
 }
