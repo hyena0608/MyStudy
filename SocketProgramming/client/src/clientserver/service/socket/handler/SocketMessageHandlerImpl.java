@@ -1,7 +1,7 @@
 package clientserver.service.socket.handler;
 
 import clientserver.UserSocket;
-import clientserver.entity.command.UserSetting;
+import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
 import clientserver.entity.command.factory.SettingFactory;
 import clientserver.entity.message.MessageObject;
@@ -26,9 +26,8 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
                         .consoleMessage(messageObject);
             } else if (messageObject.getMessageType().contains("SETTING")) {
                 settingFactory.createSetting(messageObject.getMessageType())
-                        .changeMySetting();
+                        .changeMySetting(messageJson);
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,10 +53,10 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
         }
     }
 
-    public void sendUserSetting() {
+    public void sendUserSetting(String message) {
         settingFactory
                 .createSetting(UserSetting.condition)
-                .changeMySetting();
+                .changeMySetting(message);
     }
 
     public void sendUserToServerToJoinServer(String messageJson) {

@@ -1,6 +1,7 @@
-package com.hyunseo.socket;
+package com.hyunseo.socket.main;
 
 import com.hyunseo.service.channel.handler.ChannelHandler;
+import com.hyunseo.socket.user.UserSocket;
 
 import java.io.IOException;
 import java.net.ServerSocket;

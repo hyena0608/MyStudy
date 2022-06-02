@@ -1,4 +1,4 @@
-package clientserver.entity.command;
+package clientserver.entity.command.room;
 
 import clientserver.entity.command.base.Setting;
 
@@ -23,7 +23,7 @@ public class RoomSetting implements Setting {
     }
 
     @Override
-    public void changeMySetting() {
+    public void changeMySetting(String messageJson) {
 
     }
 

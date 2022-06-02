@@ -1,6 +1,6 @@
 package clientserver.entity.user;
 
-import clientserver.entity.command.RoomChatting;
+import clientserver.entity.command.room.RoomChatting;
 
 import java.util.Scanner;
 

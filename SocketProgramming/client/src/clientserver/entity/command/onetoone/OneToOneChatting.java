@@ -1,4 +1,4 @@
-package clientserver.entity.command;
+package clientserver.entity.command.onetoone;
 
 import clientserver.UserSocket;
 import clientserver.entity.command.base.Chatting;

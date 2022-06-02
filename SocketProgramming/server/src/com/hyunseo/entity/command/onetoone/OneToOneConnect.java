@@ -1,24 +1,24 @@
-package com.hyunseo.entity.command;
+package com.hyunseo.entity.command.onetoone;
 
 import com.google.gson.Gson;
 import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
-public class OneToOneSetting implements Command {
+public class OneToOneConnect implements Command {
 
-    private static volatile OneToOneSetting instance;
-    public static final String condition = "ONETOONESETTING";
+    private static volatile OneToOneConnect instance;
+    public static final String condition = "ONETOONE_CONNECT";
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
 
-    private OneToOneSetting() {}
+    private OneToOneConnect() {}
 
-    public static OneToOneSetting getInstance() {
+    public static OneToOneConnect getInstance() {
         if (instance == null) {
-            synchronized (OneToOneSetting.class) {
+            synchronized (OneToOneConnect.class) {
                 if (instance == null) {
-                    instance = new OneToOneSetting();
+                    instance = new OneToOneConnect();
                 }
             }
         }

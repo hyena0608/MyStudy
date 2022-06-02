@@ -1,8 +1,8 @@
 package clientserver.entity.command.factory;
 
 import clientserver.UserSocket;
-import clientserver.entity.command.OneToOneChatting;
-import clientserver.entity.command.RoomChatting;
+import clientserver.entity.command.onetoone.OneToOneChatting;
+import clientserver.entity.command.room.RoomChatting;
 import clientserver.entity.command.base.Chatting;
 
 public class ChattingFactory {

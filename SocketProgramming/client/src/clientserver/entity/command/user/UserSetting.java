@@ -1,10 +1,9 @@
-package clientserver.entity.command;
+package clientserver.entity.command.user;
 
 import clientserver.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.console.parser.ConsoleMessageParserImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
@@ -25,18 +24,18 @@ public class UserSetting implements Setting {
     }
 
     @Override
-    public void changeMySetting() {
+    public void changeMySetting(String messageJson) {
         SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
         ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
 
-        MessageObject messageObject = new MessageObjectBuilder()
+        MessageObject messageObjectToSend = new MessageObjectBuilder()
                 .setMessageType(UserSocket.getUser().getUserCondition())
                 .setUser(UserSocket.getUser())
                 .build();
 
         socketMessageHandler
                 .sendUserToServerToJoinServer(
-                        consoleMessageParser.toJson(messageObject)
+                        consoleMessageParser.toJson(messageObjectToSend)
                 );
     }
 }

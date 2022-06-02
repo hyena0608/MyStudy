@@ -23,7 +23,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
         String message = sc.nextLine();
         if (isSettingType(message)) {
             settingFactory.createSetting(message)
-                    .changeMySetting ();
+                    .changeMySetting(message);
         } else if (isChattingType(message)) {
             MessageObject messageObject = messageParser.toObject(message);
 

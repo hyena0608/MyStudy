@@ -1,4 +1,4 @@
-package com.hyunseo.socket;
+package com.hyunseo.socket.user;
 
 import com.hyunseo.entity.command.factory.CommandFactory;
 import com.hyunseo.entity.user.User;
@@ -47,6 +47,8 @@ public class UserSocket implements Runnable {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 
     private String receive() {
         String messageJson = null;
