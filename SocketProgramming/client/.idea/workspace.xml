@@ -2,25 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../server/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/OneToOneSetting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/UserSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/UserSocket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/OneToOneSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/OneToOneSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/RoomChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/RoomChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/UserSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/UserSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/UserSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/UserSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/OneToOneSetting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/RoomChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/UserSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/UserSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/OneToOneChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/OneToOneChatting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/RoomChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/RoomChatting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/message/MessageObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/message/MessageObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/handler/UserSocketMessageHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/handler/UserSocketMessageHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/parser/UserSocketMessageParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/parser/UserSocketMessageParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/MainSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/MainSocket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/UserSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/UserSocket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/OneToOneChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/RoomChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/parser/UserSocketMessageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/parser/UserSocketMessageParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/MainSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/MainSocket.java" afterDir="false" />
@@ -118,7 +122,7 @@
       <workItem from="1653955042376" duration="67000" />
       <workItem from="1653955898720" duration="3492000" />
       <workItem from="1653959447127" duration="21053000" />
-      <workItem from="1654128215174" duration="2852000" />
+      <workItem from="1654128215174" duration="13591000" />
     </task>
     <servers />
   </component>

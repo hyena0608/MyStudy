@@ -6,11 +6,12 @@ import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.console.parser.ConsoleMessageParserImpl;
+import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
 public class UserSetting implements Setting {
 
     private static volatile UserSetting instance;
-    private static final String condition = "UserSetting";
+    public static final String condition = "USERSETTING";
 
     public static UserSetting getInstance() {
         if (instance == null) {
@@ -25,7 +26,7 @@ public class UserSetting implements Setting {
 
     @Override
     public void changeMySetting() {
-        ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
+        SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
         ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
 
         MessageObject messageObject = new MessageObjectBuilder()
@@ -33,7 +34,9 @@ public class UserSetting implements Setting {
                 .setUser(UserSocket.getUser())
                 .build();
 
-        String messageJson = consoleMessageParser.toJson(messageObject);
-        consoleMessageHandler.sendUserToServerToJoinServer(messageJson);
+        socketMessageHandler
+                .sendUserToServerToJoinServer(
+                        consoleMessageParser.toJson(messageObject)
+                );
     }
 }

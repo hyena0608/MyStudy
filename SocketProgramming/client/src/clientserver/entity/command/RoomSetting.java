@@ -5,7 +5,7 @@ import clientserver.entity.command.base.Setting;
 public class RoomSetting implements Setting {
 
     private static volatile RoomSetting instance;
-    private static final String condition = "ROOM";
+    private static final String condition = "ROOMSETTING";
 
     private RoomSetting() {
 

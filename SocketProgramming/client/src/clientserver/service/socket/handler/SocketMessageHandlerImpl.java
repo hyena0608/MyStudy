@@ -1,7 +1,9 @@
 package clientserver.service.socket.handler;
 
 import clientserver.UserSocket;
+import clientserver.entity.command.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
+import clientserver.entity.command.factory.SettingFactory;
 import clientserver.entity.message.MessageObject;
 import clientserver.service.base.MessageHandler;
 import clientserver.service.socket.parser.SocketMessageParserImpl;
@@ -11,15 +13,22 @@ import java.io.IOException;
 public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     private SocketMessageParserImpl messageParser = new SocketMessageParserImpl();
     private ChattingFactory chattingFactory = new ChattingFactory();
+    private SettingFactory settingFactory = new SettingFactory();
 
     @Override
-    public void receive()  {
+    public void receive() {
         try {
             String messageJson = UserSocket.getIn().readUTF();
             MessageObject messageObject = messageParser.toObject(messageJson);
 
-            chattingFactory.createChatting()
-                    .consoleMessage(messageObject);
+            if (messageObject.getMessageType().contains("CHATTING")) {
+                chattingFactory.createChatting()
+                        .consoleMessage(messageObject);
+            } else if (messageObject.getMessageType().contains("SETTING")) {
+                settingFactory.createSetting(messageObject.getMessageType())
+                        .changeMySetting();
+            }
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,6 +47,20 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void send(String messageJson) {
+        try {
+            UserSocket.getOut().writeUTF(messageJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendUserSetting() {
+        settingFactory
+                .createSetting(UserSetting.condition)
+                .changeMySetting();
+    }
+
+    public void sendUserToServerToJoinServer(String messageJson) {
         try {
             UserSocket.getOut().writeUTF(messageJson);
         } catch (IOException e) {

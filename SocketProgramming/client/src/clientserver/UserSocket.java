@@ -1,7 +1,9 @@
 package clientserver;
 
 import clientserver.entity.command.UserSetting;
+import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.entity.user.User;
+import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,13 +21,21 @@ public class UserSocket {
             socket = new Socket("localhost", 8888);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            User member = new User();
-            member.init();
-            user = member;
-            UserSetting.getInstance().changeMySetting();
+            user = getUserAfterSetting();
+            sendUserSettingMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private User getUserAfterSetting() {
+        User user = new User();
+        user.init();
+        return user;
+    }
+
+    private void sendUserSettingMessage() {
+        new SocketMessageHandlerImpl().sendUserSetting();
     }
 
     public static DataInputStream getIn() {
