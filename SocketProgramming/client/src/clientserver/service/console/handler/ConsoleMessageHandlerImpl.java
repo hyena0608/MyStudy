@@ -45,7 +45,6 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void send(String consoleMessage) {
         System.out.println(consoleMessage);
-
     }
 
     @Override

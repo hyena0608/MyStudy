@@ -13,11 +13,7 @@ public class User {
     private String channelTitle;
     private String roomTitle;
 
-    public User() {
-        init();
-    }
-
-    void init() {
+    public void init() {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("이름을 입력하세요 : ");

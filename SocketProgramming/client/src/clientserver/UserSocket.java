@@ -14,12 +14,14 @@ public class UserSocket {
     static private DataOutputStream out;
     static private User user;
 
-    static {
+    public void init() {
         try {
             socket = new Socket("localhost", 8888);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            user = new User();
+            User member = new User();
+            member.init();
+            user = member;
             UserSetting.getInstance().changeMySetting();
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,5 +38,9 @@ public class UserSocket {
 
     public static User getUser() {
         return user;
+    }
+
+    public static Socket getSocket() {
+        return socket;
     }
 }

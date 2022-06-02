@@ -32,6 +32,7 @@ public class RoomChatting implements Chatting {
     @Override
     public void sendChattingMessage(MessageObject messageObject) {
         MessageObject roomMessageObject = new MessageObjectBuilder()
+                .setUser(UserSocket.getUser())
                 .setContent(messageObject.getContent())
                 .setMessageType(UserSocket.getUser().getUserCondition())
                 .build();

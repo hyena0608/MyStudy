@@ -47,7 +47,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void run() {
-        while (UserSocket.getIn() != null) {
+        while (UserSocket.getSocket().isConnected()) {
             receive();
         }
     }
