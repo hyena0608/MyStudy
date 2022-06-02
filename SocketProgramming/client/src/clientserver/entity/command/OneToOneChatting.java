@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 public class OneToOneChatting implements Chatting {
 
     private static volatile OneToOneChatting instance;
-    public static final String condition = "ONETOONE";
+    public static final String condition = "ONETOONECHATTING";
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
 

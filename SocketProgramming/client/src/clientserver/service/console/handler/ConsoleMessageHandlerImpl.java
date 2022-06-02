@@ -55,12 +55,4 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
         }
     }
 
-    public void sendUserToServerToJoinServer(String messageJson) {
-        try {
-            UserSocket.getOut().writeUTF(messageJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

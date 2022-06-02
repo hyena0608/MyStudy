@@ -4,7 +4,6 @@ import clientserver.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.entity.user.User;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import com.google.gson.Gson;
@@ -12,7 +11,7 @@ import com.google.gson.Gson;
 public class RoomChatting implements Chatting {
 
     private static volatile RoomChatting instance;
-    public static final String condition = "ROOM";
+    public static final String condition = "ROOMCHATTING";
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
 

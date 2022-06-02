@@ -4,8 +4,8 @@ import clientserver.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.entity.user.User;
-import com.google.gson.Gson;
+import clientserver.service.console.parser.ConsoleMessageParserImpl;
+import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,9 +14,11 @@ import java.util.Scanner;
 public class OneToOneSetting implements Setting {
 
     private static volatile OneToOneSetting instance;
-    private static final String condition = "/귓속말";
-    private static Scanner sc = new Scanner(System.in);
     private static ServerSocket serverSocket = null;
+    private static Scanner sc = new Scanner(System.in);
+    public static final String startConditionByConsole = "/귓속말";
+    public static final String endConditionByConsole = "/종료";
+    public static final String condition = "ONETOONESETTING";
 
     private OneToOneSetting() {}
 
@@ -44,6 +46,14 @@ public class OneToOneSetting implements Setting {
         }
     }
 
+    private void isForConnection() {
+
+    }
+
+    private void isForDisConnection() {
+
+    }
+
     private void connectPartner() {
 
         // 이름 입력
@@ -64,17 +74,18 @@ public class OneToOneSetting implements Setting {
         // JSON 형태로 변경합니다.
         MessageObject messageObject = new MessageObjectBuilder()
                 .setContent("10000")
+                .setUser(UserSocket.getUser())
                 .setMessageType(OneToOneSetting.condition)
                 .build();
 
-        String messageJson = new Gson().toJson(messageObject);
-        try {
-            UserSocket.getOut().writeUTF(messageJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new SocketMessageHandlerImpl().send(
+                new ConsoleMessageParserImpl().toJson(messageObject)
+        );
 
-        System.out.println("포트 번호 : [" + messageObject.getContent() + "], " + messageObject.getUser() + "님에게 귓속말 정보가 전달 되었습니다.");
+        System.out.println("포트 번호 : ["
+                            + messageObject.getContent() + "], "
+                            + messageObject.getUser()
+                            + "님에게 귓속말 정보가 전달 되었습니다.");
     }
 
     private void disconnectPartner() {
