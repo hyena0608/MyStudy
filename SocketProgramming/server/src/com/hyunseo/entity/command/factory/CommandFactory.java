@@ -2,10 +2,13 @@ package com.hyunseo.entity.command.factory;
 
 import com.google.gson.Gson;
 import com.hyunseo.entity.command.onetoone.OneToOneChatting;
-import com.hyunseo.entity.command.onetoone.OneToOneConnect;
+import com.hyunseo.entity.command.onetoone.OneToOneConnectSetting;
+import com.hyunseo.entity.command.onetoone.OneToOneDisconnectSetting;
 import com.hyunseo.entity.command.room.RoomChatting;
 import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
+
+import static com.hyunseo.entity.command.onetoone.OneToOne.*;
 
 public class CommandFactory {
     private Command command = null;
@@ -14,13 +17,16 @@ public class CommandFactory {
         MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
         String messageType = messageObject.getMessageType();
 
-        if (messageType.equals(OneToOneChatting.condition)) {
+        if (messageType.equals(ONETOONE_CONNECT.toString())) {
+            command = OneToOneConnectSetting.getInstance();
+        } else if (messageType.equals(ONETOONE_DISCONNECT.toString())) {
+            command = OneToOneDisconnectSetting.getInstance();
+        } else if (messageType.equals(ONETOONE_CHATTING.toString())) {
             command = OneToOneChatting.getInstance();
-        } else if (messageType.equals(RoomChatting.condition)) {
+        }
+
+        if (messageType.equals(RoomChatting.condition)) {
             command = RoomChatting.getInstance();
-        } else if (messageType.equals(OneToOneConnect.condition)) {
-            System.out.println("ONETOONE_CONNECT가 선택 되었습니다.");
-            command = OneToOneConnect.getInstance();
         }
 
         return command;

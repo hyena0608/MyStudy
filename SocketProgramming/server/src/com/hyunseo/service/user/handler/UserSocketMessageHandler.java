@@ -44,18 +44,24 @@ public class UserSocketMessageHandler {
                 });
     }
 
-    public void settingOneToOne(MessageObject messageObject) {
+    public void sendPortForOneToOne(MessageObject messageObject) {
+
+        String username = messageObject.getUser().getUsername();
+        String partnerName = messageObject.getUser().getPartnerUsername();
+
         channelMap.get(messageObject.getUser().getChannelTitle())
                 .get(messageObject.getUser().getRoomTitle())
                 .getUserSocketList()
                 .forEach(o -> {
-                    if (o.getUser().getUsername()
-                            .equals(messageObject.getUser().getPartnerUsername())) {
+                    System.out.println("o.getUser().getUsername() = " + o.getUser().getUsername());
+                    if (o.getUser().getUsername().equals(username)
+                        || o.getUser().getUsername().equals(partnerName)) {
                         try {
-                            messageObject.getUser().setPartnerUsername(messageObject.getUser().getUsername());
-                            messageObject.getUser().setUsername(o.getUser().getUsername());
-                            System.out.println(o.getUser().getUsername() + "의 파트너는 " + o.getUser().getPartnerUsername() + "이다.");
-                            System.out.println(messageObject.getUser().getUsername() + "의 파트너는 " + messageObject.getUser().getPartnerUsername() + "이다.");
+//                            messageObject.getUser().setPartnerUsername(messageObject.getUser().getUsername());
+//                            messageObject.getUser().setUsername(o.getUser().getUsername());
+
+//                            System.out.println(o.getUser().getUsername() + "의 파트너는 " + o.getUser().getPartnerUsername() + "이다.");
+//                            System.out.println(messageObject.getUser().getUsername() + "의 파트너는 " + messageObject.getUser().getPartnerUsername() + "이다.");
                             o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
                         } catch (IOException e) {
                             e.printStackTrace();

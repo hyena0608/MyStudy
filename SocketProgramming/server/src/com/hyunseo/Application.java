@@ -1,6 +1,6 @@
 package com.hyunseo;
 
-import com.hyunseo.socket.main.MainSocket;
+import com.hyunseo.socket.main.MainServerSocket;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            new MainSocket().init();
+            new MainServerSocket().init();
         } catch (IOException e) {
             e.printStackTrace();
         }

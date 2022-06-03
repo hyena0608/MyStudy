@@ -9,7 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class UserSocket implements Runnable {
+public class  UserSocket implements Runnable {
 
     private User user;
     private Socket socket;
@@ -61,7 +61,7 @@ public class UserSocket implements Runnable {
     }
 
     private void tossMessageJson(String messageJson) {
-//        System.out.println("[서버] : " + messageJson + " 를 전달합니다.");
+        System.out.println("tossMessageJson() : messageJson = " + messageJson);
         commandFactory.createCommand(messageJson).send(messageJson);
     }
 

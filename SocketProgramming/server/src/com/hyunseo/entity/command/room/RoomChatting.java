@@ -5,11 +5,13 @@ import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
+import static com.hyunseo.entity.command.room.Room.ROOM_CHATTING;
+
 public class RoomChatting implements Command {
 
     private static volatile RoomChatting instance;
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
-    public static final String condition = "ROOM_CHATTING";
+    public static final String condition = String.valueOf(ROOM_CHATTING);
 
     private RoomChatting() {
     }

@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class Channel {
 
-    private Map<String, Map<String, Room>> channelMap = new HashMap<>();
+    private static Map<String, Map<String, Room>> channelMap = new HashMap<>();
 
-    public Map<String, Map<String, Room>> getChannelMap() {
+    public static Map<String, Map<String, Room>> getChannelMap() {
         return channelMap;
     }
 }
