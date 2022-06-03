@@ -1,21 +1,21 @@
 package clientserver.entity.command.onetoone;
 
-import clientserver.UserSocket;
-import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
-import clientserver.service.console.parser.ConsoleMessageParserImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
+import clientserver.service.socket.parser.SocketMessageParserImpl;
+import clientserver.socket.UserSocket;
+import clientserver.entity.command.base.Setting;
 
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.util.Scanner;
+
+import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_START;
+import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_CONNECT;
 
 public class OneToOneStartSetting implements Setting {
 
-    public static final String condition = String.valueOf(OneToOne.ONETOONE_START);
-    public static final String consoleCondition = OneToOne.ONETOONE_START.symbol;
-    public static ServerSocket serverSocket;
+    public static final String condition = String.valueOf(ONETOONE_START);
+    public static final String consoleCondition = ONETOONE_START.symbol;
 
     private static volatile OneToOneStartSetting instance;
 
@@ -46,26 +46,20 @@ public class OneToOneStartSetting implements Setting {
 
         System.out.print("상대이름을 입력하세요. : ");
         String partnerUsername = sc.nextLine();
+
         UserSocket
                 .getUser()
                 .setPartnerUsername(partnerUsername);
 
-        System.out.println("소켓을 엽니다.");
-        try {
-            serverSocket = new ServerSocket(10000);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("포트 번호를 상대에게 전달합니다.");
         MessageObject messageObject = new MessageObjectBuilder()
-                .setContent("10000")
+                .setMessageType(String.valueOf(ONETOONE_CONNECT))
                 .setUser(UserSocket.getUser())
-                .setMessageType(OneToOneConnectSetting.condition)
+                .setContent("")
                 .build();
 
-        new SocketMessageHandlerImpl().send(
-                new ConsoleMessageParserImpl().toJson(messageObject)
-        );
+        new SocketMessageHandlerImpl()
+                .send(
+                        new SocketMessageParserImpl().toJson(messageObject)
+                );
     }
 }

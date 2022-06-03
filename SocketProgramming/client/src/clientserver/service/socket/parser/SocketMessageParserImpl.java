@@ -15,7 +15,6 @@ public class SocketMessageParserImpl implements MessageParser {
 
     @Override
     public String toJson(MessageObject messageObject) {
-        return null;
+        return gson.toJson(messageObject);
     }
-
 }

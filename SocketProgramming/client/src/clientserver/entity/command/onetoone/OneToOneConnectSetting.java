@@ -1,16 +1,16 @@
 package clientserver.entity.command.onetoone;
 
-import clientserver.UserSocket;
+import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 import com.google.gson.Gson;
 
+import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_CONNECT;
+
 public class OneToOneConnectSetting implements Setting {
 
-    public static final String condition = String.valueOf(OneToOne.ONETOTONE_CONNECT);
-
+    public static final String condition = String.valueOf(ONETOONE_CONNECT);
     private static volatile OneToOneConnectSetting instance;
-
     private OneToOneConnectSetting() {}
 
     public static OneToOneConnectSetting getInstance() {
@@ -30,6 +30,7 @@ public class OneToOneConnectSetting implements Setting {
         UserSocket
                 .getUser()
                 .setPartnerUsername(messageObject.getUser().getUsername());
+
         System.out.println(UserSocket.getUser().getUsername()
                             + "의 파트너는 "
                             + UserSocket.getUser().getPartnerUsername()

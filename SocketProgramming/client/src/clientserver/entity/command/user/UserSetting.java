@@ -1,6 +1,6 @@
 package clientserver.entity.command.user;
 
-import clientserver.UserSocket;
+import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;

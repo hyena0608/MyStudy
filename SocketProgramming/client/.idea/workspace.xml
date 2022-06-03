@@ -2,16 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneDisconnectSetting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/room/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clientserver/socket/OneToOneSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOne.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/room/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/onetoone/serversocket/OneToOneServerSocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/onetoone/serversocket/handler/OneToOneServerSocketHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/onetoone/Port.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/UserSocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOne.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneConnectSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneConnectSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneEndSetting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneStartSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneStartSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/room/RoomChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/room/RoomChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/room/RoomSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/room/RoomSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/user/UserSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/user/UserSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/console/parser/ConsoleMessageParserImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/console/parser/ConsoleMessageParserImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/parser/SocketMessageParserImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/parser/SocketMessageParserImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/UserSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/socket/UserSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOne.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneChatting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneConnectSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneConnectSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneEndSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneEndSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneEndSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneDisconnectSetting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneStartSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneStartSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/user/UserSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/user/UserSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/parser/ConsoleMessageParserImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/socket/parser/SocketMessageParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/socket/parser/SocketMessageParserImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/channel/Channel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/channel/Channel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/channel/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/channel/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/onetoone/OneToOneChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/onetoone/OneToOneChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/onetoone/OneToOneConnect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/room/RoomChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/room/RoomChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/message/MessageObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/message/MessageObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/handler/UserSocketMessageHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/user/handler/UserSocketMessageHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/MainSocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/socket/UserSocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Channel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnectSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnectSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnectSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneDisconnectSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneDisconnectSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/room/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/room/RoomChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/message/MessageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/main/MainSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/main/MainServerSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/onetoone/OneToOneServerSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/onetoone/OneToOneServerSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/user/UserSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/user/UserSocket.java" afterDir="false" />
     </list>
@@ -86,8 +144,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OneToOneEndSetting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="clientserver.entity.command.onetoone.OneToOneEndSetting" />
+    <configuration name="OneToOneDisconnectSetting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="clientserver.entity.command.onetoone.OneToOneDisconnectSetting" />
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -115,12 +173,12 @@
     <list>
       <item itemvalue="Application.Application" />
       <item itemvalue="Application.OneToOneStartSetting" />
-      <item itemvalue="Application.OneToOneEndSetting" />
+      <item itemvalue="Application.OneToOneDisconnectSetting" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
-        <item itemvalue="Application.OneToOneEndSetting" />
+        <item itemvalue="Application.OneToOneDisconnectSetting" />
         <item itemvalue="Application.OneToOneStartSetting" />
       </list>
     </recent_temporary>
@@ -141,7 +199,7 @@
       <workItem from="1653955898720" duration="3492000" />
       <workItem from="1653959447127" duration="21053000" />
       <workItem from="1654128215174" duration="23882000" />
-      <workItem from="1654214688328" duration="2025000" />
+      <workItem from="1654214688328" duration="21847000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,5 @@
 package clientserver.entity.message;
 
-import clientserver.UserSocket;
 import clientserver.entity.user.User;
 
 import java.time.LocalDateTime;

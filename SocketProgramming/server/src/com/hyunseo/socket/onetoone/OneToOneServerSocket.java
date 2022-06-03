@@ -1,4 +1,2 @@
-package com.hyunseo.socket.onetoone;
-
-public class OneToOneServerSocket {
+package com.hyunseo.socket.onetoone;public class OneToOneServerSocket {
 }

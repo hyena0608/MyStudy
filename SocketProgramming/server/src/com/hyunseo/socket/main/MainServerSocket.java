@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class MainSocket {
+public class MainServerSocket {
 
     public void init() throws IOException {
          ChannelHandler.init();

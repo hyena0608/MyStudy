@@ -1,4 +1,4 @@
-import clientserver.UserSocket;
+import clientserver.socket.UserSocket;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 

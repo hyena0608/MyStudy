@@ -1,6 +1,6 @@
 package clientserver.service.socket.handler;
 
-import clientserver.UserSocket;
+import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
 import clientserver.entity.command.factory.SettingFactory;

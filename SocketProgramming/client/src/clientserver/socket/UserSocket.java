@@ -1,4 +1,4 @@
-package clientserver;
+package clientserver.socket;
 
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.user.User;

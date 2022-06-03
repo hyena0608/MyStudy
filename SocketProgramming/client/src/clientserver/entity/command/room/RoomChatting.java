@@ -1,19 +1,22 @@
 package clientserver.entity.command.room;
 
-import clientserver.UserSocket;
+import clientserver.service.socket.parser.SocketMessageParserImpl;
+import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
-import com.google.gson.Gson;
+
+import static clientserver.entity.command.room.Room.ROOM_CHATTING;
 
 public class RoomChatting implements Chatting {
 
     private static volatile RoomChatting instance;
-    public static final String condition = "ROOMCHATTING";
+    public static final String condition = String.valueOf(ROOM_CHATTING);
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
+    private SocketMessageParserImpl socketMessageParser = new SocketMessageParserImpl();
 
     private RoomChatting() {}
 
@@ -36,7 +39,10 @@ public class RoomChatting implements Chatting {
                 .setMessageType(UserSocket.getUser().getUserCondition())
                 .build();
 
-        socketMessageHandler.send(new Gson().toJson(roomMessageObject));
+        String messageJson = socketMessageParser.toJson(roomMessageObject);
+        System.out.println("messageJson = " + messageJson);
+
+        socketMessageHandler.send(messageJson);
     }
 
     @Override
