@@ -5,20 +5,20 @@ import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
-public class OneToOneConnect implements Command {
+public class OneToOneConnectSetting implements Command {
 
-    private static volatile OneToOneConnect instance;
+    private static volatile OneToOneConnectSetting instance;
     public static final String condition = "ONETOONE_CONNECT";
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
 
-    private OneToOneConnect() {}
+    private OneToOneConnectSetting() {}
 
-    public static OneToOneConnect getInstance() {
+    public static OneToOneConnectSetting getInstance() {
         if (instance == null) {
-            synchronized (OneToOneConnect.class) {
+            synchronized (OneToOneConnectSetting.class) {
                 if (instance == null) {
-                    instance = new OneToOneConnect();
+                    instance = new OneToOneConnectSetting();
                 }
             }
         }

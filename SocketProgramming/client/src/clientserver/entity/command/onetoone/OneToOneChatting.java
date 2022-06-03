@@ -15,7 +15,8 @@ public class OneToOneChatting implements Chatting {
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
 
-    private OneToOneChatting() {}
+    private OneToOneChatting() {
+    }
 
     public static OneToOneChatting getInstance() {
         if (instance == null) {
@@ -30,10 +31,11 @@ public class OneToOneChatting implements Chatting {
 
     @Override
     public void sendChattingMessage(MessageObject messageObject) {
-        MessageObject oneToOneMessageObject = new MessageObjectBuilder()
-                .setMessageType(UserSocket.getUser().getUserCondition())
-                .setContent(messageObject.getContent())
-                .build();
+        MessageObject oneToOneMessageObject =
+                new MessageObjectBuilder()
+                        .setMessageType(UserSocket.getUser().getUserCondition())
+                        .setContent(messageObject.getContent())
+                        .build();
 
         socketMessageHandler.send(new Gson().toJson(oneToOneMessageObject));
     }

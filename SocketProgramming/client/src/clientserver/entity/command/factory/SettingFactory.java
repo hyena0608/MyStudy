@@ -16,7 +16,7 @@ public class SettingFactory {
         } else if (type.equals(OneToOneEndSetting.consoleCondition)) {
             setting = OneToOneEndSetting.getInstance();
         } else if (type.equals(OneToOneConnectSetting.condition)) {
-            System.out.println("ONETOONE_CONNECT 가 선택됨");
+            System.out.println("ONETOONE_CONNECT 가 선택됨 ");
             setting = OneToOneConnectSetting.getInstance();
         }
 

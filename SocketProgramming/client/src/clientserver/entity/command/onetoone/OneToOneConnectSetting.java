@@ -27,7 +27,12 @@ public class OneToOneConnectSetting implements Setting {
     @Override
     public void changeMySetting(String message) {
         MessageObject messageObject = new Gson().fromJson(message, MessageObject.class);
-        UserSocket.getUser().setPartnerUsername(messageObject.getUser().getUsername());
-        System.out.println(UserSocket.getUser().getUsername() + "의 파트너는 " + UserSocket.getUser().getPartnerUsername() + "이다.");
+        UserSocket
+                .getUser()
+                .setPartnerUsername(messageObject.getUser().getUsername());
+        System.out.println(UserSocket.getUser().getUsername()
+                            + "의 파트너는 "
+                            + UserSocket.getUser().getPartnerUsername()
+                            + "이다.");
     }
 }

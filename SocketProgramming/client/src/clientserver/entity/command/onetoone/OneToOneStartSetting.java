@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class OneToOneStartSetting implements Setting {
 
     public static final String condition = String.valueOf(OneToOne.ONETOONE_START);
-    public static final String consoleCondition = OneToOne.ONETOONE_START.symbol;;
+    public static final String consoleCondition = OneToOne.ONETOONE_START.symbol;
     public static ServerSocket serverSocket;
 
     private static volatile OneToOneStartSetting instance;
@@ -34,7 +34,9 @@ public class OneToOneStartSetting implements Setting {
 
     @Override
     public void changeMySetting(String message) {
-        if (UserSocket.getUser().getPartnerUsername() == null) {
+        if (UserSocket
+                .getUser()
+                .getPartnerUsername() == null) {
             connectPartner();
         }
     }
@@ -44,7 +46,9 @@ public class OneToOneStartSetting implements Setting {
 
         System.out.print("상대이름을 입력하세요. : ");
         String partnerUsername = sc.nextLine();
-        UserSocket.getUser().setPartnerUsername(partnerUsername);
+        UserSocket
+                .getUser()
+                .setPartnerUsername(partnerUsername);
 
         System.out.println("소켓을 엽니다.");
         try {

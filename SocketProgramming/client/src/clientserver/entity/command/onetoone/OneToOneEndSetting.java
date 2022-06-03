@@ -9,7 +9,7 @@ import static clientserver.entity.command.onetoone.OneToOneStartSetting.serverSo
 
 public class OneToOneEndSetting implements Setting {
 
-    public static final String endConditionByConsole = String.valueOf(OneToOne.ONETOONE_END);
+    public static final String condition = String.valueOf(OneToOne.ONETOONE_END);
     public static final String consoleCondition = OneToOne.ONETOONE_END.symbol;
 
     private static volatile OneToOneEndSetting instance;
