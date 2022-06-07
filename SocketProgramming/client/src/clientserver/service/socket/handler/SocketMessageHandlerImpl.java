@@ -36,8 +36,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     public void send(String type, String messageJson) {
         try {
             Socket socket = socketFactory.createSocket(type);
-
-            // TODO : OneToOneSocket || UserSocket 구분
             socket.takeOut().writeUTF(messageJson);
         } catch (IOException e) {
             e.printStackTrace();

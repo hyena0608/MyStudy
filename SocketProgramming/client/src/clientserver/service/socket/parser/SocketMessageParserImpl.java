@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 public class SocketMessageParserImpl implements MessageParser {
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @Override
     public MessageObject toObject(String messageJson) {

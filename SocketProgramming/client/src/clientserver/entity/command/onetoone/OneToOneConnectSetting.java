@@ -1,14 +1,12 @@
 package clientserver.entity.command.onetoone;
 
 import clientserver.service.socket.parser.SocketMessageParserImpl;
-import clientserver.socket.SocketType;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 
 
 import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_CONNECT_SETTING;
-import static clientserver.socket.SocketType.USER_SOCKET;
 
 public class OneToOneConnectSetting implements Setting {
 
