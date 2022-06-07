@@ -4,19 +4,22 @@ import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import clientserver.service.socket.parser.SocketMessageParserImpl;
+import clientserver.socket.SocketType;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 
 import java.util.Scanner;
 
-import static clientserver.entity.command.onetoone.OneToOne.*;
+import static clientserver.entity.command.onetoone.OneToOneType.*;
+import static clientserver.socket.SocketType.USER_SOCKET;
 
 public class OneToOneStartSetting implements Setting {
 
+    private static volatile OneToOneStartSetting instance;
+    private SocketType socketType = USER_SOCKET;
     public static final String condition = String.valueOf(ONETOONE_START_SETTING);
     public static final String consoleCondition = ONETOONE_START_SETTING.symbol;
 
-    private static volatile OneToOneStartSetting instance;
 
     private OneToOneStartSetting() {}
 
@@ -58,6 +61,7 @@ public class OneToOneStartSetting implements Setting {
 
         new SocketMessageHandlerImpl()
                 .send(
+                        String.valueOf(socketType),
                         new SocketMessageParserImpl().toJson(messageObject)
                 );
     }

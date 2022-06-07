@@ -10,7 +10,6 @@ import clientserver.service.console.parser.ConsoleMessageParserImpl;
 import java.util.Scanner;
 
 public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
-    private Scanner sc = new Scanner(System.in);
     private ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
     private SettingFactory settingFactory = new SettingFactory();
     private ChattingFactory chattingFactory = new ChattingFactory();
@@ -33,23 +32,24 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
         if (message.length() == 0) {
             return false;
         }
-        return !message.substring(0, 1).equals("/");
+        return message.charAt(0) != '/';
     }
 
     private boolean isSettingType(String message) {
         if (message.length() == 0) {
             return false;
         }
-        return message.substring(0, 1).equals("/");
+        return message.charAt(0) == '/';
     }
 
     @Override
-    public void send(String consoleMessage) {
+    public void send(String type, String consoleMessage) {
         System.out.println(consoleMessage);
     }
 
     @Override
     public void run() {
+        Scanner sc = new Scanner(System.in);
         while (UserSocket.getOut() != null) {
             handleMessage(sc.nextLine());
         }

@@ -9,11 +9,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class UserSocket {
-    static private Socket socket;
-    static private DataInputStream in;
-    static private DataOutputStream out;
-    static private User user;
+import static clientserver.socket.SocketType.USER_SOCKET;
+
+public class UserSocket implements clientserver.socket.Socket {
+
+    public static final String condition = String.valueOf(USER_SOCKET);
+    private static volatile UserSocket instance;
+    private static Socket socket;
+    private static DataInputStream in;
+    private static DataOutputStream out;
+    private static User user;
 
     public void init() {
         try {
@@ -25,6 +30,17 @@ public class UserSocket {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static UserSocket getInstance() {
+        if (instance == null) {
+            synchronized (UserSocket.class) {
+                if (instance == null) {
+                    instance = new UserSocket();
+                }
+            }
+        }
+        return instance;
     }
 
     private User getUserAfterSetting() {
@@ -43,6 +59,7 @@ public class UserSocket {
 
     public static DataOutputStream getOut() {
         return out;
+
     }
 
     public static User getUser() {
@@ -51,5 +68,10 @@ public class UserSocket {
 
     public static Socket getSocket() {
         return socket;
+    }
+
+    @Override
+    public DataOutputStream takeOut() {
+        return out;
     }
 }

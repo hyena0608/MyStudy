@@ -3,9 +3,7 @@ package clientserver.entity.command.onetoone;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 
-import java.io.IOException;
-
-import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_END_SETTING;
+import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_END_SETTING;
 
 public class OneToOneDisconnectSetting implements Setting {
 

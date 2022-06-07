@@ -1,15 +1,25 @@
 package clientserver.socket;
 
+import clientserver.entity.command.onetoone.OneToOneChatting;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class OneToOneSocket implements Runnable {
+import static clientserver.socket.SocketType.ONETOONE_SOCKET;
 
-    static private Socket socket = null;
-    static private DataInputStream in = null;
-    static private DataOutputStream out = null;
+public class OneToOneSocket implements Runnable, clientserver.socket.Socket {
+
+    public static final String condition = String.valueOf(ONETOONE_SOCKET);
+    private static volatile OneToOneSocket instance;
+    private static Socket socket = null;
+    private static DataInputStream in = null;
+    private static DataOutputStream out = null;
+
+
+    public OneToOneSocket() {
+    }
 
     public OneToOneSocket(int port) {
         try {
@@ -19,6 +29,17 @@ public class OneToOneSocket implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static OneToOneSocket getInstance() {
+        if (instance == null) {
+            synchronized (OneToOneSocket.class) {
+                if (instance == null) {
+                    instance = new OneToOneSocket();
+                }
+            }
+        }
+        return instance;
     }
 
     @Override
@@ -35,6 +56,11 @@ public class OneToOneSocket implements Runnable {
     }
 
     public static DataOutputStream getOut() {
+        return out;
+    }
+
+    @Override
+    public DataOutputStream takeOut() {
         return out;
     }
 }

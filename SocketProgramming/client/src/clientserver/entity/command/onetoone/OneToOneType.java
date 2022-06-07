@@ -1,6 +1,6 @@
 package clientserver.entity.command.onetoone;
 
-public enum OneToOne {
+public enum OneToOneType {
     ONETOONE_START_SETTING("/귓속말"),
     ONETOONE_END_SETTING("/종료"),
     ONETOONE_CONNECT_SETTING("ONETOONE_CONNECT_SETTING"),
@@ -8,7 +8,7 @@ public enum OneToOne {
 
     public String symbol;
 
-    OneToOne(String symbol) {
+    OneToOneType(String symbol) {
         this.symbol = symbol;
     }
 }

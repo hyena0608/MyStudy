@@ -1,6 +1,7 @@
 package clientserver.entity.command.room;
 
 import clientserver.service.socket.parser.SocketMessageParserImpl;
+import clientserver.socket.SocketType;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
@@ -9,11 +10,13 @@ import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
 import static clientserver.entity.command.room.Room.ROOM_CHATTING;
+import static clientserver.socket.SocketType.USER_SOCKET;
 
 public class RoomChatting implements Chatting {
 
     private static volatile RoomChatting instance;
     public static final String condition = String.valueOf(ROOM_CHATTING);
+    private SocketType socketType = USER_SOCKET;
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
     private SocketMessageParserImpl socketMessageParser = new SocketMessageParserImpl();
@@ -41,7 +44,7 @@ public class RoomChatting implements Chatting {
 
         String messageJson = socketMessageParser.toJson(roomMessageObject);
 
-        socketMessageHandler.send(messageJson);
+        socketMessageHandler.send(String.valueOf(socketType), messageJson);
     }
 
     @Override
@@ -53,6 +56,6 @@ public class RoomChatting implements Chatting {
                 .append("] : ")
                 .append(messageObject.getContent());
 
-        consoleMessageHandler.send(stringBuffer.toString());
+        consoleMessageHandler.send(String.valueOf(socketType), stringBuffer.toString());
     }
 }

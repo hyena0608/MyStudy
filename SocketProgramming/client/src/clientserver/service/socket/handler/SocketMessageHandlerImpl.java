@@ -1,6 +1,8 @@
 package clientserver.service.socket.handler;
 
+import clientserver.entity.command.factory.SocketFactory;
 import clientserver.socket.OneToOneSocket;
+import clientserver.socket.Socket;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
@@ -12,27 +14,31 @@ import clientserver.service.socket.parser.SocketMessageParserImpl;
 import java.io.IOException;
 
 public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
-    private SocketMessageParserImpl messageParser = new SocketMessageParserImpl();
+    private SocketMessageParserImpl socketMessageParser = new SocketMessageParserImpl();
     private ChattingFactory chattingFactory = new ChattingFactory();
     private SettingFactory settingFactory = new SettingFactory();
+    private SocketFactory socketFactory = new SocketFactory();
 
     @Override
     public void handleMessage(String messageJson) {
-        MessageObject messageObject = messageParser.toObject(messageJson);
+        MessageObject messageObject = socketMessageParser.toObject(messageJson);
 
         if (messageObject.getMessageType().contains("CHATTING")) {
             chattingFactory.createChatting()
-                    .consoleMessage(messageObject);
+                            .consoleMessage(messageObject);
         } else if (messageObject.getMessageType().contains("SETTING")) {
             settingFactory.createSetting(messageObject.getMessageType())
-                    .changeMySetting(messageJson);
+                            .changeMySetting(messageJson);
         }
     }
 
     @Override
-    public void send(String messageJson) {
+    public void send(String type, String messageJson) {
         try {
-            UserSocket.getOut().writeUTF(messageJson);
+            Socket socket = socketFactory.createSocket(type);
+
+            // TODO : OneToOneSocket || UserSocket 구분
+            socket.takeOut().writeUTF(messageJson);
         } catch (IOException e) {
             e.printStackTrace();
         }
