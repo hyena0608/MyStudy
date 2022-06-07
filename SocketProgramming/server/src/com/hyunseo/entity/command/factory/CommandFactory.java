@@ -8,8 +8,6 @@ import com.hyunseo.entity.command.room.RoomChatting;
 import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
 
-import static com.hyunseo.entity.command.onetoone.OneToOne.*;
-
 public class CommandFactory {
     private Command command = null;
 
@@ -17,11 +15,11 @@ public class CommandFactory {
         MessageObject messageObject = new Gson().fromJson(messageJson, MessageObject.class);
         String messageType = messageObject.getMessageType();
 
-        if (messageType.equals(ONETOONE_CONNECT.toString())) {
+        if (messageType.equals(OneToOneConnectSetting.condition)) {
             command = OneToOneConnectSetting.getInstance();
-        } else if (messageType.equals(ONETOONE_DISCONNECT.toString())) {
+        } else if (messageType.equals(OneToOneDisconnectSetting.condition)) {
             command = OneToOneDisconnectSetting.getInstance();
-        } else if (messageType.equals(ONETOONE_CHATTING.toString())) {
+        } else if (messageType.equals(OneToOneChatting.condition)) {
             command = OneToOneChatting.getInstance();
         }
 

@@ -9,13 +9,12 @@ import clientserver.entity.command.base.Setting;
 
 import java.util.Scanner;
 
-import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_START;
-import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_CONNECT;
+import static clientserver.entity.command.onetoone.OneToOne.*;
 
 public class OneToOneStartSetting implements Setting {
 
-    public static final String condition = String.valueOf(ONETOONE_START);
-    public static final String consoleCondition = ONETOONE_START.symbol;
+    public static final String condition = String.valueOf(ONETOONE_START_SETTING);
+    public static final String consoleCondition = ONETOONE_START_SETTING.symbol;
 
     private static volatile OneToOneStartSetting instance;
 
@@ -52,7 +51,7 @@ public class OneToOneStartSetting implements Setting {
                 .setPartnerUsername(partnerUsername);
 
         MessageObject messageObject = new MessageObjectBuilder()
-                .setMessageType(String.valueOf(ONETOONE_CONNECT))
+                .setMessageType(String.valueOf(ONETOONE_CONNECT_SETTING))
                 .setUser(UserSocket.getUser())
                 .setContent("")
                 .build();

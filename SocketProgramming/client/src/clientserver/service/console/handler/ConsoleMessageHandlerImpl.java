@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     private Scanner sc = new Scanner(System.in);
-    private ConsoleMessageParserImpl messageParser = new ConsoleMessageParserImpl();
+    private ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
     private SettingFactory settingFactory = new SettingFactory();
     private ChattingFactory chattingFactory = new ChattingFactory();
 
@@ -23,23 +23,21 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
             settingFactory.createSetting(message)
                     .changeMySetting(message);
         } else if (isChattingType(message)) {
-            MessageObject messageObject = messageParser.toObject(message);
+            MessageObject messageObject = consoleMessageParser.toObject(message);
 
             chattingFactory.createChatting()
                     .sendChattingMessage(messageObject);
         }
     }
 
-    @Override
-    public boolean isChattingType(String message) {
+    private boolean isChattingType(String message) {
         if (message.length() == 0) {
             return false;
         }
         return !message.substring(0, 1).equals("/");
     }
 
-    @Override
-    public boolean isSettingType(String message) {
+    private boolean isSettingType(String message) {
         if (message.length() == 0) {
             return false;
         }

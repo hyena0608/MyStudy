@@ -40,7 +40,6 @@ public class RoomChatting implements Chatting {
                 .build();
 
         String messageJson = socketMessageParser.toJson(roomMessageObject);
-        System.out.println("messageJson = " + messageJson);
 
         socketMessageHandler.send(messageJson);
     }

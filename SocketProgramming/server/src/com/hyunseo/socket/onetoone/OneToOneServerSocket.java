@@ -9,8 +9,8 @@ public class OneToOneServerSocket implements Runnable {
     private int port;
 
     public void startServerSocket() {
-        port = Port.portQ.poll();
         try {
+            port = Port.portQ.poll();
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
             e.printStackTrace();
@@ -20,10 +20,11 @@ public class OneToOneServerSocket implements Runnable {
     @Override
     public void run() {
         try {
-            // TODO : 메서드 내에서 run() 호출해서 꺼져버림. 따로 행동하게 만들어야함.
+            System.out.println(" 귓속말 서버 소켓 시작 = ");
             while (true) {
                 System.out.println("모집중");
                 serverSocket.accept();
+                System.out.println("모집중2");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,5 +33,9 @@ public class OneToOneServerSocket implements Runnable {
 
     public int getPort() {
         return port;
+    }
+
+    public ServerSocket getServerSocket() {
+        return serverSocket;
     }
 }

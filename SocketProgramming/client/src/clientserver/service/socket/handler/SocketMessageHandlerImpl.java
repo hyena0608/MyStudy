@@ -1,5 +1,6 @@
 package clientserver.service.socket.handler;
 
+import clientserver.socket.OneToOneSocket;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
@@ -35,16 +36,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     }
 
     @Override
-    public boolean isChattingType(String message) {
-        return !message.substring(0, 0).equals("/");
-    }
-
-    @Override
-    public boolean isSettingType(String message) {
-        return message.substring(0, 0).equals("/");
-    }
-
-    @Override
     public void send(String messageJson) {
         try {
             UserSocket.getOut().writeUTF(messageJson);
@@ -69,8 +60,13 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void run() {
-        while (UserSocket.getSocket().isConnected()) {
-            receive();
+        while (true) {
+            if (UserSocket.getSocket().isConnected()) {
+                receive();
+            }
+            if (OneToOneSocket.getSocket().isConnected()) {
+
+            }
         }
     }
 

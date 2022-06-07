@@ -6,7 +6,4 @@ public interface MessageHandler {
 
     abstract void send(String message);
 
-    abstract boolean isChattingType(String message);
-
-    abstract boolean isSettingType(String message);
 }

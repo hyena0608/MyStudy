@@ -5,12 +5,12 @@ import clientserver.entity.command.base.Setting;
 
 import java.io.IOException;
 
-import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_END;
+import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_END_SETTING;
 
 public class OneToOneDisconnectSetting implements Setting {
 
-    public static final String condition = String.valueOf(ONETOONE_END);
-    public static final String consoleCondition = ONETOONE_END.symbol;
+    public static final String condition = String.valueOf(ONETOONE_END_SETTING);
+    public static final String consoleCondition = ONETOONE_END_SETTING.symbol;
 
     private static volatile OneToOneDisconnectSetting instance;
 

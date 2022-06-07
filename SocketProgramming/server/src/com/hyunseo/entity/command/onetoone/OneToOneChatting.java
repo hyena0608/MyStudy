@@ -13,7 +13,8 @@ public class OneToOneChatting implements Command {
     public static final String condition = String.valueOf(ONETOONE_CHATTING);
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
-    private OneToOneChatting() {}
+    private OneToOneChatting() {
+    }
 
     public static OneToOneChatting getInstance() {
         if (instance == null) {

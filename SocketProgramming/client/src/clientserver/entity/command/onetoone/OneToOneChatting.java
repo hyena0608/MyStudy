@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import static clientserver.entity.command.onetoone.OneToOne.ONETOONE_CHATTING;
 
+
 public class OneToOneChatting implements Chatting {
 
     private static volatile OneToOneChatting instance;

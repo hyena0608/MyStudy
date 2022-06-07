@@ -1,14 +1,12 @@
 package com.hyunseo.entity.command.onetoone;
 
 import com.hyunseo.entity.command.base.Command;
-import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
-import static com.hyunseo.entity.command.onetoone.OneToOne.ONETOONE_CONNECT;
-import static com.hyunseo.entity.command.onetoone.OneToOne.ONETOONE_DISCONNECT;
+import static com.hyunseo.entity.command.onetoone.OneToOne.*;
 
 public class OneToOneDisconnectSetting implements Command {
 
-    private final String condition = String.valueOf(ONETOONE_DISCONNECT);
+    public static final String condition = String.valueOf(ONETOONE_DISCONNECT_SETTING);
     private static volatile OneToOneDisconnectSetting instance;
 
     private OneToOneDisconnectSetting() {}

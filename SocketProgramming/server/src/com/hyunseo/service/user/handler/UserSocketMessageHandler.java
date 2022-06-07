@@ -2,8 +2,10 @@ package com.hyunseo.service.user.handler;
 
 import com.hyunseo.entity.channel.Room;
 import com.hyunseo.entity.message.MessageObject;
+import com.hyunseo.entity.message.MessageObjectBuilder;
 import com.hyunseo.service.channel.handler.ChannelHandler;
 import com.hyunseo.service.user.parser.UserSocketMessageParser;
+import com.hyunseo.socket.user.UserSocket;
 
 import java.io.IOException;
 import java.util.Map;
@@ -24,7 +26,8 @@ public class UserSocketMessageHandler {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    };
+                    }
+                    ;
                 });
     }
 
@@ -46,29 +49,87 @@ public class UserSocketMessageHandler {
 
     public void sendPortForOneToOne(MessageObject messageObject) {
 
-        String username = messageObject.getUser().getUsername();
-        String partnerName = messageObject.getUser().getPartnerUsername();
-
         channelMap.get(messageObject.getUser().getChannelTitle())
                 .get(messageObject.getUser().getRoomTitle())
                 .getUserSocketList()
-                .forEach(o -> {
-                    System.out.println("o.getUser().getUsername() = " + o.getUser().getUsername());
-                    if (o.getUser().getUsername().equals(username)
-                        || o.getUser().getUsername().equals(partnerName)) {
+                .forEach(selectedUserSocket -> {
+                    if (isUsername(selectedUserSocket, messageObject)) {
                         try {
-//                            messageObject.getUser().setPartnerUsername(messageObject.getUser().getUsername());
-//                            messageObject.getUser().setUsername(o.getUser().getUsername());
+                            MessageObject createdMessageObjectForUser = createUserMessageObject(selectedUserSocket, messageObject);
+                            String messageJsonForUser = UserSocketMessageParser.toJson(createdMessageObjectForUser);
 
-//                            System.out.println(o.getUser().getUsername() + "의 파트너는 " + o.getUser().getPartnerUsername() + "이다.");
-//                            System.out.println(messageObject.getUser().getUsername() + "의 파트너는 " + messageObject.getUser().getPartnerUsername() + "이다.");
-                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                            System.out.println("messageJsonForUser = " + messageJsonForUser);
+
+                            selectedUserSocket.getOut().writeUTF(messageJsonForUser);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
+                    if (isPartnerUsername(selectedUserSocket, messageObject)) {
+                        try {
+                            MessageObject createdMessageObjectForPartner = createPartnerMessageObject(selectedUserSocket, messageObject);
+                            String messageJsonForPartner = UserSocketMessageParser.toJson(createdMessageObjectForPartner);
+
+                            System.out.println("messageJsonForPartner = " + messageJsonForPartner);
+
+                            selectedUserSocket.getOut().writeUTF(messageJsonForPartner);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                 });
     }
 
+    private MessageObject createPartnerMessageObject(UserSocket currentUserSocket, MessageObject messageObject) {
+        currentUserSocket
+                .getUser()
+                .setUsername(messageObject.getUser().getPartnerUsername());
 
+        currentUserSocket
+                .getUser()
+                .setPartnerUsername(messageObject.getUser().getUsername());
+
+        return new MessageObjectBuilder()
+                .setMessageType(messageObject.getMessageType())
+                .setContent(messageObject.getContent())
+                .setUser(currentUserSocket.getUser())
+                .build();
+    }
+
+    private MessageObject createUserMessageObject(UserSocket currentUserSocket, MessageObject messageObject) {
+        currentUserSocket
+                .getUser()
+                .setUsername(messageObject.getUser().getUsername());
+
+        currentUserSocket
+                .getUser()
+                .setPartnerUsername(messageObject.getUser().getPartnerUsername());
+
+        return new MessageObjectBuilder()
+                .setMessageType(messageObject.getMessageType())
+                .setContent(messageObject.getContent())
+                .setUser(currentUserSocket.getUser())
+                .build();
+    }
+
+    private boolean isPartnerUsername(UserSocket currentUserSocket, MessageObject messageObject) {
+        String currentUsername = currentUserSocket.getUser().getUsername();
+        String messagePartnerUsername = messageObject.getUser().getPartnerUsername();
+
+        if (currentUsername.equals(messagePartnerUsername)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isUsername(UserSocket currentUserSocket, MessageObject messageObject) {
+        String currentUsername = currentUserSocket.getUser().getUsername();
+        String messageUsername = messageObject.getUser().getUsername();
+
+        if (currentUsername.equals(messageUsername)) {
+            return true;
+        }
+        return false;
+    }
 }
