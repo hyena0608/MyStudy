@@ -30,14 +30,14 @@ public class OneToOneConnectSetting implements Setting {
         MessageObject messageObject = new SocketMessageParserImpl().toObject(message);
 
         changeMyPartnerUsername(messageObject);
+        setMyOneToOnePort(messageObject.getUser().getPort());
 
         System.out.println(UserSocket.getUser().getUsername()
                             + "의 파트너는 "
                             + UserSocket.getUser().getPartnerUsername()
                             + "이다.");
 
-        int port = Integer.parseInt(messageObject.getContent());
-        startOneToOneSocket(port);
+        System.out.println("UserSocket.getUser().getPort() = " + UserSocket.getUser().getPort());
     }
 
     private void changeMyPartnerUsername(MessageObject messageObject) {
@@ -49,6 +49,10 @@ public class OneToOneConnectSetting implements Setting {
                     .getUser()
                     .setPartnerUsername(partnerUsername);
         }
+    }
+
+    private void setMyOneToOnePort(int port) {
+        UserSocket.getUser().setPort(port);
     }
 
     private void startOneToOneSocket(int port) {
