@@ -16,9 +16,8 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     private ChattingFactory chattingFactory = new ChattingFactory();
 
     @Override
-    public void receive() {
+    public void handleMessage(String message) {
 
-        String message = sc.nextLine();
         if (isSettingType(message)) {
             settingFactory.createSetting(message)
                     .changeMySetting(message);
@@ -52,8 +51,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void run() {
         while (UserSocket.getOut() != null) {
-            // TODO : 설정 변경이 아닐시에..
-            receive();
+            handleMessage(sc.nextLine());
         }
     }
 

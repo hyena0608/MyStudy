@@ -2,7 +2,7 @@ package clientserver.service.base;
 
 public interface MessageHandler {
 
-    abstract void receive();
+    abstract void handleMessage(String message);
 
     abstract void send(String message);
 

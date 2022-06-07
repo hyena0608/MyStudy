@@ -17,21 +17,15 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     private SettingFactory settingFactory = new SettingFactory();
 
     @Override
-    public void receive() {
-        try {
-            String messageJson = UserSocket.getIn().readUTF();
-            MessageObject messageObject = messageParser.toObject(messageJson);
+    public void handleMessage(String messageJson) {
+        MessageObject messageObject = messageParser.toObject(messageJson);
 
-            if (messageObject.getMessageType().contains("CHATTING")) {
-                chattingFactory.createChatting()
-                        .consoleMessage(messageObject);
-            } else if (messageObject.getMessageType().contains("SETTING")) {
-                settingFactory.createSetting(messageObject.getMessageType())
-                        .changeMySetting(messageJson);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (messageObject.getMessageType().contains("CHATTING")) {
+            chattingFactory.createChatting()
+                    .consoleMessage(messageObject);
+        } else if (messageObject.getMessageType().contains("SETTING")) {
+            settingFactory.createSetting(messageObject.getMessageType())
+                    .changeMySetting(messageJson);
         }
     }
 
@@ -62,10 +56,20 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     public void run() {
         while (true) {
             if (UserSocket.getSocket().isConnected()) {
-                receive();
+                try {
+                    String message = UserSocket.getIn().readUTF();
+                    handleMessage(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            if (OneToOneSocket.getSocket().isConnected()) {
-
+            if (OneToOneSocket.getSocket() != null) {
+                try {
+                    String message = OneToOneSocket.getIn().readUTF();
+                    handleMessage(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -21,7 +21,6 @@ public class OneToOneSocket implements Runnable {
         }
     }
 
-
     @Override
     public void run() {
 
