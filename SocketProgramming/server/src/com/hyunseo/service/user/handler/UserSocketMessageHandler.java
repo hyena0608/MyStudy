@@ -31,6 +31,7 @@ public class UserSocketMessageHandler {
                 });
     }
 
+    // TODO : OneToOne 해당 소켓에 보내기로 수정해야함
     public void sendOneToOneMessage(MessageObject messageObject) {
         channelMap.get(messageObject.getUser().getChannelTitle())
                 .get(messageObject.getUser().getRoomTitle())
@@ -57,9 +58,7 @@ public class UserSocketMessageHandler {
                         try {
                             MessageObject createdMessageObjectForUser = createUserMessageObject(selectedUserSocket, messageObject);
                             String messageJsonForUser = UserSocketMessageParser.toJson(createdMessageObjectForUser);
-
                             System.out.println("messageJsonForUser = " + messageJsonForUser);
-
                             selectedUserSocket.getOut().writeUTF(messageJsonForUser);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -69,9 +68,7 @@ public class UserSocketMessageHandler {
                         try {
                             MessageObject createdMessageObjectForPartner = createPartnerMessageObject(selectedUserSocket, messageObject);
                             String messageJsonForPartner = UserSocketMessageParser.toJson(createdMessageObjectForPartner);
-
                             System.out.println("messageJsonForPartner = " + messageJsonForPartner);
-
                             selectedUserSocket.getOut().writeUTF(messageJsonForPartner);
                         } catch (IOException e) {
                             e.printStackTrace();
