@@ -39,10 +39,11 @@ public class OneToOneConnectSetting implements Command {
 
         MessageObject messageObject = UserSocketMessageParser.toObject(messageJson);
 
+        messageObject.getUser().setPort(oneToOneServerSocket.getPort());
+
         MessageObject messageObjectWithPort = new MessageObjectBuilder()
                 .setMessageType(messageObject.getMessageType())
                 .setUser(messageObject.getUser())
-                .setContent(String.valueOf(oneToOneServerSocket.getPort()))
                 .build();
 
         String s = new Gson().toJson(messageObjectWithPort);

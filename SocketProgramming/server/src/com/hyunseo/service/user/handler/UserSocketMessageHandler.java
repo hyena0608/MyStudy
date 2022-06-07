@@ -87,9 +87,12 @@ public class UserSocketMessageHandler {
                 .getUser()
                 .setPartnerUsername(messageObject.getUser().getUsername());
 
+        currentUserSocket
+                .getUser()
+                .setPort(messageObject.getUser().getPort());
+
         return new MessageObjectBuilder()
                 .setMessageType(messageObject.getMessageType())
-                .setContent(messageObject.getContent())
                 .setUser(currentUserSocket.getUser())
                 .build();
     }
@@ -103,9 +106,12 @@ public class UserSocketMessageHandler {
                 .getUser()
                 .setPartnerUsername(messageObject.getUser().getPartnerUsername());
 
+        currentUserSocket
+                .getUser()
+                .setPort(messageObject.getUser().getPort());
+
         return new MessageObjectBuilder()
                 .setMessageType(messageObject.getMessageType())
-                .setContent(messageObject.getContent())
                 .setUser(currentUserSocket.getUser())
                 .build();
     }
