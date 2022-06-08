@@ -52,7 +52,7 @@ public class OneToOneChatting implements Chatting {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append("[귓속말 - ")
-                .append(messageObject.getUser())
+                .append(messageObject.getUser().getUsername())
                 .append("] : ")
                 .append(messageObject.getContent());
 

@@ -10,6 +10,7 @@ import clientserver.entity.command.factory.SettingFactory;
 import clientserver.entity.message.MessageObject;
 import clientserver.service.base.MessageHandler;
 import clientserver.service.socket.parser.SocketMessageParserImpl;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -22,6 +23,8 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void handleMessage(String messageJson) {
         MessageObject messageObject = socketMessageParser.toObject(messageJson);
+
+        System.out.println(new Gson().toJson(messageObject));
 
         if (messageObject.getMessageType().contains("CHATTING")) {
             chattingFactory.createChatting()
@@ -68,7 +71,9 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
                 }
             }
             if (OneToOneUserSocket.getSocket() != null) {
+                System.out.println("귓속말 열림");
                 if (OneToOneUserSocket.getSocket().isConnected()) {
+                    System.out.println("귓속말 접속됨");
                     try {
                         String message = OneToOneUserSocket.getIn().readUTF();
                         handleMessage(message);

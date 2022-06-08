@@ -12,7 +12,7 @@ import java.net.Socket;
 
 import static clientserver.socket.SocketType.ONETOONE_SOCKET;
 
-public class OneToOneUserSocket implements Runnable, clientserver.socket.Socket {
+public class OneToOneUserSocket implements clientserver.socket.Socket {
 
     public static final String condition = String.valueOf(ONETOONE_SOCKET);
     private static volatile OneToOneUserSocket instance;
@@ -54,11 +54,6 @@ public class OneToOneUserSocket implements Runnable, clientserver.socket.Socket 
                         .build();
         String messageJson = new SocketMessageParserImpl().toJson(messageObject);
         out.writeUTF(messageJson);
-    }
-
-    @Override
-    public void run() {
-
     }
 
     public static Socket getSocket() {
