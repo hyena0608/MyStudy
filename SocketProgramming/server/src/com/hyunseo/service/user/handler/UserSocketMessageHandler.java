@@ -32,7 +32,23 @@ public class UserSocketMessageHandler {
     }
 
     public void sendOneToOneMessage(MessageObject messageObject) {
+        String channelTitle = messageObject.getUser().getChannelTitle();
+        String roomTitle = messageObject.getUser().getRoomTitle();
+        String receiver = messageObject.getUser().getUsername();
 
+        channelMap
+                .get(channelTitle)
+                .get(roomTitle)
+                .getUserSocketList()
+                .forEach(userSocket -> {
+                    if (userSocket.getUser().getUsername().equals(receiver)) {
+                        try {
+                            userSocket.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
 }
