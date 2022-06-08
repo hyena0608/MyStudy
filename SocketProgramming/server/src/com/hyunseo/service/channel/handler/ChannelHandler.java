@@ -47,4 +47,5 @@ public class ChannelHandler {
     public static Map<String, Map<String, Room>> getChannelMap() {
         return Channel.getChannelMap();
     }
+
 }

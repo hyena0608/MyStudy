@@ -9,7 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class  UserSocket implements Runnable {
+public class UserSocket implements Runnable {
 
     private User user;
     private Socket socket;

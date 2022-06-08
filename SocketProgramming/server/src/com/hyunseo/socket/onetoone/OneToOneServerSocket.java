@@ -2,6 +2,7 @@ package com.hyunseo.socket.onetoone;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class OneToOneServerSocket implements Runnable {
 
@@ -22,9 +23,8 @@ public class OneToOneServerSocket implements Runnable {
         try {
             System.out.println(" 귓속말 서버 소켓 시작 = ");
             while (true) {
-                System.out.println("모집중");
-                serverSocket.accept();
-                System.out.println("모집중2");
+                Socket oneToOneUserSocket = serverSocket.accept();
+                new Thread(new OneToOneUserSocket(oneToOneUserSocket)).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
