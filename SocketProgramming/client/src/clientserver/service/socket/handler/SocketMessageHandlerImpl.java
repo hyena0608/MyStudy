@@ -33,6 +33,11 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void send(String messageJson) {
+        try {
+            UserSocket.getOut().writeUTF(messageJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendUserSetting(String message) {

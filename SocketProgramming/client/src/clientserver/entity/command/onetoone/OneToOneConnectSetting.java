@@ -44,10 +44,14 @@ public class OneToOneConnectSetting implements Setting {
         String username = messageObject.getUser().getUsername();
         String partnerUsername = messageObject.getUser().getPartnerUsername();
 
-        if (isUsernameEqualsMessageObjectUsername(username)) {
+        if (isUserSocketRight(username)) {
             UserSocket
                     .getUser()
                     .setPartnerUsername(partnerUsername);
+
+            UserSocket
+                    .getUser()
+                    .setUserCondition(String.valueOf(ONETOONE_CHATTING));
         }
     }
 
@@ -55,7 +59,7 @@ public class OneToOneConnectSetting implements Setting {
         UserSocket.getUser().setUserCondition(userCondition);
     }
 
-    private boolean isUsernameEqualsMessageObjectUsername(String username) {
+    private boolean isUserSocketRight(String username) {
         return UserSocket
                     .getUser()
                     .getUsername()

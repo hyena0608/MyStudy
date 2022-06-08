@@ -58,10 +58,13 @@ public class OneToOneStartSetting implements Setting {
         MessageObject messageObject = new MessageObjectBuilder()
                 .setMessageType(String.valueOf(ONETOONE_CONNECT_SETTING))
                 .setUser(UserSocket.getUser())
-                .setContent("")
                 .build();
 
         new SocketMessageHandlerImpl()
                 .send(new SocketMessageParserImpl().toJson(messageObject));
+
+        UserSocket
+                .getUser()
+                .setUserCondition(String.valueOf(ONETOONE_CHATTING));
     }
 }

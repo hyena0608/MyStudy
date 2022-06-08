@@ -1,5 +1,6 @@
 package clientserver.service.console.handler;
 
+import clientserver.service.socket.parser.SocketMessageParserImpl;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.factory.ChattingFactory;
 import clientserver.entity.command.factory.SettingFactory;
@@ -16,13 +17,12 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void handleMessage(String message) {
-
         if (isSettingType(message)) {
             settingFactory.createSetting(message)
                     .changeMySetting(message);
         } else if (isChattingType(message)) {
             MessageObject messageObject = consoleMessageParser.toObject(message);
-
+            System.out.println("new SocketMessageParserImpl().toJson(messageObject) = " + new SocketMessageParserImpl().toJson(messageObject));
             chattingFactory.createChatting()
                     .sendChattingMessage(messageObject);
         }
