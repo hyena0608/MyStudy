@@ -3,6 +3,7 @@ package com.hyunseo.service.user.handler;
 import com.hyunseo.entity.channel.Room;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.entity.message.MessageObjectBuilder;
+import com.hyunseo.entity.onetoone.OneToOneGroup;
 import com.hyunseo.service.channel.handler.ChannelHandler;
 import com.hyunseo.service.user.parser.UserSocketMessageParser;
 import com.hyunseo.socket.user.UserSocket;
@@ -31,16 +32,20 @@ public class UserSocketMessageHandler {
                 });
     }
 
-    // TODO : OneToOne 해당 소켓에 보내기로 수정해야함
     public void sendOneToOneMessage(MessageObject messageObject) {
-        channelMap.get(messageObject.getUser().getChannelTitle())
-                .get(messageObject.getUser().getRoomTitle())
-                .getUserSocketList()
-                .forEach(o -> {
-                    if (o.getUser().getUsername()
-                            .equals(messageObject.getUser().getPartnerUsername())) {
+        int port = messageObject.getUser().getPort();
+
+        OneToOneGroup
+                .getOneToOneUserSocketMateMap()
+                .get(port)
+                .getOneToOneUserSocketList()
+                .forEach(oneToOneUserSocket -> {
+                    if (messageObject.getUser().getPartnerUsername().equals(oneToOneUserSocket.getUser().getUsername())) {
                         try {
-                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                            System.out.println("oneToOneUserSocket.getUser().getUsername() = " + oneToOneUserSocket.getUser().getUsername());
+                            oneToOneUserSocket.getOut().writeUTF(
+                                    UserSocketMessageParser.toJson(messageObject)
+                            );
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

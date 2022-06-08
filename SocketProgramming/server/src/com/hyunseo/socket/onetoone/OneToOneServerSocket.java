@@ -1,5 +1,8 @@
 package com.hyunseo.socket.onetoone;
 
+import com.hyunseo.entity.onetoone.Port;
+import com.hyunseo.service.onetoone.OneToOneGroupHandler;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,6 +16,7 @@ public class OneToOneServerSocket implements Runnable {
         try {
             port = Port.portQ.poll();
             serverSocket = new ServerSocket(port);
+            OneToOneGroupHandler.putOneToOneServerSocket(this, port);
         } catch (IOException e) {
             e.printStackTrace();
         }

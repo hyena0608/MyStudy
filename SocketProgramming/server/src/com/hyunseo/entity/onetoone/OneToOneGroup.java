@@ -1,6 +1,5 @@
 package com.hyunseo.entity.onetoone;
 
-import com.hyunseo.entity.onetoone.usersocket.OneToOneUserSocketMate;
 import com.hyunseo.socket.onetoone.OneToOneServerSocket;
 
 import java.util.*;
@@ -17,6 +16,4 @@ public class OneToOneGroup {
     public static Map<Integer, OneToOneUserSocketMate> getOneToOneUserSocketMateMap() {
         return oneToOneUserSocketMateMap;
     }
-
-
 }
