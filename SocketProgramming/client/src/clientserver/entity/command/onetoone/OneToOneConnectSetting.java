@@ -1,7 +1,7 @@
 package clientserver.entity.command.onetoone;
 
 import clientserver.service.socket.parser.SocketMessageParserImpl;
-import clientserver.socket.OneToOneSocket;
+import clientserver.socket.OneToOneUserSocket;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
@@ -74,6 +74,6 @@ public class OneToOneConnectSetting implements Setting {
     }
 
     private void startOneToOneSocket(int port) {
-        OneToOneSocket.init(port);
+        OneToOneUserSocket.init(port);
     }
 }

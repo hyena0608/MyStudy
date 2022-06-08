@@ -1,7 +1,7 @@
 package clientserver.service.socket.handler;
 
 import clientserver.entity.command.factory.SocketFactory;
-import clientserver.socket.OneToOneSocket;
+import clientserver.socket.OneToOneUserSocket;
 import clientserver.socket.Socket;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
@@ -67,10 +67,10 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
                     e.printStackTrace();
                 }
             }
-            if (OneToOneSocket.getSocket() != null) {
-                if (OneToOneSocket.getSocket().isConnected()) {
+            if (OneToOneUserSocket.getSocket() != null) {
+                if (OneToOneUserSocket.getSocket().isConnected()) {
                     try {
-                        String message = OneToOneSocket.getIn().readUTF();
+                        String message = OneToOneUserSocket.getIn().readUTF();
                         handleMessage(message);
                     } catch (IOException e) {
                         e.printStackTrace();

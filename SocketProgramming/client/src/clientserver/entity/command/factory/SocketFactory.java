@@ -1,7 +1,6 @@
 package clientserver.entity.command.factory;
 
-import clientserver.entity.user.User;
-import clientserver.socket.OneToOneSocket;
+import clientserver.socket.OneToOneUserSocket;
 import clientserver.socket.Socket;
 import clientserver.socket.UserSocket;
 
@@ -12,8 +11,8 @@ public class SocketFactory {
 
         if (type.equals(UserSocket.condition)) {
             socket = UserSocket.getInstance();
-        } else if (type.equals(OneToOneSocket.condition)) {
-            socket = OneToOneSocket.getInstance();
+        } else if (type.equals(OneToOneUserSocket.condition)) {
+            socket = OneToOneUserSocket.getInstance();
         }
 
         return socket;
