@@ -1,8 +1,5 @@
 package clientserver.service.socket.handler;
 
-import clientserver.entity.command.factory.SocketFactory;
-import clientserver.socket.OneToOneUserSocket;
-import clientserver.socket.Socket;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
@@ -18,7 +15,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     private SocketMessageParserImpl socketMessageParser = new SocketMessageParserImpl();
     private ChattingFactory chattingFactory = new ChattingFactory();
     private SettingFactory settingFactory = new SettingFactory();
-    private SocketFactory socketFactory = new SocketFactory();
 
     @Override
     public void handleMessage(String messageJson) {
@@ -36,13 +32,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     }
 
     @Override
-    public void send(String type, String messageJson) {
-        try {
-            Socket socket = socketFactory.createSocket(type);
-            socket.takeOut().writeUTF(messageJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void send(String messageJson) {
     }
 
     public void sendUserSetting(String message) {
@@ -68,18 +58,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
                     handleMessage(message);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-            }
-            if (OneToOneUserSocket.getSocket() != null) {
-                System.out.println("귓속말 열림");
-                if (OneToOneUserSocket.getSocket().isConnected()) {
-                    System.out.println("귓속말 접속됨");
-                    try {
-                        String message = OneToOneUserSocket.getIn().readUTF();
-                        handleMessage(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }

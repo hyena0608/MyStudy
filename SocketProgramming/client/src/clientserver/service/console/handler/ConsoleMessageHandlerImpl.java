@@ -43,7 +43,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     }
 
     @Override
-    public void send(String type, String consoleMessage) {
+    public void send(String consoleMessage) {
         System.out.println(consoleMessage);
     }
 

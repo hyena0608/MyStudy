@@ -1,6 +1,5 @@
 package clientserver.entity.command.onetoone;
 
-import clientserver.socket.SocketType;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
@@ -10,7 +9,6 @@ import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import com.google.gson.Gson;
 
 import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_CHATTING;
-import static clientserver.socket.SocketType.ONETOONE_SOCKET;
 
 
 public class OneToOneChatting implements Chatting {
@@ -19,7 +17,6 @@ public class OneToOneChatting implements Chatting {
     public static final String condition = String.valueOf(ONETOONE_CHATTING);
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
-    private SocketType socketType = ONETOONE_SOCKET;
 
     private OneToOneChatting() {
     }
@@ -44,7 +41,7 @@ public class OneToOneChatting implements Chatting {
                         .setUser(UserSocket.getUser())
                         .build();
 
-        socketMessageHandler.send(String.valueOf(ONETOONE_SOCKET), new Gson().toJson(oneToOneMessageObject));
+        socketMessageHandler.send(new Gson().toJson(oneToOneMessageObject));
     }
 
     @Override
@@ -56,6 +53,6 @@ public class OneToOneChatting implements Chatting {
                 .append("] : ")
                 .append(messageObject.getContent());
 
-        consoleMessageHandler.send(String.valueOf(socketType), stringBuffer.toString());
+        consoleMessageHandler.send(stringBuffer.toString());
     }
 }

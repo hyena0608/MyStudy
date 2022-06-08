@@ -9,11 +9,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import static clientserver.socket.SocketType.USER_SOCKET;
 
-public class UserSocket implements clientserver.socket.Socket {
+public class UserSocket {
 
-    public static final String condition = String.valueOf(USER_SOCKET);
     private static volatile UserSocket instance;
     private static Socket socket;
     private static DataInputStream in;
@@ -68,10 +66,5 @@ public class UserSocket implements clientserver.socket.Socket {
 
     public static Socket getSocket() {
         return socket;
-    }
-
-    @Override
-    public DataOutputStream takeOut() {
-        return out;
     }
 }
