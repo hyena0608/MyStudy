@@ -25,10 +25,10 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
 
         if (messageObject.getMessageType().contains("CHATTING")) {
             chattingFactory.createChatting()
-                            .consoleMessage(messageObject);
+                    .consoleMessage(messageObject);
         } else if (messageObject.getMessageType().contains("SETTING")) {
             settingFactory.createSetting(messageObject.getMessageType())
-                            .changeMySetting(messageJson);
+                    .changeMySetting(messageJson);
         }
     }
 
@@ -68,11 +68,13 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
                 }
             }
             if (OneToOneSocket.getSocket() != null) {
-                try {
-                    String message = OneToOneSocket.getIn().readUTF();
-                    handleMessage(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (OneToOneSocket.getSocket().isConnected()) {
+                    try {
+                        String message = OneToOneSocket.getIn().readUTF();
+                        handleMessage(message);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

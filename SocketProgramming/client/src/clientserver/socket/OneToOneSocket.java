@@ -21,7 +21,7 @@ public class OneToOneSocket implements Runnable, clientserver.socket.Socket {
     public OneToOneSocket() {
     }
 
-    public OneToOneSocket(int port) {
+    public static void init(int port) {
         try {
             OneToOneSocket.socket = new Socket("localhost", port);
             OneToOneSocket.in = new DataInputStream(socket.getInputStream());
