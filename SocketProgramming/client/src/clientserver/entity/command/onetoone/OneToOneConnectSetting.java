@@ -6,6 +6,7 @@ import clientserver.entity.command.base.Setting;
 import clientserver.entity.message.MessageObject;
 
 
+import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_CHATTING;
 import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_CONNECT_SETTING;
 
 public class OneToOneConnectSetting implements Setting {
@@ -31,6 +32,7 @@ public class OneToOneConnectSetting implements Setting {
 
         changeMyPartnerUsername(messageObject);
         setMyOneToOnePort(messageObject.getUser().getPort());
+        changeMyUserCondition(String.valueOf(ONETOONE_CHATTING));
 
         System.out.println(UserSocket.getUser().getUsername()
                             + "의 파트너는 "
@@ -44,15 +46,28 @@ public class OneToOneConnectSetting implements Setting {
         String username = messageObject.getUser().getUsername();
         String partnerUsername = messageObject.getUser().getPartnerUsername();
 
-        if (UserSocket.getUser().getUsername().equals(username)) {
+        if (isUsernameEqualsMessageObjectUsername(username)) {
             UserSocket
                     .getUser()
                     .setPartnerUsername(partnerUsername);
         }
     }
 
+    private void changeMyUserCondition(String userCondition) {
+        UserSocket.getUser().setUserCondition(userCondition);
+    }
+
+    private boolean isUsernameEqualsMessageObjectUsername(String username) {
+        return UserSocket
+                    .getUser()
+                    .getUsername()
+                    .equals(username);
+    }
+
     private void setMyOneToOnePort(int port) {
-        UserSocket.getUser().setPort(port);
+        UserSocket
+                .getUser()
+                .setPort(port);
     }
 
     private void startOneToOneSocket(int port) {

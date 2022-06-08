@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SocketFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SocketFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneConnectSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneConnectSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnectSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/onetoone/OneToOneConnectSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/channel/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +48,10 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15332031" />
@@ -135,7 +143,8 @@
       <workItem from="1654128215174" duration="23882000" />
       <workItem from="1654214688328" duration="22725000" />
       <workItem from="1654560086688" duration="14820000" />
-      <workItem from="1654580980458" duration="9415000" />
+      <workItem from="1654580980458" duration="11626000" />
+      <workItem from="1654646052510" duration="1560000" />
     </task>
     <servers />
   </component>
