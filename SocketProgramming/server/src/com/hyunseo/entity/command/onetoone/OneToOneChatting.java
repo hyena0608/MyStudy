@@ -29,9 +29,5 @@ public class OneToOneChatting implements Command {
 
     @Override
     public void send(String messageJson) {
-        userSocketMessageHandler
-                .sendOneToOneMessage(
-                        new Gson().fromJson(messageJson, MessageObject.class)
-                );
     }
 }
