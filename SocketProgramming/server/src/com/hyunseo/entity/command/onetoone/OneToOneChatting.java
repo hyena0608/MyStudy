@@ -1,10 +1,8 @@
 package com.hyunseo.entity.command.onetoone;
 
-import com.google.gson.Gson;
 import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.entity.message.MessageObject;
 import com.hyunseo.service.user.handler.UserSocketMessageHandler;
-import com.hyunseo.service.user.parser.UserSocketMessageParser;
 
 import static com.hyunseo.entity.command.onetoone.OneToOne.ONETOONE_CHATTING;
 

@@ -48,23 +48,6 @@ public class UserSocket implements Runnable {
         this.user = user;
     }
 
-
-
-    private String receive() {
-        String messageJson = null;
-        try {
-            messageJson = in.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return messageJson;
-    }
-
-    private void tossMessageJson(String messageJson) {
-        System.out.println("tossMessageJson() : messageJson = " + messageJson);
-        commandFactory.createCommand(messageJson).send(messageJson);
-    }
-
     private User getUserFromClient() {
         User user = null;
         try {
@@ -82,6 +65,33 @@ public class UserSocket implements Runnable {
     public void run() {
         while (socket.isConnected()) {
             tossMessageJson(receive());
+        }
+    }
+
+    private String receive() {
+        String messageJson = null;
+        try {
+            if (socket.isConnected() && in != null) {
+                messageJson = in.readUTF();
+            }
+        } catch (IOException e) {
+            closeSocket();
+        }
+        return messageJson;
+    }
+
+    private void tossMessageJson(String messageJson) {
+        System.out.println("tossMessageJson() : messageJson = " + messageJson);
+        commandFactory.createCommand(messageJson).send(messageJson);
+    }
+
+    private void closeSocket() {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
