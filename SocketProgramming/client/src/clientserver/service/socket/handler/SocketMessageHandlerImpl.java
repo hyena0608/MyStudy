@@ -19,11 +19,12 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void handleMessage(String messageJson) {
         MessageObject messageObject = socketMessageParser.toObject(messageJson);
+        String messageType = messageObject.getMessageType();
 
         System.out.println(new Gson().toJson(messageObject));
 
         if (messageObject.getMessageType().contains("CHATTING")) {
-            chattingFactory.createChatting()
+            chattingFactory.createChatting(messageType)
                     .consoleMessage(messageObject);
         } else if (messageObject.getMessageType().contains("SETTING")) {
             settingFactory.createSetting(messageObject.getMessageType())

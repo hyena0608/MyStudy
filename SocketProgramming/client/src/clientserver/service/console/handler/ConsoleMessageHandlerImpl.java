@@ -23,7 +23,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
         } else if (isChattingType(message)) {
             MessageObject messageObject = consoleMessageParser.toObject(message);
             System.out.println("new SocketMessageParserImpl().toJson(messageObject) = " + new SocketMessageParserImpl().toJson(messageObject));
-            chattingFactory.createChatting()
+            chattingFactory.createChatting(messageObject.getMessageType())
                     .sendChattingMessage(messageObject);
         }
     }

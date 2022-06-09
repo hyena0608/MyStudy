@@ -1,5 +1,6 @@
 package clientserver.service.console.parser;
 
+import clientserver.entity.user.User;
 import clientserver.socket.UserSocket;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
@@ -14,6 +15,7 @@ public class ConsoleMessageParserImpl implements MessageParser {
         MessageObject messageObject = new MessageObjectBuilder()
                 .setMessageType(UserSocket.getUser().getUserCondition())
                 .setContent(message)
+                .setUser(UserSocket.getUser())
                 .build();
         return messageObject;
     }

@@ -1,6 +1,5 @@
 package clientserver.entity.command.factory;
 
-import clientserver.socket.UserSocket;
 import clientserver.entity.command.onetoone.OneToOneChatting;
 import clientserver.entity.command.room.RoomChatting;
 import clientserver.entity.command.base.Chatting;
@@ -8,11 +7,11 @@ import clientserver.entity.command.base.Chatting;
 public class ChattingFactory {
     private Chatting chatting = null;
 
-    public Chatting createChatting() {
+    public Chatting createChatting(String type) {
 
-        if (UserSocket.getUser().getUserCondition().equals(RoomChatting.condition)) {
+        if (type.equals(RoomChatting.condition)) {
             chatting = RoomChatting.getInstance();
-        } else if (UserSocket.getUser().getUserCondition().equals(OneToOneChatting.condition)) {
+        } else if (type.equals(OneToOneChatting.condition)) {
             chatting = OneToOneChatting.getInstance();
         }
 
