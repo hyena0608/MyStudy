@@ -50,10 +50,10 @@ public class OneToOneStartSetting implements Setting {
         String partnerUsername = scanPartner();
 
         setMyPartnerUsername(partnerUsername);
-        setMyUserCondition(condition);
+        setMyUserCondition(OneToOneConnectSetting.condition);
 
         MessageObject messageObject = new MessageObjectBuilder()
-                .setMessageType(condition)
+                .setMessageType(OneToOneConnectSetting.condition)
                 .setUser(UserSocket.getUser())
                 .build();
 

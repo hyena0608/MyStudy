@@ -1,5 +1,6 @@
 package clientserver.service.socket.handler;
 
+import clientserver.entity.user.User;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
@@ -24,7 +25,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
             chattingFactory.createChatting(messageType)
                     .consoleMessage(messageObject);
         } else if (messageObject.getMessageType().contains("SETTING")) {
-            settingFactory.createSetting(messageObject.getMessageType())
+                settingFactory.createSetting(messageType)
                     .changeMySetting(messageJson);
         }
     }
@@ -55,7 +56,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void run() {
         while (true) {
-            if (UserSocket.getSocket().isConnected()) {
+            if (UserSocket.getIn() != null) {
                 try {
                     String message = UserSocket.getIn().readUTF();
                     handleMessage(message);
