@@ -15,7 +15,6 @@ public class OneToOneConnectSetting implements Command {
     private OneToOneConnectSetting() {}
 
     public static OneToOneConnectSetting getInstance() {
-        System.out.println("OneToOneConnectSetting getInstance");
         if (instance == null) {
             synchronized (OneToOneConnectSetting.class) {
                 if (instance == null) {
