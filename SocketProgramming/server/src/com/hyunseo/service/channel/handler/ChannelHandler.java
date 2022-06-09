@@ -54,7 +54,6 @@ public class ChannelHandler {
                 .get(userSocket.getUser().getRoomTitle())
                 .getUserSocketList()
                 .remove(userSocket);
-        System.out.println("삭제");
     }
 
     public static Map<String, Map<String, Room>> getChannelMap() {

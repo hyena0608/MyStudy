@@ -75,7 +75,7 @@ public class UserSocket implements Runnable {
     @Override
     public void run() {
         try {
-            while (socket.isConnected()) {
+            while (in != null) {
                 tossMessageJson(receive());
             }
         } catch (IOException e) {
