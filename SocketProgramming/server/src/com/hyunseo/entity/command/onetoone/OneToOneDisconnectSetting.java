@@ -22,8 +22,6 @@ public class OneToOneDisconnectSetting implements Command {
         return instance;
     }
 
-
-
     @Override
     public void send(String messageJson) {
 

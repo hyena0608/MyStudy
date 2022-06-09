@@ -13,13 +13,6 @@ import static com.hyunseo.entity.channel.ChannelRoom.*;
 
 public class ChannelHandler {
 
-    public static void addUser(UserSocket userSocket) {
-        Channel.getChannelMap().get(userSocket.getUser().getChannelTitle())
-                .get(userSocket.getUser().getRoomTitle())
-                .getUserSocketList()
-                .add(userSocket);
-
-    }
 
     public static void init() {
         // TODO : 한글로 하면 안되네..
@@ -47,8 +40,24 @@ public class ChannelHandler {
         Collections.synchronizedMap(Channel.getChannelMap());
     }
 
+    public static void addUser(UserSocket userSocket) {
+        Channel.getChannelMap()
+                .get(userSocket.getUser().getChannelTitle())
+                .get(userSocket.getUser().getRoomTitle())
+                .getUserSocketList()
+                .add(userSocket);
+    }
+
+    public static void removeMyUserSocker(UserSocket userSocket) {
+        Channel.getChannelMap()
+                .get(userSocket.getUser().getChannelTitle())
+                .get(userSocket.getUser().getRoomTitle())
+                .getUserSocketList()
+                .remove(userSocket);
+        System.out.println("삭제");
+    }
+
     public static Map<String, Map<String, Room>> getChannelMap() {
         return Channel.getChannelMap();
     }
-
 }

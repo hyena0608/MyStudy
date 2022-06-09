@@ -27,7 +27,7 @@ public class UserSocket implements Runnable {
             sendChannelInfo();
             this.user = getUserFromClient();
         } catch (IOException e) {
-            e.printStackTrace();
+            closeSocket();
         }
     }
 
@@ -53,7 +53,7 @@ public class UserSocket implements Runnable {
 
     private void sendChannelInfo() {
         try {
-            this.out.writeUTF(ChannelRoom.info() );
+            this.out.writeUTF(ChannelRoom.info());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,21 +74,18 @@ public class UserSocket implements Runnable {
 
     @Override
     public void run() {
-        while (socket.isConnected()) {
-            tossMessageJson(receive());
+        try {
+            while (socket.isConnected()) {
+                tossMessageJson(receive());
+            }
+        } catch (IOException e) {
+        } finally {
+            closeSocket();
         }
     }
 
-    private String receive() {
-        String messageJson = null;
-        try {
-            if (socket.isConnected() && in != null) {
-                messageJson = in.readUTF();
-            }
-        } catch (IOException e) {
-            closeSocket();
-        }
-        return messageJson;
+    private String receive() throws IOException {
+        return in.readUTF();
     }
 
     private void tossMessageJson(String messageJson) {
@@ -101,8 +98,9 @@ public class UserSocket implements Runnable {
             in.close();
             out.close();
             socket.close();
+            ChannelHandler.removeMyUserSocker(this);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.closeSocket();
         }
     }
 }
