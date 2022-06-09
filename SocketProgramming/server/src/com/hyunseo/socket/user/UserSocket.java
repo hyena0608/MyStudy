@@ -89,7 +89,6 @@ public class UserSocket implements Runnable {
     }
 
     private void tossMessageJson(String messageJson) {
-        System.out.println("tossMessageJson() : messageJson = " + messageJson);
         commandFactory.createCommand(messageJson).send(messageJson);
     }
 

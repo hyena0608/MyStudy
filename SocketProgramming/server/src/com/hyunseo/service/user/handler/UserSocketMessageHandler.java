@@ -15,14 +15,18 @@ public class UserSocketMessageHandler {
     private Map<String, Map<String, Room>> channelMap = ChannelHandler.getChannelMap();
 
     public void broadcastMessage(MessageObject messageObject) {
-        channelMap.get(messageObject.getUser().getChannelTitle())
-                .get(messageObject.getUser().getRoomTitle())
+        String channelTitle = messageObject.getUser().getChannelTitle();
+        String roomTitle = messageObject.getUser().getRoomTitle();
+        String receiver = messageObject.getUser().getUsername();
+        String messageJson = UserSocketMessageParser.toJson(messageObject);
+
+        channelMap.get(channelTitle)
+                .get(roomTitle)
                 .getUserSocketList()
-                .forEach(o -> {
-                    if (!o.getUser().getUsername()
-                            .equals(messageObject.getUser().getUsername())) {
+                .forEach(userSocket -> {
+                    if (!userSocket.getUser().getUsername().equals(receiver)) {
                         try {
-                            o.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                            userSocket.getOut().writeUTF(messageJson);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -35,6 +39,7 @@ public class UserSocketMessageHandler {
         String channelTitle = messageObject.getUser().getChannelTitle();
         String roomTitle = messageObject.getUser().getRoomTitle();
         String receiver = messageObject.getUser().getUsername();
+        String messageJson = UserSocketMessageParser.toJson(messageObject);
 
         channelMap
                 .get(channelTitle)
@@ -43,7 +48,7 @@ public class UserSocketMessageHandler {
                 .forEach(userSocket -> {
                     if (userSocket.getUser().getUsername().equals(receiver)) {
                         try {
-                            userSocket.getOut().writeUTF(UserSocketMessageParser.toJson(messageObject));
+                            userSocket.getOut().writeUTF(messageJson);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

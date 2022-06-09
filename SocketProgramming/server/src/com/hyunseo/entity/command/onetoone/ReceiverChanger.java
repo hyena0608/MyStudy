@@ -8,8 +8,10 @@ public class ReceiverChanger {
         MessageObject messageObject = UserSocketMessageParser.toObject(messageJson);
         String nowUsername = messageObject.getUser().getPartnerUsername();
         String nowPartnerUsername = messageObject.getUser().getUsername();
+
         messageObject.getUser().setUsername(nowUsername);
         messageObject.getUser().setPartnerUsername(nowPartnerUsername);
+
         return messageObject;
     }
 }
