@@ -1,18 +1,19 @@
 package clientserver.entity.command.onetoone;
 
+import clientserver.entity.command.room.RoomChatting;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 
-import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_END_SETTING;
+import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_DISCONNECT_SETTING;
 
 public class OneToOneDisconnectSetting implements Setting {
 
-    public static final String condition = String.valueOf(ONETOONE_END_SETTING);
-    public static final String consoleCondition = ONETOONE_END_SETTING.symbol;
-
+    public static final String condition = String.valueOf(ONETOONE_DISCONNECT_SETTING);
+    public static final String consoleCondition = ONETOONE_DISCONNECT_SETTING.symbol;
     private static volatile OneToOneDisconnectSetting instance;
 
-    private OneToOneDisconnectSetting() {}
+    private OneToOneDisconnectSetting() {
+    }
 
     public static OneToOneDisconnectSetting getInstance() {
         if (instance == null) {
@@ -27,19 +28,33 @@ public class OneToOneDisconnectSetting implements Setting {
 
     @Override
     public void changeMySetting(String message) {
-        if (UserSocket.getUser().getPartnerUsername() != null) {
-//            disconnectPartner();
+        if (isPartnerExist()) {
+            disconnectPartner();
         }
     }
 
-//    private void disconnectPartner() {
-//        try {
-//            System.out.println("귓속말 연결을 끊습니다.");
-//            UserSocket.getUser().setPartnerUsername(null);
-//            serverSocket.close();
-//            serverSocket = null;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private boolean isPartnerExist() {
+        if (UserSocket.getUser().getPartnerUsername() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private void disconnectPartner() {
+        makePartnerNull();
+        changeUserCondition();
+    }
+
+    private void changeUserCondition() {
+        UserSocket
+                .getUser()
+                .setUserCondition(RoomChatting.condition);
+    }
+
+    private void makePartnerNull() {
+        System.out.println(UserSocket.getUser().getPartnerUsername() + "님과의 귓속말이 종료 되었습니다.");
+        UserSocket
+                .getUser()
+                .setPartnerUsername(null);
+    }
 }

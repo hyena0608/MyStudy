@@ -1,5 +1,6 @@
 package clientserver.entity.command.onetoone;
 
+import clientserver.service.socket.parser.SocketMessageParserImpl;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
@@ -17,6 +18,7 @@ public class OneToOneChatting implements Chatting {
     public static final String condition = String.valueOf(ONETOONE_CHATTING);
     private ConsoleMessageHandlerImpl consoleMessageHandler = new ConsoleMessageHandlerImpl();
     private SocketMessageHandlerImpl socketMessageHandler = new SocketMessageHandlerImpl();
+    private SocketMessageParserImpl socketMessageParser = new SocketMessageParserImpl();
 
     private OneToOneChatting() {
     }
@@ -41,7 +43,7 @@ public class OneToOneChatting implements Chatting {
                         .setUser(UserSocket.getUser())
                         .build();
 
-        socketMessageHandler.send(new Gson().toJson(oneToOneMessageObject));
+        socketMessageHandler.send(socketMessageParser.toJson(oneToOneMessageObject));
     }
 
     @Override
@@ -49,7 +51,7 @@ public class OneToOneChatting implements Chatting {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer
                 .append("[귓속말 - ")
-                .append(messageObject.getUser().getUsername())
+                .append(messageObject.getUser().getPartnerUsername())
                 .append("] : ")
                 .append(messageObject.getContent());
 

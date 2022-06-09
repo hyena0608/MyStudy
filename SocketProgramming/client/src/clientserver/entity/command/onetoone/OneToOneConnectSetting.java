@@ -33,16 +33,19 @@ public class OneToOneConnectSetting implements Setting {
         changeMyPartnerUsername(messageObject);
         changeMyUserCondition(String.valueOf(ONETOONE_CHATTING));
 
-        System.out.println(UserSocket.getUser().getUsername()
-                            + "의 파트너는 "
-                            + UserSocket.getUser().getPartnerUsername()
-                            + "이다.");
+        System.out.println(UserSocket.getUser().getPartnerUsername()
+                            + "님과의 귓속말이 시작되었습니다.");
 
     }
 
     private void changeMyPartnerUsername(MessageObject messageObject) {
-        String username = messageObject.getUser().getUsername();
-        String partnerUsername = messageObject.getUser().getPartnerUsername();
+        String username = messageObject
+                                .getUser()
+                                .getUsername();
+
+        String partnerUsername = messageObject
+                                    .getUser()
+                                    .getPartnerUsername();
 
         if (isUserSocketRight(username)) {
             UserSocket
@@ -56,7 +59,9 @@ public class OneToOneConnectSetting implements Setting {
     }
 
     private void changeMyUserCondition(String userCondition) {
-        UserSocket.getUser().setUserCondition(userCondition);
+        UserSocket
+                .getUser()
+                .setUserCondition(userCondition);
     }
 
     private boolean isUserSocketRight(String username) {

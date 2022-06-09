@@ -34,37 +34,51 @@ public class OneToOneStartSetting implements Setting {
 
     @Override
     public void changeMySetting(String message) {
-        if (UserSocket
-                .getUser()
-                .getPartnerUsername() == null) {
+        if (!isPartnerExist()) {
             connectPartner();
         }
     }
 
+    private boolean isPartnerExist() {
+        if (UserSocket.getUser().getPartnerUsername() != null) {
+            return true;
+        }
+        return false;
+    }
+
     private void connectPartner() {
-        Scanner sc = new Scanner(System.in);
+        String partnerUsername = scanPartner();
 
-        System.out.print("상대이름을 입력하세요. : ");
-        String partnerUsername = sc.nextLine();
-
-        UserSocket
-                .getUser()
-                .setPartnerUsername(partnerUsername);
-
-        UserSocket
-                .getUser()
-                .setUserCondition(String.valueOf(ONETOONE_CONNECT_SETTING));
+        setMyPartnerUsername(partnerUsername);
+        setMyUserCondition(condition);
 
         MessageObject messageObject = new MessageObjectBuilder()
-                .setMessageType(String.valueOf(ONETOONE_CONNECT_SETTING))
+                .setMessageType(condition)
                 .setUser(UserSocket.getUser())
                 .build();
 
         new SocketMessageHandlerImpl()
                 .send(new SocketMessageParserImpl().toJson(messageObject));
 
+        setMyUserCondition(String.valueOf(ONETOONE_CHATTING));
+    }
+
+    private String scanPartner() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("상대이름을 입력하세요. : ");
+        return sc.nextLine();
+    }
+
+    private void setMyPartnerUsername(String partnerUsername) {
         UserSocket
                 .getUser()
-                .setUserCondition(String.valueOf(ONETOONE_CHATTING));
+                .setPartnerUsername(partnerUsername);
+    }
+
+    private void setMyUserCondition(String userCondition) {
+        UserSocket
+                .getUser()
+                .setUserCondition(userCondition);
     }
 }

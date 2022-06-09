@@ -1,6 +1,5 @@
 package clientserver.service.console.parser;
 
-import clientserver.entity.user.User;
 import clientserver.socket.UserSocket;
 import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;

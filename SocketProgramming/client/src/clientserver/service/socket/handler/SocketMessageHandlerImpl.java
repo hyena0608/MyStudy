@@ -21,8 +21,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
         MessageObject messageObject = socketMessageParser.toObject(messageJson);
         String messageType = messageObject.getMessageType();
 
-        System.out.println(new Gson().toJson(messageObject));
-
         if (messageObject.getMessageType().contains("CHATTING")) {
             chattingFactory.createChatting(messageType)
                     .consoleMessage(messageObject);
