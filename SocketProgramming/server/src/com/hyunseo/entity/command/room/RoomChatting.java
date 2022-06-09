@@ -27,7 +27,6 @@ public class RoomChatting implements Command {
         return instance;
     }
 
-
     @Override
     public void send(String messageJson) {
         userSocketMessageHandler

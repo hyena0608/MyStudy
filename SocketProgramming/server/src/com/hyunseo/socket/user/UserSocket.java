@@ -1,7 +1,9 @@
 package com.hyunseo.socket.user;
 
+import com.hyunseo.entity.channel.ChannelRoom;
 import com.hyunseo.entity.command.factory.CommandFactory;
 import com.hyunseo.entity.user.User;
+import com.hyunseo.service.channel.handler.ChannelHandler;
 import com.hyunseo.service.user.parser.UserSocketMessageParser;
 
 import java.io.DataInputStream;
@@ -22,6 +24,7 @@ public class UserSocket implements Runnable {
             this.socket = socket;
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
+            sendChannelInfo();
             this.user = getUserFromClient();
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,6 +49,14 @@ public class UserSocket implements Runnable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    private void sendChannelInfo() {
+        try {
+            this.out.writeUTF(ChannelRoom.info() );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private User getUserFromClient() {
