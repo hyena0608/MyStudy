@@ -10,7 +10,7 @@ import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 public class UserSetting implements Setting {
 
     private static volatile UserSetting instance;
-    public static final String condition = "USERSETTING";
+    public static final String condition = "USER_SETTING";
 
     public static UserSetting getInstance() {
         if (instance == null) {

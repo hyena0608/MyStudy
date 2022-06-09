@@ -9,10 +9,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-
 public class UserSocket {
 
-    private static volatile UserSocket instance;
     private static Socket socket;
     private static DataInputStream in;
     private static DataOutputStream out;
@@ -23,6 +21,7 @@ public class UserSocket {
             socket = new Socket("localhost", 8888);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
+            printChannelInfo();
             user = getUserAfterSetting();
             sendUserSettingMessage(UserSetting.condition);
         } catch (IOException e) {
@@ -30,15 +29,16 @@ public class UserSocket {
         }
     }
 
-    public static UserSocket getInstance() {
-        if (instance == null) {
-            synchronized (UserSocket.class) {
-                if (instance == null) {
-                    instance = new UserSocket();
-                }
-            }
+    private void printChannelInfo() {
+        try {
+            System.out.println(getChannelInfo());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return instance;
+    }
+
+    private String getChannelInfo() throws IOException {
+            return in.readUTF();
     }
 
     private User getUserAfterSetting() {

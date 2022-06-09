@@ -7,7 +7,6 @@ import clientserver.entity.command.factory.SettingFactory;
 import clientserver.entity.message.MessageObject;
 import clientserver.service.base.MessageHandler;
 import clientserver.service.socket.parser.SocketMessageParserImpl;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
