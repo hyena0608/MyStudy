@@ -7,7 +7,6 @@ import clientserver.entity.message.MessageObject;
 import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
-import com.google.gson.Gson;
 
 import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_CHATTING;
 

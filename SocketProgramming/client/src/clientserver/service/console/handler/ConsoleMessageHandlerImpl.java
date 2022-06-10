@@ -9,35 +9,36 @@ import clientserver.service.console.parser.ConsoleMessageParserImpl;
 
 import java.util.Scanner;
 
+
 public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     private ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
     private SettingFactory settingFactory = new SettingFactory();
     private ChattingFactory chattingFactory = new ChattingFactory();
 
     @Override
-    public void handleMessage(String message) {
-        if (isSettingType(message)) {
-            settingFactory.createSetting(message)
-                    .changeMySetting(message);
-        } else if (isChattingType(message)) {
-            MessageObject messageObject = consoleMessageParser.toObject(message);
+    public void handleMessage(String consoleMessage) {
+        if (isSettingType(consoleMessage)) {
+            settingFactory.createSetting(consoleMessage)
+                    .changeMySetting(consoleMessage);
+        } else if (isChattingType(consoleMessage)) {
+            MessageObject messageObject = consoleMessageParser.toObject(consoleMessage);
             chattingFactory.createChatting(messageObject.getMessageType())
                     .sendMessage(messageObject);
         }
     }
 
-    private boolean isChattingType(String message) {
-        if (message.length() == 0) {
+    private boolean isChattingType(String consoleMessage) {
+        if (consoleMessage.length() == 0) {
             return false;
         }
-        return message.charAt(0) != '/';
+        return !consoleMessage.startsWith("/");
     }
 
-    private boolean isSettingType(String message) {
-        if (message.length() == 0) {
+    private boolean isSettingType(String consoleMessage) {
+        if (consoleMessage.length() == 0) {
             return false;
         }
-        return message.charAt(0) == '/';
+        return consoleMessage.startsWith("/");
     }
 
     @Override

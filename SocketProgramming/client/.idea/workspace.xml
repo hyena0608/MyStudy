@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileChatting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileTransferReceiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileTransferSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/base/Chatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/base/Chatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/onetoone/OneToOneChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/console/handler/ConsoleMessageHandlerImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/onetoone/OneToOneChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/room/RoomChatting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" afterDir="false" />
     </list>
@@ -26,9 +26,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -156,7 +156,7 @@
       <workItem from="1654580980458" duration="11626000" />
       <workItem from="1654646052510" duration="23473000" />
       <workItem from="1654732277540" duration="28091000" />
-      <workItem from="1654819086465" duration="19159000" />
+      <workItem from="1654819086465" duration="21191000" />
     </task>
     <servers />
   </component>
