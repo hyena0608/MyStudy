@@ -1,8 +1,11 @@
 package clientserver.socket;
 
 import clientserver.entity.command.user.UserSetting;
+import clientserver.entity.message.MessageObject;
+import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.entity.user.User;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
+import clientserver.service.socket.parser.SocketMessageParserImpl;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,7 +26,7 @@ public class UserSocket {
             out = new DataOutputStream(socket.getOutputStream());
             printChannelInfo();
             user = getUserAfterSetting();
-            sendUserSettingMessage(UserSetting.condition);
+            sendUserSettingToServer(UserSetting.condition);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,8 +50,15 @@ public class UserSocket {
         return user;
     }
 
-    private void sendUserSettingMessage(String condition) {
-        new SocketMessageHandlerImpl().sendUserSetting(condition);
+    private void sendUserSettingToServer(String messageType) {
+        MessageObject messageObject = new MessageObjectBuilder()
+                .setUser(user)
+                .setMessageType(messageType)
+                .build();
+
+        String messageJson = new SocketMessageParserImpl().toJson(messageObject);
+
+        new SocketMessageHandlerImpl().send(messageJson);
     }
 
     public static DataInputStream getIn() {

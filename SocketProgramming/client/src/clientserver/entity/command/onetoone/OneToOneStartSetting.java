@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import static clientserver.entity.command.onetoone.OneToOneType.*;
 
-public class OneToOneStartSetting implements Setting {
+public class  OneToOneStartSetting implements Setting {
 
     private static volatile OneToOneStartSetting instance;
     public static final String condition = String.valueOf(ONETOONE_START_SETTING);
@@ -61,6 +61,8 @@ public class OneToOneStartSetting implements Setting {
                 .send(new SocketMessageParserImpl().toJson(messageObject));
 
         setMyUserCondition(String.valueOf(ONETOONE_CHATTING));
+
+        System.out.println(partnerUsername + "님과의 귓속말이 시작되었습니다.");
     }
 
     private String scanPartner() {

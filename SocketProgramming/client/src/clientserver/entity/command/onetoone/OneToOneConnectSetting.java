@@ -13,6 +13,7 @@ public class OneToOneConnectSetting implements Setting {
 
     public static final String condition = String.valueOf(ONETOONE_CONNECT_SETTING);
     private static volatile OneToOneConnectSetting instance;
+
     private OneToOneConnectSetting() {}
 
     public static OneToOneConnectSetting getInstance() {

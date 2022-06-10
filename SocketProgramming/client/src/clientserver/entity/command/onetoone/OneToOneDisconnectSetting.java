@@ -1,6 +1,7 @@
 package clientserver.entity.command.onetoone;
 
 import clientserver.entity.command.room.RoomChatting;
+import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 
@@ -29,6 +30,7 @@ public class OneToOneDisconnectSetting implements Setting {
     @Override
     public void changeMySetting(String message) {
         if (isPartnerExist()) {
+            sendDisconnectOneToOneToPartner();
             disconnectPartner();
         }
     }
@@ -52,9 +54,13 @@ public class OneToOneDisconnectSetting implements Setting {
     }
 
     private void makePartnerNull() {
-        System.out.println(UserSocket.getUser().getPartnerUsername() + "님과의 귓속말이 종료 되었습니다.");
+        System.out.println(UserSocket.getUser().getPartnerUsername()
+                            + "님과의 귓속말이 종료 되었습니다.");
         UserSocket
                 .getUser()
                 .setPartnerUsername(null);
+    }
+
+    private void sendDisconnectOneToOneToPartner() {
     }
 }

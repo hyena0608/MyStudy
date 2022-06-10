@@ -34,7 +34,7 @@ public class UserSetting implements Setting {
                 .build();
 
         socketMessageHandler
-                .sendUserToServerToJoinServer(
+                .send(
                         consoleMessageParser.toJson(messageObjectToSend)
                 );
     }

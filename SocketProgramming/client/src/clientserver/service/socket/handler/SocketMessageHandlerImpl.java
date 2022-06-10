@@ -1,6 +1,5 @@
 package clientserver.service.socket.handler;
 
-import clientserver.entity.user.User;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.user.UserSetting;
 import clientserver.entity.command.factory.ChattingFactory;
@@ -43,14 +42,6 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
         settingFactory
                 .createSetting(UserSetting.condition)
                 .changeMySetting(message);
-    }
-
-    public void sendUserToServerToJoinServer(String messageJson) {
-        try {
-            UserSocket.getOut().writeUTF(messageJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
