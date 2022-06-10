@@ -13,7 +13,7 @@ public class CommandFactory {
 
     public Command createCommand(String messageJson) {
         MessageObject messageObject = UserSocketMessageParser.toObject(messageJson);
-        String messageType = messageObject.getMessageType();
+        String messageType = messageObject. getMessageType();
 
         if (messageType.equals(OneToOneConnectSetting.condition)) {
             command = OneToOneConnectSetting.getInstance();

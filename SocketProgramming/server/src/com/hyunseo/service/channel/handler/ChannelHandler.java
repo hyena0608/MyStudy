@@ -1,7 +1,6 @@
 package com.hyunseo.service.channel.handler;
 
 import com.hyunseo.entity.channel.Channel;
-import com.hyunseo.entity.channel.ChannelRoom;
 import com.hyunseo.entity.channel.Room;
 import com.hyunseo.socket.user.UserSocket;
 
@@ -48,7 +47,7 @@ public class ChannelHandler {
                 .add(userSocket);
     }
 
-    public static void removeMyUserSocker(UserSocket userSocket) {
+    public static void removeMyUserSocket(UserSocket userSocket) {
         Channel.getChannelMap()
                 .get(userSocket.getUser().getChannelTitle())
                 .get(userSocket.getUser().getRoomTitle())

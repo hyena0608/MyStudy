@@ -1,6 +1,8 @@
 package com.hyunseo.entity.command.onetoone;
 
 import com.hyunseo.entity.command.base.Command;
+import com.hyunseo.entity.message.MessageObject;
+import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
 import static com.hyunseo.entity.command.onetoone.OneToOne.*;
 
@@ -24,6 +26,7 @@ public class OneToOneDisconnectSetting implements Command {
 
     @Override
     public void send(String messageJson) {
-
+        MessageObject messageObject = ReceiverChanger.change(messageJson);
+        new UserSocketMessageHandler().sendOneToOneMessage(messageObject);
     }
 }

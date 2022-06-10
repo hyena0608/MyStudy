@@ -3,7 +3,7 @@ package com.hyunseo.service.user.parser;
 import com.google.gson.Gson;
 import com.hyunseo.entity.message.MessageObject;
 
-public class UserSocketMessageParser  {
+public class  UserSocketMessageParser  {
 
     private static Gson gson = new Gson();
 

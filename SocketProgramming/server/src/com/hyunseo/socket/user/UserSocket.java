@@ -88,7 +88,7 @@ public class UserSocket implements Runnable {
         return in.readUTF();
     }
 
-    private void tossMessageJson(String messageJson) {
+    private void  tossMessageJson(String messageJson) {
         commandFactory.createCommand(messageJson).send(messageJson);
     }
 
@@ -97,7 +97,7 @@ public class UserSocket implements Runnable {
             in.close();
             out.close();
             socket.close();
-            ChannelHandler.removeMyUserSocker(this);
+            ChannelHandler.removeMyUserSocket(this);
         } catch (IOException e) {
             this.closeSocket();
         }
