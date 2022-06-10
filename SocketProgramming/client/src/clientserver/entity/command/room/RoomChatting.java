@@ -8,7 +8,7 @@ import clientserver.entity.message.MessageObjectBuilder;
 import clientserver.service.console.handler.ConsoleMessageHandlerImpl;
 import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 
-import static clientserver.entity.command.room.Room.ROOM_CHATTING;
+import static clientserver.entity.command.room.RoomType.ROOM_CHATTING;
 
 public class RoomChatting implements Chatting {
 
@@ -32,7 +32,7 @@ public class RoomChatting implements Chatting {
     }
 
     @Override
-    public void sendChattingMessage(MessageObject messageObject) {
+    public void sendMessage(MessageObject messageObject) {
         MessageObject roomMessageObject = new MessageObjectBuilder()
                 .setUser(UserSocket.getUser())
                 .setContent(messageObject.getContent())

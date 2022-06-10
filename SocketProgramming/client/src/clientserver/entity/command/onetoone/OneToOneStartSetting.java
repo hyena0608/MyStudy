@@ -15,7 +15,7 @@ public class  OneToOneStartSetting implements Setting {
 
     private static volatile OneToOneStartSetting instance;
     public static final String condition = String.valueOf(ONETOONE_START_SETTING);
-    public static final String consoleCondition = ONETOONE_START_SETTING.symbol;
+    public static final String consoleCondition = ONETOONE_START_SETTING.command;
 
 
     private OneToOneStartSetting() {

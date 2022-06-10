@@ -6,9 +6,9 @@ public enum OneToOneType {
     ONETOONE_CONNECT_SETTING("ONETOONE_CONNECT_SETTING"),
     ONETOONE_CHATTING("ONETOONE_CHATTING");
 
-    public String symbol;
+    public String command;
 
-    OneToOneType(String symbol) {
-        this.symbol = symbol;
+    OneToOneType(String command) {
+        this.command = command;
     }
 }

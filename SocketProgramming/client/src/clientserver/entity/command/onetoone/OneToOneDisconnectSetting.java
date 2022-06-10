@@ -1,7 +1,6 @@
 package clientserver.entity.command.onetoone;
 
 import clientserver.entity.command.room.RoomChatting;
-import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import clientserver.socket.UserSocket;
 import clientserver.entity.command.base.Setting;
 
@@ -10,7 +9,7 @@ import static clientserver.entity.command.onetoone.OneToOneType.ONETOONE_DISCONN
 public class OneToOneDisconnectSetting implements Setting {
 
     public static final String condition = String.valueOf(ONETOONE_DISCONNECT_SETTING);
-    public static final String consoleCondition = ONETOONE_DISCONNECT_SETTING.symbol;
+    public static final String consoleCondition = ONETOONE_DISCONNECT_SETTING.command;
     private static volatile OneToOneDisconnectSetting instance;
 
     private OneToOneDisconnectSetting() {

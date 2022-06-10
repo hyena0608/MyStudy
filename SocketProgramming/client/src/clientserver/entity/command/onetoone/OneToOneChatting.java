@@ -35,7 +35,7 @@ public class OneToOneChatting implements Chatting {
     }
 
     @Override
-    public void sendChattingMessage(MessageObject messageObject) {
+    public void sendMessage(MessageObject messageObject) {
         MessageObject oneToOneMessageObject =
                 new MessageObjectBuilder()
                         .setMessageType(UserSocket.getUser().getUserCondition())

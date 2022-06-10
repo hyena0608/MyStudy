@@ -22,7 +22,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
         } else if (isChattingType(message)) {
             MessageObject messageObject = consoleMessageParser.toObject(message);
             chattingFactory.createChatting(messageObject.getMessageType())
-                    .sendChattingMessage(messageObject);
+                    .sendMessage(messageObject);
         }
     }
 

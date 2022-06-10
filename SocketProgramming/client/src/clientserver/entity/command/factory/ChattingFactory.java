@@ -9,7 +9,7 @@ public class ChattingFactory {
 
     public Chatting createChatting(String type) {
 
-        if (type.equals(RoomChatting.condition)) {
+            if (type.equals(RoomChatting.condition)) {
             chatting = RoomChatting.getInstance();
         } else if (type.equals(OneToOneChatting.condition)) {
             chatting = OneToOneChatting.getInstance();
