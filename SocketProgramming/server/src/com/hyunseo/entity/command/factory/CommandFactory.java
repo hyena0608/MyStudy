@@ -1,5 +1,8 @@
 package com.hyunseo.entity.command.factory;
 
+import com.hyunseo.entity.command.file.FileReceiverChatting;
+import com.hyunseo.entity.command.file.FileSenderChatting;
+import com.hyunseo.entity.command.file.FileType;
 import com.hyunseo.entity.command.onetoone.OneToOneChatting;
 import com.hyunseo.entity.command.onetoone.OneToOneConnectSetting;
 import com.hyunseo.entity.command.onetoone.OneToOneDisconnectSetting;
@@ -25,6 +28,12 @@ public class CommandFactory {
 
         if (messageType.equals(RoomChatting.condition)) {
             command = RoomChatting.getInstance();
+        }
+
+        if (messageType.equals(FileReceiverChatting.condition)) {
+            command = FileReceiverChatting.getInstance();
+        } else if (messageType.equals(FileSenderChatting.condition)) {
+            command = FileSenderChatting.getInstance();
         }
 
         return command;

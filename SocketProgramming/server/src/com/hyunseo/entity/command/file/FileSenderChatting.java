@@ -3,12 +3,13 @@ package com.hyunseo.entity.command.file;
 import com.hyunseo.entity.command.base.Command;
 import com.hyunseo.service.user.handler.UserSocketMessageHandler;
 
-import static com.hyunseo.entity.command.onetoone.OneToOne.ONETOONE_CHATTING;
+import static com.hyunseo.entity.command.file.FileType.FILE_SENDER_CHATTING;
+
 
 public class FileSenderChatting implements Command {
 
     private static volatile FileSenderChatting instance;
-    public static final String condition = String.valueOf(ONETOONE_CHATTING);
+    public static final String condition = String.valueOf(FILE_SENDER_CHATTING);
     private UserSocketMessageHandler userSocketMessageHandler = new UserSocketMessageHandler();
 
     public static FileSenderChatting getInstance() {
