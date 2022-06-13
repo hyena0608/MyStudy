@@ -14,7 +14,6 @@ public class ChannelHandler {
 
 
     public static void init() {
-        // TODO : 한글로 하면 안되네..
         Map<String, Room> roomMap1 = new HashMap<>();
         roomMap1.put(CHANNEL1.roomOne, new Room());
         roomMap1.put(CHANNEL1.roomTwo, new Room());
