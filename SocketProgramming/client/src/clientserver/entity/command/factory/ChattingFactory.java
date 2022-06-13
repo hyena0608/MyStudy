@@ -1,10 +1,11 @@
 package clientserver.entity.command.factory;
 
-import clientserver.entity.command.file.FileChatting;
-import clientserver.entity.command.file.FileType;
+import clientserver.entity.command.file.FileReceiverChatting;
+import clientserver.entity.command.file.FileSenderChatting;
 import clientserver.entity.command.onetoone.OneToOneChatting;
 import clientserver.entity.command.room.RoomChatting;
 import clientserver.entity.command.base.Chatting;
+
 
 public class ChattingFactory {
     private Chatting chatting = null;
@@ -15,8 +16,10 @@ public class ChattingFactory {
             chatting = RoomChatting.getInstance();
         } else if (type.equals(OneToOneChatting.condition)) {
             chatting = OneToOneChatting.getInstance();
-        } else if (type.equals(FileType.FILE_RECEIVE.command)) {
-            chatting = FileChatting.getInstance();
+        } else if (type.equals(FileSenderChatting.consoleCondition)) {
+            chatting = FileSenderChatting.getInstance();
+        } else if (type.equals(FileReceiverChatting.condition)) {
+            chatting = FileReceiverChatting.getInstance();
         }
 
         return chatting;

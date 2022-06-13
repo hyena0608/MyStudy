@@ -3,7 +3,7 @@ package clientserver.service.file;
 import java.io.*;
 import java.net.Socket;
 
-public class FileTransferReceiver implements Runnable {
+public class FileReceiver implements Runnable {
 
     // TODO : 서버 아이피, 포트를 서버에서 직접 전달 받아야함.
     private final String ip = "localhost";
@@ -15,7 +15,7 @@ public class FileTransferReceiver implements Runnable {
     private BufferedOutputStream bos;
     private BufferedInputStream bis;
 
-    public FileTransferReceiver(String fileName) {
+    public FileReceiver(String fileName) {
         try {
             this.fileName = fileName;
             socket = new Socket(ip, port);

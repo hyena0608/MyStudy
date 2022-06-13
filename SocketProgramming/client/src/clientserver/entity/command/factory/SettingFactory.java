@@ -1,5 +1,6 @@
 package clientserver.entity.command.factory;
 
+import clientserver.entity.command.file.FileSenderSetting;
 import clientserver.entity.command.onetoone.OneToOneConnectSetting;
 import clientserver.entity.command.onetoone.OneToOneDisconnectSetting;
 import clientserver.entity.command.onetoone.OneToOneStartSetting;
@@ -21,6 +22,10 @@ public class SettingFactory {
 
         if (type.equals(UserSetting.condition)) {
             setting = UserSetting.getInstance();
+        }
+
+        if (type.equals(FileSenderSetting.consoleCondition)) {
+            setting = FileSenderSetting.getInstance();
         }
 
         return setting;
