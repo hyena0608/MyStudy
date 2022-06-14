@@ -12,7 +12,6 @@ public class  MessageObject {
     private final String language;
     private User user;
 
-
     public MessageObject(LocalDateTime localDateTime, String messageType, String content, String country, String language, User user) {
         this.localDateTime = localDateTime;
         this.messageType = messageType;

@@ -2,6 +2,10 @@ package clientserver.entity.command.file;
 
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
+import clientserver.service.file.FileReceiver;
+
+import java.io.File;
+import java.util.Scanner;
 
 import static clientserver.entity.command.file.FileType.FILE_RECEIVE_CHATTING;
 import static clientserver.entity.command.file.FileType.FILE_SENDER_CHATTING;
@@ -28,7 +32,10 @@ public class FileReceiverChatting implements Chatting {
 
     @Override
     public void consoleMessage(MessageObject messageObject) {
-        // TODO : 상대가 보낸 파일 다운로드 받기
-        System.out.println("다운중");
+        FileReceiver fileReceiver = new FileReceiver();
+        Thread fileReceiverThread = new Thread(fileReceiver);
+        fileReceiverThread.start();
+        fileReceiverThread.interrupt();
+        System.out.println("파일 다운로드가 완료 되었습니다.");
     }
 }

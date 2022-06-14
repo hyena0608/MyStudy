@@ -5,29 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileReceiverChatting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderChatting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderSetting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/file/FileReceiverChatting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/file/FileSenderChatting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/file/FileType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/download/images.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/download/캣.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/base/Sending.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/ChattingFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/factory/SettingFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileChatting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileTransferReceiver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileTransferSender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/ChattingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/factory/SettingFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileChatting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileTransferReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileTransferSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/command/factory/CommandFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileReceiverChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileReceiverChatting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderSetting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/message/MessageObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileReceiverChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileReceiverChatting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/message/MessageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileSender.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +56,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../채팅" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -169,7 +159,12 @@
       <workItem from="1654646052510" duration="23473000" />
       <workItem from="1654732277540" duration="28091000" />
       <workItem from="1654819086465" duration="21752000" />
-      <workItem from="1655078747413" duration="17222000" />
+      <workItem from="1655078747413" duration="19051000" />
+      <workItem from="1655104208772" duration="6182000" />
+      <workItem from="1655164262473" duration="1000" />
+      <workItem from="1655164305054" duration="516000" />
+      <workItem from="1655164871026" duration="887000" />
+      <workItem from="1655165994344" duration="18742000" />
     </task>
     <servers />
   </component>

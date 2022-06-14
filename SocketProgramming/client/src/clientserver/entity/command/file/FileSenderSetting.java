@@ -43,11 +43,6 @@ public class FileSenderSetting implements Setting {
             System.out.println(messageJson);
             FileSenderChatting.getInstance().sendMessage(messageObjectForPartner);
             new SocketMessageHandlerImpl().send(messageJson);
-//            try {
-//                UserSocket.getOut().writeUTF(messageJson);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
 
         } else if (UserSocket.getUser().getPartnerUsername() == null) {
             System.out.println("귓속말 상태가 아닙니다.");

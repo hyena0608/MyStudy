@@ -9,6 +9,7 @@ public class FileSender implements Runnable {
     String filePath;
 
     public FileSender() {
+        System.out.println("기본 경로 : " + new File("").getAbsolutePath());
         System.out.print("전송할 파일 경로를 입력해주세요. : ");
         Scanner sc = new Scanner(System.in);
         this.filePath = sc.nextLine();
@@ -22,19 +23,20 @@ public class FileSender implements Runnable {
 
             Socket socket = serverSocket.accept();
 
-            FileInputStream fis = new FileInputStream(filePath);
+            File sendFile = new File(filePath);
+
+            FileInputStream fis = new FileInputStream(sendFile);
             BufferedInputStream bis = new BufferedInputStream(fis);
 
             OutputStream out = socket.getOutputStream();
             BufferedOutputStream bos = new BufferedOutputStream(out);
 
-            System.out.println("read");
             int read = 0;
             while ((read = bis.read()) != -1) {
                 bos.write(read);
             }
 
-            System.out.println("파일 전송 완료");
+            System.out.println("파일 전송 완료이 완료 되었습니다.");
 
             bos.close();
             bis.close();
