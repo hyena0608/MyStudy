@@ -25,9 +25,10 @@ public class FileSenderChatting implements Chatting {
 
     @Override
     public void sendMessage(MessageObject messageObject) {
-            FileSender fileSender = new FileSender();
-            Thread fileSenderThread = new Thread(fileSender);
-            fileSenderThread.start();
+        int port = messageObject.getUser().getOneToOnePort();
+        FileSender fileSender = new FileSender(port);
+        Thread fileSenderThread = new Thread(fileSender);
+        fileSenderThread.start();
     }
 
     @Override

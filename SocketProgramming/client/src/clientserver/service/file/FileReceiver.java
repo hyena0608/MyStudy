@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class FileReceiver implements Runnable {
 
-    // TODO : 서버 아이피, 포트를 서버에서 직접 전달 받아야함.
     private final String ip = "localhost";
-    private final int port = 9999;
     private String fileName;
     private Socket socket;
     private InputStream in;
@@ -16,13 +14,12 @@ public class FileReceiver implements Runnable {
     private BufferedOutputStream bos;
     private BufferedInputStream bis;
 
-    public FileReceiver() {
+    public FileReceiver(int port) {
         try {
             Scanner sc = new Scanner(System.in);
             System.out.println("기본 경로 : " + new File("download").getAbsolutePath());
             System.out.print("저장할 파일명을 입력하세요 : ");
 
-            // TODO : 스캐너 인식..??
             this.fileName = sc.nextLine();
             System.out.println("fileName" + " = " + fileName);
 
@@ -52,7 +49,7 @@ public class FileReceiver implements Runnable {
                 bos.write(read);
             }
 
-            System.out.println("##################### download.jpg" + "\\" + this.fileName);
+            System.out.println("#####################" + "\\" + this.fileName);
 
         } catch (FileNotFoundException e) {
             System.out.println("예외: " + e.getMessage());
@@ -65,7 +62,6 @@ public class FileReceiver implements Runnable {
             try {
                 fos.close();
                 in.close();
-//                bos.close();
                 bis.close();
                 socket.close();
             } catch (IOException e) {

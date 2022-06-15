@@ -12,6 +12,7 @@ public class User {
 
     private String channelTitle;
     private String roomTitle;
+    private int oneToOnePort;
 
     public void init() {
         Scanner sc = new Scanner(System.in);
@@ -29,14 +30,6 @@ public class User {
     public User() {
     }
 
-    public User(String username, String userCondition, String partnerUsername, String channelTitle, String roomTitle) {
-        this.username = username;
-        this.userCondition = userCondition;
-        this.partnerUsername = partnerUsername;
-        this.channelTitle = channelTitle;
-        this.roomTitle = roomTitle;
-    }
-
     public void setUserCondition(String userCondition) {
         this.userCondition = userCondition;
     }
@@ -51,6 +44,14 @@ public class User {
 
     public void setRoomTitle(String roomTitle) {
         this.roomTitle = roomTitle;
+    }
+
+    public void setOneToOnePort(int oneToOnePort) {
+        this.oneToOnePort = oneToOnePort;
+    }
+
+    public int getOneToOnePort() {
+        return oneToOnePort;
     }
 
     public String getUsername() {

@@ -14,6 +14,7 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
     private ConsoleMessageParserImpl consoleMessageParser = new ConsoleMessageParserImpl();
     private SettingFactory settingFactory = new SettingFactory();
     private ChattingFactory chattingFactory = new ChattingFactory();
+    private Scanner sc = new Scanner(System.in);
 
     @Override
     public void handleMessage(String consoleMessage) {
@@ -48,7 +49,6 @@ public class ConsoleMessageHandlerImpl implements MessageHandler, Runnable {
 
     @Override
     public void run() {
-        Scanner sc = new Scanner(System.in);
         while (UserSocket.getOut() != null) {
             handleMessage(sc.nextLine());
         }

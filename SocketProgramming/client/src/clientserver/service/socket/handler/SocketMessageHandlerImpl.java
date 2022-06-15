@@ -24,7 +24,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
             chattingFactory.createChatting(messageType)
                     .consoleMessage(messageObject);
         } else if (messageObject.getMessageType().contains("SETTING")) {
-                settingFactory.createSetting(messageType)
+            settingFactory.createSetting(messageType)
                     .changeMySetting(messageJson);
         }
     }
@@ -38,24 +38,30 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
         }
     }
 
-    public void sendUserSetting(String message) {
-        settingFactory
-                .createSetting(UserSetting.condition)
-                .changeMySetting(message);
-    }
-
     @Override
     public void run() {
         while (true) {
-            if (UserSocket.getIn() != null) {
-                try {
-                    String message = UserSocket.getIn().readUTF();
-                    handleMessage(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (isUserSocketNull()) {
+                handleMessage(readMessagesFromSocket());
             }
         }
+    }
+
+    private boolean isUserSocketNull() {
+        if (UserSocket.getIn() == null) {
+            return true;
+        }
+        return false;
+    }
+
+    private String readMessagesFromSocket() {
+        String message = null;
+        try {
+            message = UserSocket.getIn().readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return message;
     }
 
 }

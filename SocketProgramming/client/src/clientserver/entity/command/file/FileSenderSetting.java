@@ -7,8 +7,6 @@ import clientserver.service.socket.handler.SocketMessageHandlerImpl;
 import clientserver.service.socket.parser.SocketMessageParserImpl;
 import clientserver.socket.UserSocket;
 
-import java.io.IOException;
-
 import static clientserver.entity.command.file.FileType.FILE_SENDER_SETTING;
 
 public class FileSenderSetting implements Setting {
@@ -33,6 +31,8 @@ public class FileSenderSetting implements Setting {
         if (UserSocket.getUser().getPartnerUsername() != null) {
             System.out.println("파일 전송 준비");
 
+            UserSocket.getUser().setOneToOnePort( FilePort.getPortQ().poll());
+
             MessageObject messageObjectForPartner = new MessageObjectBuilder()
                     .setUser(UserSocket.getUser())
                     .setMessageType(String.valueOf(FileType.FILE_RECEIVE_CHATTING))
@@ -40,7 +40,6 @@ public class FileSenderSetting implements Setting {
 
             String messageJson = new SocketMessageParserImpl().toJson(messageObjectForPartner);
 
-            System.out.println(messageJson);
             FileSenderChatting.getInstance().sendMessage(messageObjectForPartner);
             new SocketMessageHandlerImpl().send(messageJson);
 

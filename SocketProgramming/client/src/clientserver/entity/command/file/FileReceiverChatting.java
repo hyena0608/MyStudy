@@ -3,6 +3,7 @@ package clientserver.entity.command.file;
 import clientserver.entity.command.base.Chatting;
 import clientserver.entity.message.MessageObject;
 import clientserver.service.file.FileReceiver;
+import clientserver.socket.UserSocket;
 
 import java.io.File;
 import java.util.Scanner;
@@ -32,10 +33,18 @@ public class FileReceiverChatting implements Chatting {
 
     @Override
     public void consoleMessage(MessageObject messageObject) {
-        FileReceiver fileReceiver = new FileReceiver();
-        Thread fileReceiverThread = new Thread(fileReceiver);
-        fileReceiverThread.start();
-        fileReceiverThread.interrupt();
-        System.out.println("파일 다운로드가 완료 되었습니다.");
+        System.out.print (UserSocket.getUser().getPartnerUsername() + "님으로부터 파일을 받으시겠습니까? [y|n]");
+        String answer = new Scanner(System.in).nextLine();
+        if (answer.equals("y")) {
+            int port = messageObject.getUser().getOneToOnePort();
+
+            FileReceiver fileReceiver = new FileReceiver(port);
+            Thread fileReceiverThread = new Thread(fileReceiver);
+            fileReceiverThread.start();
+            fileReceiverThread.interrupt();
+            System.out.println("파일 다운로드가 완료 되었습니다.");
+        } else if (answer.equals("n")) {
+            System.out.println("요청을 거부했습니다.");
+        }
     }
 }
