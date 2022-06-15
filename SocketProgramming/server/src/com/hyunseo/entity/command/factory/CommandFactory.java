@@ -1,8 +1,6 @@
 package com.hyunseo.entity.command.factory;
 
 import com.hyunseo.entity.command.file.FileReceiverChatting;
-import com.hyunseo.entity.command.file.FileSenderChatting;
-import com.hyunseo.entity.command.file.FileType;
 import com.hyunseo.entity.command.onetoone.OneToOneChatting;
 import com.hyunseo.entity.command.onetoone.OneToOneConnectSetting;
 import com.hyunseo.entity.command.onetoone.OneToOneDisconnectSetting;

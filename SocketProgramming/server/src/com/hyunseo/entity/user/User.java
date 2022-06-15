@@ -4,16 +4,16 @@ public class User {
     private String username;
     private String userCondition;
     private String partnerUsername;
-    private int port;
 
     private String channelTitle;
     private String roomTitle;
+    private int oneToOnePort;
 
-    public User(String username, String userCondition, String partnerUsername, int port, String channelTitle, String roomTitle) {
+    public User(String username, String userCondition, String partnerUsername, int oneToOnePort, String channelTitle, String roomTitle) {
         this.username = username;
         this.userCondition = userCondition;
         this.partnerUsername = partnerUsername;
-        this.port = port;
+        this.oneToOnePort = oneToOnePort;
         this.channelTitle = channelTitle;
         this.roomTitle = roomTitle;
     }
@@ -38,12 +38,12 @@ public class User {
         return roomTitle;
     }
 
-    public int getPort() {
-        return port;
+    public int getOneToOnePort() {
+        return oneToOnePort;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setOneToOnePort(int oneToOnePort) {
+        this.oneToOnePort = oneToOnePort;
     }
 
     public void setUsername(String username) {
