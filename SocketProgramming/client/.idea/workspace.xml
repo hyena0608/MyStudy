@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FilePort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ReadMe.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileReceiverChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileReceiverChatting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderChatting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderChatting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderSetting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/command/file/FileSenderSetting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/entity/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileReceiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/file/FileSender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileReceiverChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileReceiverChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderChatting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderChatting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/command/file/FileSenderSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/entity/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/console/handler/ConsoleMessageHandlerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/file/FileSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/file/FileSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/entity/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/factory/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/command/file/FileSenderChatting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/entity/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/user/handler/UserSocketMessageHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +45,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -174,7 +155,8 @@
       <workItem from="1655164871026" duration="887000" />
       <workItem from="1655165994344" duration="20891000" />
       <workItem from="1655251156329" duration="88000" />
-      <workItem from="1655251263624" duration="16367000" />
+      <workItem from="1655251263624" duration="17133000" />
+      <workItem from="1655337108396" duration="1513000" />
     </task>
     <servers />
   </component>

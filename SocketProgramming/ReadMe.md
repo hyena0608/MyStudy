@@ -112,7 +112,7 @@
 
 <br>
 
-#### 2-1-1) 교착 상태 1차 이슈
+### 2-1-1) 교착 상태 1차 이슈 발생 (at server)
 
 > 교착상태(deadlock)이 발생하는 상황입니다.
 
@@ -122,7 +122,9 @@ Client를 관리하는 ClientManager입니다.
 
 각 Client 측에서 수신된 메시지를 읽고, 수신된 메시지를 Client들에게 브로드캐스팅합니다.
 
-서버에 등록된 각각의 클라이언트들이 `receiveMessage()`로 `in.readUTF()`를 하고 있던 도중 메시지를 받으면 `broadcastWaitingRoom(client, message)`메서드를 호출하였습니다.
+서버에 등록된 각각의 클라이언트들이 `receiveMessage()`로 `in.readUTF()`를 하고 있던 도중 
+
+메시지를 받으면 `broadcastWaitingRoom(client, message)`메서드를 호출하였습니다.
 
 
 ```java
@@ -208,9 +210,175 @@ public class Client extends Thread{
 
 
 
-현재 상황은 아래 그림과 같습니다.
+현재 상황은 아래와 같습니다.
+
+`List<Client> waitingRoom = Collections.synchronizedList(new ArrayList<>());
+`
+
+가 선언되어 있습니다.
+
+`waitingRoom`는 진행 중인 작업을 다른 쓰레드가 간섭하지 못하도록 동기화(synchronized) 하여 
+
+`waitingRoom`을 **임계영역(critical section)** 으로 지정해주고
+
+**락(lock)** 을 주었지만 락(lock)을 가지고 있는 객체가 아닌 다른 객체의 코드도 실행되고 있습니다.
+
+때문에 **교착 상태(Deadlock)** 오류가 발생하게 되었습니다. 
 
 
+아래 현 상황에 대한 그림을 그렸습니다.
+
+<img src="image\2-1-1_교착상태_1차_이슈_1.png" alt="2-1-1 교착 상태 1차 이슈 사진" />
+
+<img src="image\2-1-1_교착상태_1차_이슈_2.png" alt="2-1-1 교착 상태 1차 이슈 사진" />
+
+
+<br>
+<br>
+<br>
+
+### 2-1-2) 교착 상태 1차 이슈 해결
+
+임계 영역(critical section)에서 락(lock)을 두 쓰레드에서 동시에 사용하려고 하니 문제가 생겼습니다.
+
+때문에 저는 다음과 같이 해결하였습니다.
+
+(현재 내용은 채팅 메인 서버 측의 내용입니다.)
+
+- ***채팅 메인 서버 측 Client 소켓 관리***
+
+- ***채팅 메인 서버 측 Client의 메시지 송수신 기능***
+
+<br>
+
+### 2-1-2-1) 채팅 메인 서버 측 Client 소켓 관리
+
+처음에 ClientManager가 Client 전체를 `List<Client>`로 감싸서 관리하였습니다.
+
+때문에 for문을 사용해서 각각의 Client의 `DataInputStream`에 `readUTF()` 메서드를 사용했을 때 
+
+메시지를 수신 받는다면 다시 for문을 활용하여 Client의 `DataOutputStream`에 `writeUTF()` 메서드를 사용하여 각각의 클라이언트 서버 측에 메시지를 송신하였습니다.
+
+<br>
+
+이 때 임계 영역에서의 락(lock)을 가지고 있지 않은 쓰레드가 사용하려하면서 **교착 상태**가 발생하게 됐습니다.
+
+때문에 **락(lock)** 순차적으로 가질 수 있게 **ClientManager**를 없애고 **Client** 각각이 메시지를 송수신할 수 있도록 처리하여 해결했습니다.
+
+대신에 채팅 메인 서버에서 ClientChannel을 만들어 각각의 클라이언트 소켓을 저장하는 방식으로 구현하였습니다. 
+
+기존 ClientManager를 삭제하고 ClientChannel은 아래와 같습니다.
+
+```java
+public class ClientChannel extends Thread {
+
+    static HashMap<String, HashMap<String, List<Client>>> channelMap;
+
+    public ClientChannel() {...}
+
+    public void addClientToRoom() {...}
+    
+    // 서버 소켓 오픈
+    public static void main(String[] args) {...}
+
+}
+```
+
+<br>
+<br>
+<br>
+
+### 2-1-2-2) 채팅 메인 서버 측 Client의 메시지 송수신 기능
+
+먼저 Client에 클라이언트 서버 쪽의 메시지의 수신과
+
+서버 측에서 클라이언트 서버에 보내는 메세지의 송신 기능이 있습니다.
+
+<br>
+
+채팅 메인 서버 측에서 메시지의 수신 같은 경우는 클라이언트의 소켓(Socket)을 서버소켓(ServerSocket)에서 받아 while 문으로 계속해서 메시지를 받아줘야 합니다.
+
+<br>
+
+아래 코드는 클라이언트 측에서 송신한 메시지의 **채팅 메인 서버의 수신 코드** 입니다.
+
+```java
+private DataInputStream in = new DataInputStream(socket.getInputStream);
+
+// try-catch 생략
+while (in != null) {
+    String message = in.readUTf();
+}
+```
+
+아래 코드는 클라이언트 측에게 메시지를 수신하는 **채팅 메인 서버의 코드** 입니다.
+
+```java
+private DataOutputStream out = new DataOutputStream(socket.getOutputStream);
+
+// try-catch 생략
+if (message != null && message != "") {
+    out.writeUTF(message);
+}
+```
+
+이러한 메시지 송수신 기능이 있던 기존 ClientManager 클래스를 삭제한 후 Client 클래스에 기능을 할당하였습니다.
+
+Client 코드를 다음과 같이 작성하였습니다.
+
+```java
+public class implements Runnable {
+    private Socket socket;
+    private DataInputStream in;
+    private DataOutputStream out;
+    public final String channelName;
+    public final String roomName;
+
+    public Client(Socket socket, String channelName, String roomName) {...}
+
+    // try-catch 생략
+    public void getMessateFromClientServer() {
+        String messageFromClientServer = this.in.readUTF();
+        broadcastMessage(this, messageFromClientServer);
+    }
+
+    public void broadcastMessage(Client client, String messageFromClientServer) {
+        for (...) {
+            // try-catch 생략
+            if (!eachClient.equals(client)) {
+                eachClient.out.writeUTF(messageFromClientServer);
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        while (socket.isConnected()) {
+            getMessageFromClientServer();
+        }
+    }
+}
+```
+
+<br>
+<br>
+
+### 2-1-2-3) 교착 상태 해결 이후의 프로세스(process) 형태
+
+- 채팅 메인 서버 측 Client 소켓 관리
+- 채팅 메인 서버 측 Client의 메시지 송수신 기능
+
+> 위에서 두 가지 방법으로 코드를 수정하면서 현 쓰레드(Thread)가 동작하면서 다른 쓰레드를 건드리지 않게 되었습니다.
+
+때문에 교착 상태가 없어졌으며 
+
+프로세스 내부는 다음과 같은 그림이 되었습니다. 
+
+(기존은 대기실(waitingRoom) 하나 였지만 현재는 채널(channel)과 방(room)으로 이루어져 있습니다.)
+
+<img src="image\2-1-2-3_교착상태_해결_이후_프로세스_상태_1.png" />
+
+<img src="image\2-1-2-3_교착상태_해결_이후_프로세스_상태_2.png" />
 
 <br>
 <br>
@@ -237,6 +405,18 @@ public class Client extends Thread{
 <br>
 
 ### 2-5) 🎈 **책임과 역할 분리를 위한 클래스, 메서드 분리**
+
+이러한 두 기능을 다음과 같이 분할 하였습니다.
+
+- 클래스명 변경
+    - Client -> UserSocket
+    - ClientManager -> UserSocketMessageHandler
+- 기능 분할
+    - UserSocket
+        - 클라이언트 서버측의 메시지를 수신한다.
+        - 메시지가 수신된 경우 UserSocketMessageHandler에게 메시지를 넘겨준다.
+    - UserSocketMessageHandler
+
 <br>
 <br>
 <br>
@@ -270,7 +450,7 @@ public class Client extends Thread{
 <br>
 <br>
 
-## 3) 🙆‍♂️ 완료된 '소켓을 이용한 채팅 프로그램' 소개
+## 3) 🙆‍♂️ 완료된 '소켓을 이용한 채팅 프로그램' 소개해주세요 !
 
 <br>
 
