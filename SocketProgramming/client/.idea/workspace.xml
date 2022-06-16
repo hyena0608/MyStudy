@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ReadMe.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../image/2-1-1_교착상태_1차_이슈.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../image/2-1-2-3_교착상태_해결_이후_프로세스_상태.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -157,6 +158,7 @@
       <workItem from="1655251156329" duration="88000" />
       <workItem from="1655251263624" duration="17133000" />
       <workItem from="1655337108396" duration="1513000" />
+      <workItem from="1655366308729" duration="178000" />
     </task>
     <servers />
   </component>

@@ -30,8 +30,6 @@ public class CommandFactory {
 
         if (messageType.equals(FileReceiverChatting.condition)) {
             command = FileReceiverChatting.getInstance();
-        } else if (messageType.equals(FileSenderChatting.condition)) {
-            command = FileSenderChatting.getInstance();
         }
 
         return command;
