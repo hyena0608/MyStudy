@@ -32,7 +32,9 @@ public class ChannelHandler {
         roomMap3.put(CHANNEL3.roomOne, new Room());
         roomMap3.put(CHANNEL3.roomTwo, new Room());
         roomMap3.put(CHANNEL3.roomThree, new Room());
+
         Collections.synchronizedMap(roomMap3);
+
         Channel.getChannelMap().put(CHANNEL3.channel, roomMap3);
 
         Collections.synchronizedMap(Channel.getChannelMap());
