@@ -470,14 +470,86 @@ ps.(*밑에 임계영역이 왜 이렇게 많이 설정 되어 있을까 ?. 아�
 
 <img src="image\2-3_파일송수신_2.png">
 
-
 <br>
 <br>
 <br>
 
 ## **객체 지향 프로그래밍**
 
-### 2-4) 🎈 **다형성의 활용**
+<br>
+<br>
+
+### 2-4) 🎈 **다형성의 활용** (+ 정적 팩토리 패턴)
+
+채팅과 설정을 하기 위해 계속 객체를 생성해야 하는 상황입니다.
+
+이러한 상황에서는 생성자 혹은 정적 팩토리 메서드 둘 중 하나를 선택해야 했습니다.
+
+근데 왜 ? 정적 팩토리 메서드를 선택 했을까요?
+
+- 저는 여러 번의 객체 생성이 필요했고
+- 호출할 때 마다 새로운 객체를 생성할 필요가 없어졌습니다.
+- 생성자가 아닌 정적 팩토리 메서드는 가독성이 좋고 객체지향적인 프로그래밍을 도와줍니다.
+  
+  가독성이 좋다는 것을 설명하자면 생성자 보다 더 구체적인 이름을 가질 수 있다는 것입니다.
+
+  메서드를 호출하는 것으로 직관적인 기능을 알 수 있죠.
+
+정적 팩토리 메서드를 만들어 아래 그림과 같은 상황이 되었습니다. (채팅 서버)
+
+<img src="image\2-4_다형성의활용_1.png">
+
+<br>
+<br>
+
+> 🤷‍♂️ 아니 근데 쓰레드 상황에서 같은 정적 Instance를 사용하면 같은 데이터 영역이라 위험하지 않나요 ??
+
+<br>
+
+그래서 저는 **DCL (Double-Checking Locking)** 방법을 사용했습니다.
+
+간단하게 설명하자면 인스턴스가 생성되어 있지 않는 상태라면 인스턴스를 가져와서 사용하지만
+
+인스턴스가 이미 생성되어 있는 상태라면 **동기화(synchronization)** 시켜서 데이터 영역의 동시 접근 위험성을 제거해줍니다.
+
+동기화가 필요한 상황에서만 동기화 시키므로 무조건적으로 동기화 시키는 것보다 효율적입니다.
+
+<br>
+
+또한 **volatile** 키워드를 사용했고 이는
+
+자바 변수를 Main Memory에 올려 동시화 문제를 해결 했습니다.
+
+만약 volatile 키워드를 사용하지 않았다면 cpu Cache에만 변수가 반영되어 동기화 문제가 생길 수도 있기 때문입니다.
+
+<br>
+
+때문에 아래와 같이 구현 했습니다. (RoomChatting Example)
+
+- static
+- volatile
+- synchronized
+
+에 주의해주세요.
+
+```java
+public class RoomChatting implements Chatting {
+    private static volatile RoomChatting instance;
+
+    private RoomChatting() {}
+
+    public static RoomChatting getInstance() {
+        if (instance == null) {
+            synchronized (RoomChatting.class) {
+                if (instance == null) {
+                    instance = new RoomChatting();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
 
 <br>
 <br>
@@ -485,16 +557,40 @@ ps.(*밑에 임계영역이 왜 이렇게 많이 설정 되어 있을까 ?. 아�
 
 ### 2-5) 🎈 **책임과 역할 분리를 위한 클래스, 메서드 분리**
 
-이러한 두 기능을 다음과 같이 분할 하였습니다.
+다음과 같이 분리 하였습니다. 
 
-- 클래스명 변경
+**1. 채팅 서버**
+
+- 클래스 변경
     - Client -> UserSocket
+    - Client -> User
     - ClientManager -> UserSocketMessageHandler
+    - ClientManager -> ChannelHandler
+    - 
 - 기능 분할
-    - UserSocket
-        - 클라이언트 서버측의 메시지를 수신한다.
-        - 메시지가 수신된 경우 UserSocketMessageHandler에게 메시지를 넘겨준다.
-    - UserSocketMessageHandler
+    - UserSocket, User
+        - 유저 소켓 정보와 유저 정보를 분리하여 관리했습니다.
+    - UserSocketMessageHandler, ChannelHandler
+        - 채널 관리와 메시지 송수신 관리 기능을 분리하였습니다.
+
+<br>
+
+**2. 클라이언트 서버**
+
+- 클래스 변경
+    - ClientReceiver -> SocketMessageHandlerImpl (<\<Interface>> MessageHandler)
+    - ClientReader -> ConsoleMessageHandlerImpl (<\<Interface>> MessageHandler)
+    - ClientSender -> SocketMessageHandlerImpl (<\<Interface>> MessageHandler)
+    - MessageParser -> <\<Interface>> Chatting, <\<Interface>> Setting
+- 기능 분할
+    - 사용자의 콘솔 입력, 소켓 송신, 수신을 사용자 기준이 아닌
+
+        콘솔, 소켓 으로 나눠서 기능을 구현했습니다.
+
+    - 정적 팩토리 메서드를 이용하여 상황에 맞는 각각의 기능을 가진 객체를 불러와 처리할 수 있게 되었습니다. 
+
+
+
 
 <br>
 <br>
@@ -506,13 +602,9 @@ ps.(*밑에 임계영역이 왜 이렇게 많이 설정 되어 있을까 ?. 아�
 <br>
 <br>
 
-### 2-7) 🎈 **디자인 패턴 (팩토리 패턴, 빌더 패턴) 이용**
+### 2-7) 🎈 **메모리 낭비 전역 변수 -> 지역 변수 변경**
 
-<br>
-<br>
-<br>
 
-### 2-8) 🎈 **메모리 낭비 전역 변수 -> 지역 변수 변경**
 
 <br>
 <br>
