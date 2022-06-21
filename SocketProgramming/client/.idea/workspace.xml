@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="" />
+    <list default="true" id="a85ef701-8ee5-4c93-871c-298e3beaa0d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ReadMe.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/clientserver/service/socket/handler/SocketMessageHandlerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clientserver/service/socket/handler/SocketMessageHandlerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/SocketProgramming/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/SocketProgramming/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/untitled104/com/hyunseo/service/channel/handler/ChannelHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/service/channel/handler/ChannelHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/main/MainServerSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/com/hyunseo/socket/main/MainServerSocket.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +54,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -156,6 +168,7 @@
       <workItem from="1655337108396" duration="1513000" />
       <workItem from="1655366308729" duration="178000" />
       <workItem from="1655686689046" duration="5535000" />
+      <workItem from="1655786265002" duration="3622000" />
     </task>
     <servers />
   </component>

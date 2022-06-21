@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3769749-1b2b-4c4d-9ed9-dab89482f0fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocketProgramming/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SocketProgramming/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -69,7 +70,7 @@
       <workItem from="1655682751089" duration="999000" />
       <workItem from="1655683868625" duration="38000" />
       <workItem from="1655771078781" duration="3314000" />
-      <workItem from="1655775643183" duration="1429000" />
+      <workItem from="1655775643183" duration="5560000" />
     </task>
     <servers />
   </component>

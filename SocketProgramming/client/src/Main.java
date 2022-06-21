@@ -29,7 +29,7 @@ public class Main {
                 }
             }
 
-            groundList.sort(Collections.reverseOrder());
+            Collections.sort(groundList);
 
             Long[] oils = new Long[D];
             StringTokenizer stOil = new StringTokenizer(br.readLine());
@@ -40,8 +40,11 @@ public class Main {
             Long answer = 0L;
             for (long day = 0; day < D; day++) {
                 while (oils[(int) day] --> 0) {
+                    // TODO : max + per day length ++
                     Long max = Collections.max(groundList);
-                    int maxIdx = groundList.indexOf(max);
+                    int maxIdx = groundList.lastIndexOf(max);
+
+
 
                     answer += (max + day - groundRecentCutList.get(maxIdx)) * (day + 1);
 

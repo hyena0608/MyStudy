@@ -41,7 +41,7 @@ public class SocketMessageHandlerImpl implements MessageHandler, Runnable {
     @Override
     public void run() {
         while (true) {
-            if (isUserSocketNull()) {
+            if (!isUserSocketNull()) {
                 handleMessage(readMessagesFromSocket());
             }
         }
