@@ -577,16 +577,26 @@ public class RoomChatting implements Chatting {
 
 **2. 클라이언트 서버**
 
+<img src="image\2-5_책임분리_1.png">
+
+<br>
+
 - 클래스 변경
     - ClientReceiver -> SocketMessageHandlerImpl (<\<Interface>> MessageHandler)
     - ClientReader -> ConsoleMessageHandlerImpl (<\<Interface>> MessageHandler)
     - ClientSender -> SocketMessageHandlerImpl (<\<Interface>> MessageHandler)
     - MessageParser -> <\<Interface>> Chatting, <\<Interface>> Setting
+
+    <br>
+
+    기존 클래스를 보면 여러 역할을 하고 있는 것을 볼 수 있습니다.
+
+    ClientSender 클래스 같은 경우 사용자 콘솔을 입력 받고 메시지를 메인 서버에 보내기 까지 합니다.
+
+    이러한 역할을 나눠서 메인 채팅 서버용 클래스, 클라이언트 서버용 클래스를 나눠서 재구현하였습니다. 
+
+
 - 기능 분할
-    - 사용자의 콘솔 입력, 소켓 송신, 수신을 사용자 기준이 아닌
-
-        콘솔, 소켓 으로 나눠서 기능을 구현했습니다.
-
     - 정적 팩토리 메서드를 이용하여 상황에 맞는 각각의 기능을 가진 객체를 불러와 처리할 수 있게 되었습니다. 
 
 
@@ -596,16 +606,32 @@ public class RoomChatting implements Chatting {
 <br>
 <br>
 
-### 2-6) 🎈 **람다와 스트림의 활용한 클라이언트 검색 기능**
+### 2-6) 🎈 **forEach문을 활용한 클라이언트 검색**
 
-<br>
-<br>
-<br>
+for문을 중첩해서 사용하는 것이 아닌 forEach문을 사용했습니다.
 
-### 2-7) 🎈 **메모리 낭비 전역 변수 -> 지역 변수 변경**
+```java
+public void broadcastMessage(MessageObject messageObject) {
+    String channelTitle = messageObject.getUser().getChannelTitle();
+    String roomTitle = messageObject.getUser().getRoomTitle();
+    String receiver = messageObject.getUser().getUsername();
+    String messageJson = UserSocketMessageParser.toJson(messageObject);
 
-
-
+    channelMap.get(channelTitle)
+            .get(roomTitle)
+            .getUserSocketList()
+            .forEach(userSocket -> {
+                if (!userSocket.getUser().getUsername().equals(receiver)) {
+                    try {
+                        userSocket.getOut().writeUTF(messageJson);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                ;
+            });
+}
+```
 <br>
 <br>
 <br>
