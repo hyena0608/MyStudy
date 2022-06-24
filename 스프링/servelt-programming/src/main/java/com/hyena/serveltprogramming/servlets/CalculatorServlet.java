@@ -26,4 +26,6 @@ public class CalculatorServlet extends GenericServlet {
         writer.println("a % b = " + (a % b));
 
     }
+
+
 }
