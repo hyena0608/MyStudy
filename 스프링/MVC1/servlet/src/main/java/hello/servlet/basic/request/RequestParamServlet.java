@@ -11,6 +11,7 @@ import java.io.IOException;
  * 1. 파라미터 전송 기능
  */
 @WebServlet(name = "requestParamServlet", urlPatterns = "/request-param")
+
 public class RequestParamServlet extends HttpServlet {
 
     @Override
@@ -37,6 +38,11 @@ public class RequestParamServlet extends HttpServlet {
             System.out.println("username = " + name);
         }
 
+
+
+
         response.getWriter().write("hello");
     }
+
+
 }

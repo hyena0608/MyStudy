@@ -92,13 +92,13 @@ public class MainTwo {
                 System.out.print("선택해주세요 : ");
                 int selectNum = Integer.parseInt(sc.nextLine());
                 if (selectNum == 1) {
-                    if (thirdAnswer >= 0) {
+                    if (thirdAnswer != -1) {
                         System.out.print("두 번째 숫자");
                         int secondNum = Integer.parseInt(sc.nextLine());
                         System.out.println(thirdAnswer + " + " + secondNum + " = " + (thirdAnswer + secondNum));
                         thirdAnswer += secondNum;
                     }
-                    if (thirdAnswer < 0) {
+                    if (thirdAnswer == -1) {
                         System.out.print("첫 번째 숫자 : ");
                         int firstNum = Integer.parseInt(sc.nextLine());
                         System.out.print("두 번째 숫자 : ");

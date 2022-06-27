@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0912034-de3e-46f3-bc02-17f16f87066c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week3/lecture/While.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week4/lecture/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week4/lecture/MainFour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week4/lecture/MainThree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/week4/lecture/MainTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../스프링/MVC1/servlet/src/main/java/hello/servlet/basic/request/RequestParamServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../스프링/MVC1/servlet/src/main/java/hello/servlet/basic/request/RequestParamServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,20 +30,20 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/goats/OneDrive/Desktop/MyStudy/자바응용연습",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/goats/OneDrive/Desktop/MyStudy/자바응용연습&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.MainFour">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="week4.lecture.Main" />
@@ -135,6 +130,7 @@
       <updated>1655621293893</updated>
       <workItem from="1655621295247" duration="6935000" />
       <workItem from="1656131390973" duration="8843000" />
+      <workItem from="1656249426283" duration="45000" />
     </task>
     <servers />
   </component>
