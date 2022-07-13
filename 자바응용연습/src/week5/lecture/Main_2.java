@@ -9,19 +9,19 @@ public class Main_2 {
 
         System.out.println("개미 세마리 위치와 방향을 알려주세요");
 
-        System.out.print("첫 번째 개미 위치를 알려주세요 (0 ~ 24) : ");
+        System.out.print("첫 번째 개미 위치를 알려주세요 (0 < x <24) : ");
         int antOne = Integer.parseInt(sc.nextLine());
         System.out.print("첫 번째 개미 방향을 알려주세요 -1. L / 1. R : ");
         int antOnePoint = Integer.parseInt(sc.nextLine());
 
-        System.out.print("두 번째 개미 위치를 알려주세요 (0 ~ 24) : ");
+        System.out.print("두 번째 개미 위치를 알려주세요 (0 < x < 24) : ");
         int antTwo = Integer.parseInt(sc.nextLine());
         System.out.print("두 번째 개미 방향을 알려주세요 -1. L / 1. R : ");
         int antTwoPoint = Integer.parseInt(sc.nextLine());
 
-        System.out.print("세 번째 개미 위치를 알려주세요 (0 ~ 24) : ");
+        System.out.print("세 번째 개미 위치를 알려주세요 (0 < x < 24) : ");
         int antThree = Integer.parseInt(sc.nextLine());
-        System.out.print("세 번째 개미 방향을 알려주세요 -1. L / 11. R : ");
+        System.out.print("세 번째 개미 방향을 알려주세요 -1. L / 1. R : ");
         int antThreePoint = Integer.parseInt(sc.nextLine());
 
         // (0, 경기중) (1, 경기끝)
@@ -29,83 +29,63 @@ public class Main_2 {
         int antTwoEnd = 0;
         int antThreeEnd = 0;
 
-
-        int count = 1;
+        int count = 0;
 
         while (true) {
-
-            // 방향 (-1, LEFT) (1, RIGHT)
-            if (antOneEnd == 0 && antTwoEnd == 0) {
-                // 충돌 했을 때
-                // 원상복귀, 방향 변경
-                if (antOne + antOnePoint == antTwo + antTwoPoint) {
-                    antOnePoint *= -1;
-                    antTwoPoint *= -1;
-                }
-                // 방향 바꿔서 앞으로 갔을 때 갔지 않다면 기존 방향으로 이동
-                if (antOne - antOnePoint != antTwo - antTwoPoint) {
-                    antOne += antOnePoint;
-                    antTwo += antTwoPoint;
-                }
+            if ((antOne == 0 || antOne == 24) && antOneEnd == 0) {
+                System.out.println("첫 번째 개미가 " + ++count + "등입니다.");
+                antOneEnd = 1;
             }
 
-            if (antOneEnd == 0 && antThreeEnd == 0) {
-                if (antOne + antOnePoint == antThree + antThreePoint) {
-                    antOnePoint *= -1;
-                    antThreePoint *= -1;
-                }
-                if (antOne - antOnePoint != antThree - antThreePoint) {
-                    antOne += antOnePoint;
-                    antThree += antThreePoint;
-                }
+            if ((antTwo == 0 || antTwo == 24) && antTwoEnd == 0) {
+                System.out.println("두 번째 개미가 " + ++count + "등입니다.");
+                antTwoEnd = 1;
             }
 
-            if (antTwoEnd == 0 && antThreeEnd == 0) {
-                if (antTwo + antTwoPoint == antThree + antThreePoint) {
-                    antTwoPoint *= -1;
-                    antThreePoint *= -1;
-                }
-                if (antTwo - antTwoPoint != antThree - antThreePoint) {
-                    antTwo += antTwoPoint;
-                    antThree += antThreePoint;
-                }
+            if ((antThree == 0 || antThree == 24) && antThreeEnd == 0) {
+                System.out.println("세 번째 개미가 " + ++count + "등입니다.");
+                antThreeEnd = 1;
             }
 
-            if (antOneEnd == 0) {
-                if (antOne <= 0 || antOne >= 24) {
-                    System.out.println("첫 번째 개미가 " + count++ + "등입니다.");
-                    antOneEnd = 1;
-                }
-            }
-
-            if (antTwoEnd == 0) {
-                if (antTwo <= 0 || antTwo >= 24) {
-                    System.out.println("두 번째 개미가 " + count++ + "등입니다.");
-                    antTwoEnd = 1;
-                }
-            }
-
-            if (antThreeEnd == 0) {
-                if (antThree <= 0 || antThree >= 24) {
-                    System.out.println("세 번째 개미가 " + count++ + "등입니다.");
-                    antThreeEnd = 1;
-                }
-            }
-
-            if (count == 3) {
+            if ((antOne == 0 || antOne == 24)
+                    && (antTwo == 0 || antTwo == 24)
+                    && (antThree == 0 || antThree == 24)) {
+                System.out.println("경기를 종료합니다.");
                 break;
             }
-        }
 
-        if (antOneEnd == 0) {
-            System.out.println("첫 번째 개미가 " + count + "등입니다.");
-        }
-        if (antTwoEnd == 0) {
-            System.out.println("두 번째 개미가 " + count + "등입니다.");
-        }
-        if (antThreeEnd == 0) {
-            System.out.println("세 번째 개미가 " + count + "등입니다.");
-        }
+            // 개미 이동
+            if (antOneEnd == 0) {
+                antOne += antOnePoint;
+            }
+            if (antTwoEnd == 0) {
+                antTwo += antTwoPoint;
+            }
+            if (antThreeEnd == 0) {
+                antThree += antThreePoint;
+            }
 
+            // 개미 교차한 경우
+            if ((antOneEnd == 0 && antTwoEnd == 0) && antOne == antTwo - antTwoPoint) {
+                antOnePoint *= -1;
+                antTwoPoint *= -1;
+                antOne += antOnePoint;
+                antTwo += antTwoPoint;
+            }
+
+            if ((antOneEnd == 0 && antThreeEnd == 0) && antOne == antThree - antThreePoint) {
+                antOnePoint *= -1;
+                antThreePoint *= -1;
+                antOne += antOnePoint;
+                antThree += antThreePoint;
+            }
+
+            if ((antTwoEnd == 0 && antThreeEnd == 0) && antTwo == antThree - antThreePoint) {
+                antTwoPoint *= -1;
+                antThreePoint *= -1;
+                antTwo += antTwoPoint;
+                antThree += antThreePoint;
+            }
+        }
     }
 }
