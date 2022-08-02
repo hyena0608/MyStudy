@@ -30,7 +30,7 @@ public class FrontControllerServletV3 extends HttpServlet {
         controllerV3Map.put("/front-controller/v3/members", new MemberListControllerV3());
     }
 
-    @Override
+
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
