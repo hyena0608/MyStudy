@@ -7,20 +7,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import spms.util.DBConnectionPool;
 import spms.vo.Member;
 
 public class MemberDao {
-    Connection connection;
+    DBConnectionPool connPool;
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    public void setDbConnectionPool(DBConnectionPool connPool) {
+        this.connPool = connPool;
     }
 
+
     public List<Member> selectList() throws Exception {
+        Connection connection = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
+            connection = connPool.getConnection();
             stmt = connection.createStatement();
             rs = stmt.executeQuery(
                     "SELECT MNO,MNAME,EMAIL,CRE_DATE" +
@@ -51,13 +55,16 @@ public class MemberDao {
                 if (stmt != null) stmt.close();
             } catch (Exception e) {
             }
+            if (connection != null) connPool.returnConnection(connection);
         }
     }
 
     public int insert(Member member) throws Exception {
+        Connection connection = null;
         PreparedStatement stmt = null;
 
         try {
+            connection = connPool.getConnection();
             stmt = connection.prepareStatement(
                     "INSERT INTO MEMBERS(EMAIL,PWD,MNAME,CRE_DATE,MOD_DATE)"
                             + " VALUES (?,?,?,NOW(),NOW())");
@@ -78,9 +85,11 @@ public class MemberDao {
     }
 
     public int delete(int no) throws Exception {
+        Connection connection = null;
         Statement stmt = null;
 
         try {
+            connection = connPool.getConnection();
             stmt = connection.createStatement();
             return stmt.executeUpdate(
                     "DELETE FROM MEMBERS WHERE MNO=" + no);
@@ -97,9 +106,12 @@ public class MemberDao {
     }
 
     public Member selectOne(int no) throws Exception {
+        Connection connection;
         Statement stmt = null;
         ResultSet rs = null;
+
         try {
+            connection = connPool.getConnection();
             stmt = connection.createStatement();
             rs = stmt.executeQuery(
                     "SELECT MNO,EMAIL,MNAME,CRE_DATE FROM MEMBERS" +
@@ -130,8 +142,11 @@ public class MemberDao {
     }
 
     public int update(Member member) throws Exception {
+        Connection connection;
         PreparedStatement stmt = null;
+
         try {
+            connection = connPool.getConnection();
             stmt = connection.prepareStatement(
                     "UPDATE MEMBERS SET EMAIL=?,MNAME=?,MOD_DATE=now()"
                             + " WHERE MNO=?");
@@ -152,10 +167,12 @@ public class MemberDao {
     }
 
     public Member exist(String email, String password) throws Exception {
+        Connection connection;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
+            connection = connPool.getConnection();
             stmt = connection.prepareStatement(
                     "SELECT MNAME,EMAIL FROM MEMBERS"
                             + " WHERE EMAIL=? AND PWD=?");
