@@ -26,17 +26,8 @@ public class MemberListServlet extends HttpServlet {
 			MemberDao memberDao = (MemberDao)sc.getAttribute("memberDao");
 
 			request.setAttribute("members", memberDao.selectList());
-			
-			response.setContentType("text/html; charset=UTF-8");
-			RequestDispatcher rd = request.getRequestDispatcher(
-					"/member/MemberList.jsp");
-			rd.include(request, response);
-			
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("error", e);
-			RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
-			rd.forward(request, response);
+			throw new ServletException(e);
 		}
 	}
 }
