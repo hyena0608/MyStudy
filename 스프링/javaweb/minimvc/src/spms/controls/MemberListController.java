@@ -2,8 +2,10 @@ package spms.controls;
 
 import java.util.Map;
 
+import spms.annotation.Component;
 import spms.dao.MysqlMemberDao;
 
+@Component("/member/list")
 public class MemberListController implements Controller {
 
   MysqlMemberDao memberDao;

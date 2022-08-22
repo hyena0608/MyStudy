@@ -1,11 +1,15 @@
 package spms.context;
 
+import org.reflections.Reflections;
+import spms.annotation.Component;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.Set;
 
 public class ApplicationContext {
     Hashtable<String, Object> objTable = new Hashtable<>();
@@ -20,6 +24,17 @@ public class ApplicationContext {
 
         prepareObjects(props);
         injectDependency();
+    }
+
+    private void prepareAnnotationObjects() throws Exception {
+        Reflections reflector = new Reflections("");
+
+        Set<Class<?>> list = reflector.getTypesAnnotatedWith(Component.class);
+        String key = null;
+        for (Class<?> clazz : list) {
+            key = clazz.getAnnotation(Component.class).value();
+            objTable.put(key, clazz.newInstance());
+        }
     }
 
     private void prepareObjects(Properties props) throws Exception {

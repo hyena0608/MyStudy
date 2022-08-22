@@ -2,10 +2,12 @@ package spms.controls;
 
 import java.util.Map;
 
+import spms.annotation.Component;
 import spms.bind.DataBinding;
 import spms.dao.MysqlMemberDao;
 import spms.vo.Member;
 
+@Component("/member/add")
 public class MemberAddController implements Controller, DataBinding {
     MysqlMemberDao memberDao;
 

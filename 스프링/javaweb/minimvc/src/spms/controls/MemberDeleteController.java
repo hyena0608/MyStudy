@@ -2,11 +2,13 @@ package spms.controls;
 
 import java.util.Map;
 
+import spms.annotation.Component;
 import spms.bind.DataBinding;
 import spms.dao.MysqlMemberDao;
 
 import javax.xml.crypto.Data;
 
+@Component("/member/delete")
 public class MemberDeleteController implements Controller, DataBinding {
   MysqlMemberDao memberDao;
 
