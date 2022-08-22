@@ -2,13 +2,15 @@ package spms.controls;
 
 import java.util.Map;
 
-import spms.dao.MemberDao;
-import spms.vo.Member;
+import spms.bind.DataBinding;
+import spms.dao.MysqlMemberDao;
 
-public class MemberDeleteController implements Controller {
-  MemberDao memberDao;
+import javax.xml.crypto.Data;
 
-  public MemberDeleteController setMemberDao(MemberDao memberDao) {
+public class MemberDeleteController implements Controller, DataBinding {
+  MysqlMemberDao memberDao;
+
+  public MemberDeleteController setMemberDao(MysqlMemberDao memberDao) {
     this.memberDao = memberDao;
     return this;
   }
@@ -20,5 +22,12 @@ public class MemberDeleteController implements Controller {
     memberDao.delete(no);
     
     return "redirect:list.do";
+  }
+
+  @Override
+  public Object[] getDataBinders() {
+    return new Object[] {
+            "no", Integer.class
+    };
   }
 }

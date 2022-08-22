@@ -2,13 +2,13 @@ package spms.controls;
 
 import java.util.Map;
 
-import spms.dao.MemberDao;
+import spms.dao.MysqlMemberDao;
 
 public class MemberListController implements Controller {
 
-  MemberDao memberDao;
+  MysqlMemberDao memberDao;
 
-  public MemberListController setMemberDao(MemberDao memberDao) {
+  public MemberListController setMemberDao(MysqlMemberDao memberDao) {
     this.memberDao = memberDao;
     return this;
   }
