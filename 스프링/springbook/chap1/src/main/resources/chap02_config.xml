@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="autoFailLogger" class="com.hyena.spring.chap02.AuthFailLogger">
+        <property name="threshold" value="5" />
+    </bean>
+
+    <bean id="authenticationService" class="com.hyena.spring.chap02.AuthenticationService">
+        <property name="failLogger" ref="autoFailLogger"/>
+        <property name="userRepository" ref="userRepository" />
+    </bean>
+
+    <bean id="user1" class="com.hyena.spring.chap02.User">
+        <constructor-arg value="hspark" />
+        <constructor-arg value="1234" />
+    </bean>
+
+    <bean id="user2" class="com.hyena.spring.chap02.User">
+        <constructor-arg value="hyena" />
+        <constructor-arg value="1234" />
+    </bean>
+
+    <bean id="userRepository" class="com.hyena.spring.chap02.UserRepository">
+        <property name="users">
+            <list>
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="pwChangeService" class="com.hyena.spring.chap02.PasswordChangeService">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
+
+
+</beans>

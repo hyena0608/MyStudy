@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="mvnBuildRunner" class="com.hyena.spring.chap01.MavenBuildRunner">
+    <bean id="mvnBuildRunner" class="com.hyena.spring.chap01.MavenBuildRunner.class">
         <property name="mavenPath" value="c:\apache"/>
     </bean>
 
