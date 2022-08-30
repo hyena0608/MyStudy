@@ -84,3 +84,31 @@ public MemberRepository memberRepository() {
 - 종료 메서드 호출 x
 - 프로토타입 빈은 프로토타입 빈을 조회한 클라이언트가 관리
 - 종료 메서드에 대한 호출도 클라이언트가 직접한다.
+
+<br>
+<br>
+
+### 프로토타입 빈 사용하는 경우
+
+- 매번 사용할 때 마다 의존관계 주입이 완료된 새로운 객체가 필요할 때 사용
+- ObjectProvider, JSR330 Provider 등은 프로토타입 뿐만 아니라 DL이 필요한 경우는 언제든지 사용할 수 있다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 웹 스코프
+
+- 웹 환경에서만 동작
+- 프로토타입과 다르게 스프링이 해당 스코프의 종료시점까지 관리한다. -> 종료 메서드 호출
+
+<br>
+<br>
+
+### 웹 스코프 종류
+
+- request
+- session
+- application
+- websocket
