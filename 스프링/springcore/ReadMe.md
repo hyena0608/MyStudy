@@ -112,3 +112,38 @@ public MemberRepository memberRepository() {
 - session
 - application
 - websocket
+
+<br>
+<br>
+
+### request Scope
+
+<br>
+
+1. Provider를 사용한다.
+2. 프록시를 사용한다.
+
+<br>
+
+아래 코드는 프록시를 사용하였습니다.
+
+```java
+@Component
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class MyLogger {
+
+    private String uuid;
+    private String requestURL;
+
+    public void setRequestURL(String ruquestURL) {
+        this.requestURL = requestURL;
+    }
+    
+    // ...
+}
+```
+
+<br>
+
+- @Scope에 proxyMode = ScopedProxyMode.TARGET_CLASS 를 설정하면 스프링 컨테이너는 CGLIB 라이브러리를 이용하여 MyLogger를 가짜 프록시 객체를 생성한다.
+- 가짜 프록시 객체는 요청이 오면 그때 내부에서 진짜 빈을 요청한다.
