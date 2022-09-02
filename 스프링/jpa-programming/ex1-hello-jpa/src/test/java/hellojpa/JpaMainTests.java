@@ -1,10 +1,10 @@
-package jpabasic.ex1.hellojpa;
+package hellojpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Ex1HelloJpaApplicationTests {
+class JpaMainTests {
 
     @Test
     void contextLoads() {
