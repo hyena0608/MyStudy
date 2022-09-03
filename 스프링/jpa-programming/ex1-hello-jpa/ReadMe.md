@@ -196,3 +196,173 @@ class MemberProduct {
   private Product product;
 }
 ```
+
+<br>
+<br>
+<br>
+<br>
+
+## 6. 상속 관계 매핑
+
+<br>
+
+### 6-1. 조인 전략
+
+- 엔티티 각각을 모두 테이블로 만든다.
+- 기본 키 + 외래 키 전략
+- 조회할 때 조인 자주 사용
+- 타입을 구분하는 컬럼을 추가해야 한다. (DTYPE)
+  - @Inheritance(strategy = InheritanceType.JOINED)
+  - @DiscriminatorColumn(name = "DTYPE")
+    - 부모 클래스에 구분 컬럼을 지정한다.
+  - @DiscriminatorValue("M")
+    - 엔티티를 저장할 때 구분 컬럼에 입력할 값을 지정한다.
+- 장점
+  - 테이블 정규화
+  - 외래 키 참조 무결성 제약조건 활용
+  - 저장공간 효율적
+- 단점
+  - 조인 사용으로 인한 성능 저하
+  - 조회 쿼리 복잡
+  - 데이터를 등록할 INSERT SQL을 두 번 실행한다.
+
+<br>
+
+```java
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "DTYPE")
+public class Item {
+
+    @Id @GeneratedValue
+    @Column(name = "ITEM_ID")
+    private Long id;
+
+    private String name;
+    private int price;
+}
+
+@Entity
+@DiscriminatorValue("M")
+public class Movie extends Item {
+
+  private String director;
+  private String actor;
+}
+```
+
+<br>
+<br>
+<br>
+
+### 6-2. 단일 테이블 전략
+
+- 테이블을 하나만 사용한다.
+- 구분 컬럼 (DTYPE)으로 어떤 자식 데이터가 저장되었는지 구분한다.
+- 장점
+  - 조회할 떄 조인을 사용하지 않으므로 일반적으로 가장 빠르다.
+- 단점
+  - 자식 엔티티가 매핑한 컬럼은 모두 null을 허용하는 점을 주의해야 한다.
+  - 단일 테이블에 모든 것을 저장하므로 테이블이 커질 수 있다.
+  - 상황에 따라서는 조회 성능이 오히려 느릴 수 있다.
+- 특징
+  - 구분 컬럼을 꼭 사용해야 한다.
+    - @DiscriminateColumn
+
+<br>
+
+```java
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
+public class Item {
+
+    @Id @GeneratedValue
+    @Column(name = "ITEM_ID")
+    private Long id;
+
+    private String name;
+    private int price;
+}
+
+@Entity
+@DiscriminatorValue("M")
+public class Movie extends Item {
+
+  private String director;
+  private String actor;
+}
+```
+
+<br>
+<br>
+
+```sql
+Hibernate: 
+    
+    create table Item (
+       DTYPE varchar(31) not null,
+        ITEM_ID bigint not null,
+        name varchar(255),
+        price integer not null,
+        artists varchar(255),
+        author varchar(255),
+        isbn varchar(255),
+        actor varchar(255),
+        director varchar(255),
+        primary key (ITEM_ID)
+    )
+```
+
+<br>
+<br>
+<br>
+
+
+### 6-3. 구현 클래스마다 테이블 전략
+
+- 자식 엔티티마다 테이블을 만든다.
+- 자식 테이블 각각에 필요한 컬럼이 모두 있다.
+- 장점
+  - 서브 타입을 구분해서 처리할 때 효과적이다.
+  - not null 제약 조건을 사용할 수 있다.
+- 단점
+  - 여러 자식 테이블을 함께 조회할 때 성능이 느리다. (UNION)
+  - 자식 테이블을 통합해서 쿼리하기 어렵다.
+- 특징
+  - 구분 컬럼을 사용하지 안흔ㄴ다.
+  - 추천하지 않는 전략이다.
+
+<br>
+
+```java
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Item {
+
+  @Id @GeneratedValue
+  @Column(name = "ITEM_ID")
+  private Long id;
+
+  private String name;
+  private int price;
+}
+
+@Entity
+public class Movie extends Item {
+
+  private String director;
+  private String actor;
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<br>
+<br>
+<br>
