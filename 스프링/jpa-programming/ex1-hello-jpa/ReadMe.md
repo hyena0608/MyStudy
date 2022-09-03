@@ -361,8 +361,31 @@ public class Movie extends Item {
 <br>
 <br>
 
+## 7. 매핑 정보 상속 (@MappedSuperclass)
 
+- 테이블과 매핑하지 않고, 단순히 엔티티가 공통으로 사용하는 매핑 정보를 모으는 역할
+- 주로 등록일, 수정일, 등록자, 수정자 같은 전체 엔티티에서 공통으로 적용하는 정보를 모을 때 사용
+- @Entity 클래스는 엔티티나 @MappedSuperclass로 지정한 클래스만 상속 가능
 
+<br>
+
+```java
+import javax.persistence.Entity;
+
+@MappedSuperclass
+public abstract class BaseEntity {
+
+  private String createdBy;
+  private LocalDateTime createdDate;
+  private String lastModifiedBy;
+  private LocalDateTime lastModifiedDate;
+}
+
+@Entity
+public class Member extends BaseEntity {}
+```
+
+<br>
 <br>
 <br>
 <br>
