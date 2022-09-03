@@ -117,3 +117,82 @@ public void setTeam(Team team) {
 
 - 일대다 양방향 매핑은 존재하지 않는다.
 - 대신 다대일 양방향 매핑을 사용해야 한다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 4. 일대일 관계
+
+- 주 테이블이나 대상 테이블 중에 외래 키 선택 가능
+- 외래 키에 데이터베이스 유니크 제약조건 추가
+
+<br>
+<br>
+<br>
+
+### 4-1. 주 테이블에 외래 키
+
+- 주 객체가 대상 객체의 참조를 가지는 것 처럼
+- 주 테이블에 외래 키를 두고 대상 테이블을 찾는다.
+- 객체지향 개발자 선호, JPA 매핑 편리
+- 장점
+  - 주 테이블만 조회해도 대상 테이블에 데이터가 있는지 확인 가능
+- 단점
+  - 값이 없으면 외래 키에 null 허용
+
+<br>
+<br>
+<br>
+
+### 4-2. 대상 테이블에 외래 키
+
+- 대상 테이블에 외래 키가 존재
+- 전통적인 데이터베이스 개발자 선호
+- 장점
+  - 주 테이블과 대상 테이블을 일대일에서 일대다 관계로 변경할 때 테이블 구조 유지
+- 단점
+  - 프록시 기능의 한계로 지연 로딩으로 설정해도 항상 즉시 로딩된다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 5. 다대다 관계
+
+- 관계형 데이터베이스는 정규화된 테이블 2개로 다대다 관계를 표현할 수 없다.
+- 연결 테이블을 추가해서 일대다, 다대일 관계로 풀어내야 한다.
+
+```java
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+class Member {
+}
+
+@Entity
+class Product {
+}
+
+@Entity
+class MemberProduct {
+
+  @Id @GeneratedValue
+  private Long id;
+
+  // @Id
+  @ManyToOne
+  @JoinColumn(name = "MEMBER_ID")
+  private Member member;
+
+  // @Id
+  @ManyToOne
+  @JoinColumn(name = "PRODUCT_ID")
+  private Product product;
+}
+```
