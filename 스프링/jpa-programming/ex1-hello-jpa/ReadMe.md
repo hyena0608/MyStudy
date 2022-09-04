@@ -668,9 +668,204 @@ parent.getChildren().remove(removeObject);
 ### 12-2. 임베디드 타입 (복합 값 타입) 
 
 - 새로운 값 타입을 직접 정의해서 사용 : 임베디드 타입
+- @Embedded
+- @Embeddable
+- @AttributeOverrides
+
+<br>
+<br>
+<br>
+
+### 12-3. 값 타입과 불변 객체
+
+- 값 타입은 복잡한 객체 세상을 조금이라도 단순화하려고 만든 개념으로 값 타입은 단순하고 안전하게 다룰 수 있어야 한다.
+
+<br>
+<br>
+<br>
+
+#### 12-3-1. 값 타입 공유 참조
+
+- 임베디드 타입과 같은 타입을 여러 엔티티에서 공유하면 위험하다.
+- 공유 참조로 인해 발생하는 버그를 막으려면 값을 복사해서 사용하면 된다.
+
+<br>
+<br>
+<br>
+
+#### 12-3-2. 값 타입 복사
+
+- 항상 값을 복사해서 사용하면 공유 참조로 인해 발생하는 부작용을 피할 수 있다.
+- 임베디드 타입처럼 직접 정의한 값 타입은 객체 타입이다.
 
 <br>
 
 ```java
+member1.setHomeAddress(new Address("OldCity"));
+Address address = member1.getHomeAddress();
 
+Address newAddress = address.clone();
+
+newAddress.setCity("NewCity");
+member2.setHomeAddress(newAddress);
 ```
+
+<br>
+<br>
+<br>
+
+#### 12-3-3. 불변 객체
+
+- 객체를 불변하게 만들면 값을 수정할 수 없으므로 부작용을 원천 차단할 수 있다.
+- 따라서 값 타입은 될 수 있으면 불변 객체로 설계한다.
+
+<br>
+
+```java
+@Embeddable
+public class Address {
+
+  @Column(name = "city")
+  String city;
+  String street;
+  String state;
+  @Embedded
+  Zipcode zipcode;
+
+  protected Address() {
+  }
+
+  public Address(String city) {
+    this.city = city;
+  }
+
+  public String getCity() {
+    return city;
+  }
+}
+```
+
+<br>
+<br>
+<br>
+
+### 12-4. 값 타입 비교
+
+자바가 제공하는 객체 비교는 2가지이다.
+- 동일성 비교 : ==
+- 동등성 비교 : equals()
+  - 값 타입의 equals() 메서드를 재정의할 때는 보통 모든 필드의 값을 비교하도록 구현한다.
+
+<br>
+<br>
+<br>
+<br>
+
+### 12-5. 값 타입 컬렉션
+
+값 타입을 하나 이상 저장하려면 컬렉션에 보관한다.
+- @ElementCollection
+- @CollectionTable
+
+<br>
+
+```java
+@Entity
+class Member {
+    
+  @Id @GeneratedValue
+  // ...
+    
+  @ElementCollection
+  @CollectionTable(name = "FAVORITE_FOODS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+  @Column(name = "FOOD_NAME")
+  private Set<String> favoriteFoods = new HashSet<>();
+
+  @ElementCollection
+  @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+  private List<Address> addressHistory = new ArrayList<>();
+  
+  // ...
+}
+```
+
+<br>
+
+- 값 타입 컬렉션을 사용하는 favoriteFoods, addressHistory에 @ElementCollection을 지정
+- 관계형 데이터베이스의 테이블은 컬럼 안에 컬렉션을 포함할 수 없다.
+  - 따라서 별도의 테이블을 추가하고 @CollectionTable를 사용해서 추가한 테이블을 매핑한다.
+
+<br>
+<br>
+<br>
+
+### 12-6. 값 타입 컬렉션 저장
+
+- 마지막에 member 엔티티만 영속화한다.
+- 실제 INSERT SQL
+  - member : 1
+  - member.favoriteFoods : 3
+  - member.addressHistory : 2
+- 값 타입 컬렉션은 영속성 전이 + 고아 객체 제거 기능을 필수로 가진다.
+
+<br>
+
+```java
+Member member = new Member();
+
+// 임베디드 값 타입
+member.setHomeAddress(new Address("서울", "노원구", "000-000"));
+
+// 기본 값 타입 컬렉션
+member.getFavoriteFoods().add("치킨");
+member.getFavoriteFoods().add("피자");
+member.getFavoriteFoods().add("탕수육");
+
+// 임베디드 값 타입 컬렉션
+member.getAddressHistroy().add(new Address("서울", "노원구2", "222-222"));
+member.getAddressHistroy().add(new Address("서울", "노원구3", "333-333"));
+
+em.persist(member);
+```
+
+<br>
+<br>
+<br>
+
+###  12-7. 값 타입 컬렉션 조회
+
+- 값 타입 컬렉션도 조회할 때 페치 전략을 선택할 수 있다.
+- LAZY가 기본
+
+<br>
+<br>
+<br>
+
+### 12-8. 값 타입 컬렉션 수정
+
+- 임베디드 값 타입 수정
+- 기본값 타입 컬렉션 수정
+- 임베디드 값 타입 컬렉션 수정
+  - 값 타입은 불변해야 한다.
+  - 따라서 컬렉션에서 삭제하고 새롭게 등록해야 한다.
+
+<br>
+<br>
+<br>
+
+### 12-9. 값 타입 컬렉션의 제약사항
+
+- 값 타입은 에티티와 다르게 식별자 개념이 없다.
+- 값은 변경하면 추적이 어렵다.
+- 값 타입은 컬렉션에 변경 사항이 발생하면, 주인 엔티티와 연관된 모든 데이터를 삭제하고, 값 타입 컬렉션에 있는 현재 값을 모두 다시 저장한다.
+- 값 타입 컬렉션을 매핑하는 테이블을 모든 컬럼을 묶어서 기본키를 구성해야 한다. : null X, 중복 저장 X
+
+<br>
+<br>
+<br>
+
+### 12-10. 값 타입 컬렉션 대안
+
+- 실무에서는 상황에 따라 값 타입 컬렉션 대신에 일대다 관계를 고려한다.
+- 일대다 관계를 위한 엔티티를 만들고, 여기에서 값 타입을 사용한다.
+- 영속성 전이 + 고아 객체 제거를 사용해서 값 타입 컬렉션 처럼 사용한다.

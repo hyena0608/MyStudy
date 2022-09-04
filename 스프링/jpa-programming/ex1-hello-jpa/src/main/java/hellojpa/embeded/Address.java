@@ -12,4 +12,17 @@ public class Address {
     String street;
     String state;
     @Embedded Zipcode zipcode;
+
+    protected Address() {}
+
+    public Address(String city, String state, Zipcode zipcode) {
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
 }
