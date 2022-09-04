@@ -1,4 +1,4 @@
-package hellojpa.jpql;
+package hellojpa.jpql.domain;
 
 import lombok.Data;
 
