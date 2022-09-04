@@ -460,3 +460,26 @@ public class Member extends BaseEntity {}
 - @OneToMany, @ManyToMany (default : LAZY)
   - (optional = false) : 외부 조인 
   - (optional = true) : 외부 조인
+
+<br>
+<br>
+<br>
+<br>
+
+## 10. 영속성 전이 : CASCADE
+
+- 특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들고 싶을 때
+
+<br>
+<br>
+<br>
+
+### 10-1. 영속성 전이 : 저장
+
+
+
+<br>
+<br>
+<br>
+
+### 10-2. 영속성 전이 : 삭제
