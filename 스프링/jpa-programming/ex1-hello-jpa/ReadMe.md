@@ -476,6 +476,36 @@ public class Member extends BaseEntity {}
 
 ### 10-1. 영속성 전이 : 저장
 
+<br>
+
+```java
+@Entity
+public static class Parent {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+    private List<Child> children = new ArrayList<>();
+}
+
+@Entity
+public static class Child {
+
+  @Id @GeneratedValue
+  private Long id;
+
+  @ManyToOne
+  private Parent parent;
+}
+```
+
+<br>
+
+- cascade = CascadeType.PERSIST
+  - 부모를 영속화할 때 연관된 자식들도 함께 영속화한다.
+- 영속성 전이는 연관관계를 매핑하는 것과는 아무 관련이 없다.
 
 
 <br>
@@ -483,3 +513,164 @@ public class Member extends BaseEntity {}
 <br>
 
 ### 10-2. 영속성 전이 : 삭제
+
+<br>
+
+
+
+```java
+@Entity
+public static class Parent {
+
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
+  private List<Child> children = new ArrayList<>();
+}
+
+@Entity
+public static class Child {
+
+  @Id @GeneratedValue
+  private Long id;
+
+  @ManyToOne
+  private Parent parent;
+}
+  
+void remove() {
+        Parent findParent=em.find(Parent.class,1L);
+        em.remove(findParent);
+}
+```
+
+<br>
+
+- cascade = CascadeType.REMOVE
+  - 부모 엔티티만 삭제하면 연관된 자식 엔티티도 함께 삭제된다.
+
+<br>
+<br>
+<br>
+
+### 10-3. CASCADE의 종류
+
+```java
+public enum CascadeType {
+    
+    /** Cascade all operations */
+    ALL, 
+
+    /** Cascade persist operation */
+    PERSIST, 
+
+    /** Cascade merge operation */
+    MERGE, 
+
+    /** Cascade remove operation */
+    REMOVE,
+
+    /** Cascade refresh operation */
+    REFRESH,
+
+    /**
+     * Cascade detach operation
+     *
+     * @since 2.0
+     * 
+     */   
+    DETACH
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 11.  고아 객체 (ORPHAN)
+
+- JPA는 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제하는 기능을 제공한다. : 고아 객체 제거
+- 부모 엔티티의 컬렉션에서 자식 엔티티의 참조만 제거하면 자식 엔티티가 자동으로 삭제된다.
+
+<br>
+
+```java
+@Entity
+public static class Parent {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    private List<Child> children = new ArrayList<>();
+}
+```
+
+<br>
+
+- 참조가 제거된 엔티티는 다른 곳에서 참조하지 않는 고아 객체로 보고 삭제하는 기능이다.
+- 이 기능은 참조하는 곳이 하나일 때만 사용해야 한다.
+- 만약 삭제한 엔티티를 다른 곳에서도 참조한다면 문제가 발생한다.
+- orphanRemoval은 @OneToOne, @OneToMany에서만 사용한다.
+
+<br>
+<br>
+<br>
+
+### 11-1. 영속성 전이 + 고아 객체, 생명주기
+
+- CascadeType.ALL + orphanRemoval = true를 동시에 사용
+  - 두 옵션을 모두 활성화하면 부모 엔티티를 통해서 자식의 생명주기를 관리할 수 있다.
+
+<br>
+
+- 자식을 저장하려면 부모에 등록만 하면 된다. (CASCADE)
+
+```java
+Parent parent = em.find(Parent.class, parentId);
+parent.addChild(child1);
+```
+
+<br>
+
+- 자식을 삭제하려면 부모에서 제거하면 된다 (orphanRemoval)
+
+```java
+Parent parent = em.find(Parent.class, parentId);
+parent.getChildren().remove(removeObject);
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 12. 값 타입
+
+- JPA의 데이터 타입은 크게 엔티티 타입, 값 타입이 있다.
+
+<br>
+
+### 12-1. 기본 값타입
+
+- 자바 기본 타입 (int, double, ...)
+- 래퍼 클래스 (Integer, ...)
+- String
+
+<br>
+<br>
+<br>
+
+### 12-2. 임베디드 타입 (복합 값 타입) 
+
+- 새로운 값 타입을 직접 정의해서 사용 : 임베디드 타입
+
+<br>
+
+```java
+
+```

@@ -1,4 +1,4 @@
-package hellojpa.cascade;
+package hellojpa.orphan;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CascadeSaveRemoveApp {
+public class OrphanApp {
 
     public static void saveAndRemoveWithCascade(EntityManager em) {
 
@@ -34,7 +34,7 @@ public class CascadeSaveRemoveApp {
         @GeneratedValue
         private Long id;
 
-        @OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+        @OneToMany(mappedBy = "parent", orphanRemoval = true)
         private List<Child> children = new ArrayList<>();
     }
 
