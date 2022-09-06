@@ -284,7 +284,6 @@ Page<Member> findByAge(int age, Pageable pageable);
 
 ```java
 Page<Member> page = memberRepository.findByAge(age, pageRequest);
-
 Page<MemberDto> toMap = page.map(member -> new MemberDto(member.getId(), member.getUsername(), null));
 ```
 
@@ -292,3 +291,231 @@ Page<MemberDto> toMap = page.map(member -> new MemberDto(member.getId(), member.
 <br>
 <br>
 <br>
+
+## 9. 벌크성 수정 쿼리
+
+- 벌크성 수정, 삭제 쿼리는 @Modifying 어노테이션을 사용 
+- 벌크성 쿼리를 실행하고 나서 영속성 컨텍스트 초기화: @Modifying(clearAutomatically = true)
+  - 이 옵션 없이 회원을 findById로 다시 조회하면 영속성 컨텍스트에 과거 값이 남아서 문제가 될 수 있다.
+
+```java
+@Modifying(clearAutomatically = true)
+@Query("update Member m set m.age = m.age + 1 where m.age >= :age")
+int bulkAgePlus(@Param("age") int age);
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 10. @EntityGraph
+
+- 연관된 엔티티들을 SQL 한번에 조회하는 방법
+
+보통 N + 1 문제가 발생하면 페치 조인으로 해결하는 경우가 많다.
+
+<br>
+<br>
+<br>
+
+### 10-1. JPQL 페치 조인
+
+```java
+Query("select m from Member m left join fetch m.team")
+List<Member> findMemberFetchJoin();
+```
+
+<br>
+<br>
+<br>
+
+### 10-2. EntityGraph (JPQL 없이 페치 조인)
+
+- 스프링 데이터 JPA는 JPA가 제공하는 EntityGraph 기능을 편리하게 사용하게 도와준다.
+- 이 기능을 사용하면 JPQL 없이 페치 조인을 사용할 수 있다.
+
+```java
+// 공통 메서드 오버라이드
+@Override
+@EntityGraph(attributePaths = {"team"})
+List<Member> findAll();
+
+// JPQL + 엔티티 그래프
+@EntityGraph(attributePaths = {"team"})
+@Query("select m from Member m")
+List<Member> findMemberEntityGraph();
+
+// 메서드 이름으로 쿼리에서 특히 편리하다.
+@EntityGraph(attributePaths = {"team"})
+List<Member> findEntityGraphByUsername(@Param("username") String username);
+```
+
+<br>
+
+- EntityGraph 정리
+  - 페치 조인의 간편 버전
+  - LEFT OUTER JOIN 사용
+
+<br>
+<br>
+<br>
+
+### 10-3. NamedEntityGraph 사용 방법
+
+- 잘 사용안하지만 있는 기능
+
+```java
+@NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
+@Entity
+public class Member {}
+
+@EntityGraph("Member.all")
+@Query("select m from Member m")
+List<Member> findMemberEntityGraph();
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 11. JPA Hint
+
+- JPA 구현체에게 제공하는 힌트
+- org.springframework.data.jpa.repository.QueryHints 어노테이션을 사용
+- 만약 읽기만 하고 싶으면 다음과 같이 JPA에게 힌트를 준다.
+
+<br>
+
+```java
+@QueryHints(value = @QueryHint(name = "org.hibernate.readOnly", value = "true"))
+Member findReadOnlyByUsername(String username);
+```
+
+```java
+public void queryHint() {
+    // given
+    Member member1 = memberRepository.save(new Member("member1", 10));
+    entityManager.flush();
+    entityManager.clear();
+
+    // 더티 체크 하지 않는다. -> readOnly
+    Member findMember = memberRepository.findReadOnlyByUsername("member1");
+    findMember.setUsername("member2");
+
+    entityManager.flush();
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 12. 사용자 정의 리포지터리 구현
+
+- 스프링 데이터 JPA 리포지터리는 인터페이스만 정의하고 구현체는 스프링이 자동 생성한다.
+- 스프링 데이터 JPA가 제공하는 인터페이스를 직접 구현하기 어렵다.
+- 인터페이스의 메서드를 직접 구현하고 싶을 때 사용한다.
+  - JPA 직접 사용 (EntityManager)
+  - 스프링 JDBC Template
+  - MyBatis
+  - 데이터베이스 커넥션 직접 사용
+  - QueryDSL
+
+<br>
+<br>
+
+- 사용자 정의 인터페이스
+```java
+public interface MemberRepositoryCustom {
+    List<Member> findMemberCustom();
+}
+```
+
+<br>
+
+- 사용자 정의 인터페이스 구현 클래스
+
+```java
+@RequiredArgsContructor
+public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
+    
+    private final EntityManager em;
+    
+    @Override
+    public List<Member> findMemberCustom() {
+        return em.createQuery("select m from Member m")
+                .getResultList();
+    }
+}
+```
+
+<br>
+
+- 사용자 정의 인터페이스 상속
+
+```java
+public interface MemberRepository 
+        extends JpaRepository<Member, Long>, MemberRepositoryCustom {
+    
+}
+```
+
+<br>
+
+- 사용자 정의 메서드 호출 코드
+
+```java
+List<Member> result  = memberRepository.findMemberCustom();
+```
+
+<br>
+<br>
+<br>
+
+### 12-1. 사용자 정의 구현 클래스
+
+  - 규칙 : 리포지터리 인터페이스 이름 + Impl
+  - 스프링 데이터 JPA가 인식해서 스프링 빈으로 등록
+
+<br>
+<br>
+<br>
+
+### 12-2. Impl 대신 다른 이름으로 변경하려면
+
+- XML설정
+
+```xml
+
+<repositories base-package="study.datajpa.repository" repository-impl-postfix="Impl" />
+```
+
+<br>
+
+- JavaConfig 설정
+
+```java
+@EnableJpaRepository(basePackages = "study.datajpa.repository", repositoryImplementationPostfix = "Impl")
+```
+
+<br>
+<br>
+<br>
+
+### 12-3. 사용자 정의 리포지터리 참고
+
+- 실무 : QueryDSL, SpringJDBCTemplate을 함께 사용할 때 사용자 정의 리포지터리 기능을 자주 사용함
+- 항상 사용자 정의 리포지터리가 필요하진 않다.
+  - 임의의 리포지터리를 만들어도 된다.
+  - MemberQueryRepository를 인터페이스가 아닌 클래스로 만들고 스프링 빈으로 등록해서 그냥 직접 사용해도 된다.
+    - 이 경우 스프링 데이터 JPA와는 관계없이 작동한다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 13. Auditing
