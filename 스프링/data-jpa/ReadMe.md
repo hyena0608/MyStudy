@@ -519,3 +519,220 @@ List<Member> result  = memberRepository.findMemberCustom();
 <br>
 
 ## 13. Auditing
+
+- 등록일
+- 수정일
+- 등록자
+- 수정자
+
+<br>
+<br>
+
+### 13-1. 순수 JPA 사용
+
+- @PrePersist, @PostPersist
+- @PreUpdate, @PostUpdate 
+
+```java
+@MappedSuperclass
+@Getter
+public class JpaBaseEntity {
+
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        createdDate = now;
+        updatedDate = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedDate = LocalDateTime.now();
+    }
+}
+
+public class Member extends JpaBaseEntity {}
+```
+
+<br>
+<br>
+<br>
+
+### 13-2. 스프링 데이터 JPA 사용
+
+- 설정
+  - @EnableJpaAuditing -> 스프링 부트 설정 클래스에 적용
+  - @EntityListeners(AuditingEntityListener.class) -> 엔티티에 적용
+- 사용 어노테이션
+  - @CreatedDate
+  - @LastModifiedDAte
+  - @CreatedBy
+  - @LastModifiedBy
+
+<br>
+
+- 등록자 수정자를 처리해주는 AuditorAware을 스프링 빈에 등록해야 한다.
+
+```java
+@EnableJpaAuditing
+@SpringBootApplication
+public class DataJpaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DataJpaApplication.class, args);
+	}
+
+	@Bean
+	public AuditorAware<String> auditorProvider() {
+		return () -> Optional.of(UUID.randomUUID().toString());
+	}
+}
+
+@EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
+@Getter
+public class BaseEntity {
+
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime createdDate;
+
+  @LastModifiedDate
+  private LocalDateTime lastModifiedDate;
+
+  @CreatedBy
+  @Column(updatable = false)
+  private String createdBy;
+
+  @LastModifiedBy
+  private String lastModifiedBy;
+}
+
+public class Member extends BaseEntity {}
+```
+
+<br>
+<br>
+<br>
+
+### 13-3. 실무 사용 예시
+
+- 실무에서 대부분의 엔티티는 등록시간, 수정시간이 필요하지만 등록자, 수정자는 없을 수도 있다.
+- 그래서 다음과 같이 Base 타입을 분리하고, 원하는 타입을 선택해서 상속한다.
+
+```java
+public class BaseTimeEntity {
+
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime createdDate;
+
+  @LastModifiedDate
+  private LocalDateTime lastModifiedDate;
+}
+
+@EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
+@Getter
+public class BaseEntity extends BaseTimeEntity {
+
+    @CreatedBy
+    @Column(updatable = false)
+    private String createdBy;
+
+    @LastModifiedBy
+    private String lastModifiedBy;
+}
+
+```
+
+<br>
+<br>
+<br>
+
+### 13-4. 전체 적용
+
+- @EntityListeners(AuditingEntityListener.class) 를 생략하고 스프링 데이터 JPA가 제공하는 이벤트를 엔티티 전체에 적용하려면 orm.xml에 다음과 같이 등록한다.
+
+```xml
+<?xml version=“1.0” encoding="UTF-8”?>
+<entity-mappings xmlns=“http://xmlns.jcp.org/xml/ns/persistence/orm”
+                 xmlns:xsi=“http://www.w3.org/2001/XMLSchema-instance”
+                 xsi:schemaLocation=“http://xmlns.jcp.org/xml/ns/persistence/
+orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd”
+                 version=“2.2">
+    <persistence-unit-metadata>
+        <persistence-unit-defaults>
+            <entity-listeners>
+                <entity-listener
+class="org.springframework.data.jpa.domain.support.AuditingEntityListener”/>
+            </entity-listeners>
+        </persistence-unit-defaults>
+    </persistence-unit-metadata>
+</entity-mappings>
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 14. 도메인 클래스 컨버터
+
+- HTTP 파라미터로 넘어온 엔티티의 아이디로 엔티티 객체를 찾아서 바인딩
+
+<br>
+<br>
+
+### 14-1. 도메인 클래스 컨버터 사용 전
+
+```java
+@RestController
+@RequiredArgsConstructor
+public class MemberController {
+
+  private final MemberRepository memberRepository;
+
+  @GetMapping("/members/{id}")
+  public String findMember(@PathVariable("id") Long id) {
+    Member member = memberRepository.findById(id).get();
+    return member.getUsername();
+  }
+}
+```
+
+<br>
+<br>
+<br>
+
+### 14-2. Web 확장 - 도메인 클래스 컨버터 사용 후
+
+```java
+@RestController
+@RequiredArgsConstructor
+public class MemberController {
+
+  private final MemberRepository memberRepository;
+  
+  @GetMapping("/members2/{id}")
+  public String findMember2(@PathVariable("id") Member member) {
+    return member.getUsername();
+  }
+}
+```
+
+- HTTP 요청은 회원 id를 받지만 도메인 클래스 컨버터가 중간에 동작해서 회원 엔티티 객체를 반환
+- 도메인 클래스 컨버터도 리포지터리를 사용해서 엔티티를 찾는다.
+- 도메인 클래스 컨버터로 엔티티를 파라미터로 받으면, 이 엔티티는 단순 조회용으로만 사용해야 한다.
+  - 트랜잭션이 없는 범위에서 엔티티를 조회했으므로, 엔티티를 변경해도 DB에 반영되지 않는다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 15. Web 확장 - 페이징과 정렬
