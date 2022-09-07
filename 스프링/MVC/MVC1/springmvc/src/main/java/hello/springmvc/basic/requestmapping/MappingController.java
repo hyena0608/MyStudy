@@ -44,7 +44,7 @@ public class MappingController {
     /**
      *
      */
-    @GetMapping("/mapping/{userId}")
+    @GetMapping("/mapping2/{userId}")
     public String mappingPath(@PathVariable("userId") String data) {
         log.info("mappingPath userId={}", data);
         return "ok";
