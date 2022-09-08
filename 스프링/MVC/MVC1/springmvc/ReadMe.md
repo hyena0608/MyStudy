@@ -283,10 +283,322 @@ public HttpEntity<String> requestBodyString(HttpEntity<String> httpEntity) {
 
 - 기존에는 
   - HttpServletRequest를 사용해서 직접 HTTP 메시지 바디에서 데이터를 읽어와서(InputStream) 문자로 변환(StreamUtils)한다. 
-  - Jackson 라이브러리인 ObjectMapper를 사용해서 자바 객체로 변환한다. 
+  - Jackson 라이브러리인 ObjectMapper를 사용해서 자바 객체로 변환한다.
+
+```java
+@Controller
+public class RequestBodyJsonController {
+  
+    private ObjectMapper objectMapper = new ObjectMapper();
+    
+    @PostMapping("/request-body-json")
+    public void requestBodyJson(HttpServletRequest request,
+                                HttpServletResponse response) throws IOException {
+          ServletInputStream inputStream = request.getInputStream();
+          String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+      
+          log.info("messageBody={}", messageBody);
+          HelloData data = objectMapper.readValue(messageBody, HelloData.class);
+          log.info("username={}, age={}", data.getUsername(), data.getAge());
+          
+          response.getWriter().write("ok");
+    }
+}
+```
 
 <br>
 <br>
 <br>
 
 ### 5-1. @RequestBody 문자 변환
+
+- @RequestBody를 사용해서 HTTP 메세지에서 데이터를 꺼내고 messageBody에 저장한다.
+- 문자로 된 JSON 데이터인 messageBody를 objectMapper를 통해서 자바 객체로 변환한다.
+
+```java
+@Controller
+public class RequestBodyJsonController {
+  
+    private ObjectMapper objectMapper = new ObjectMapper();
+    
+    @ResponseBody
+    @PostMapping("/request-body-json")
+    public String requestBodyJson(@RequestBody String messageBody) throws IOException {
+          HelloData data = objectMapper.readValue(messageBody, HelloData.class);
+          log.info("username={}, age={}", data.getUsername(), data.getAge());
+          return "ok";
+    }
+}
+```
+
+<br>
+<br>
+<br>
+
+### 5-2. @RequestBody 객체 파라미터
+
+- @RequestBody 요청
+  - JSON 요청 -> HTTP 메시지 컨버터 -> 객체
+- @ResponseBody 응답
+  - 객체 -> HTTP 메시지 컨버터 -> JSON 응답
+
+<br>
+<br>
+
+- @RequestBody 객체 파라미터
+  - @RequestBody에 직접 만든 객체를 지정할 수 있다.
+  - HttpEntity, @RequestBody를 사용하면 HttpMessageConverter가 Http 메시지 바디의 내용을 원하는 문자나 객체로 변환해준다.
+  - HttpMessageConverter는 문자 뿐만 아니라 JSON도 객체로 변환해준다.
+
+<br>
+<br>
+
+- @RequestBody는 생략 불가능
+  - 생략하면 @ModelAttribute가 적용된다.
+
+<br>
+
+```java
+@ResponseBody
+@PostMapping("/request-body-json")
+public String requestBodyJson(@RequestBody HelloData data) {
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return "ok";
+}
+```
+
+<br>
+
+HttpEntity 사용해도 된다.
+
+```java
+@ResponseBody
+@PostMapping("/request-body-json")
+public String requestBodyJson(HttpEntity<HelloData> httpEntity) {
+    HelloData data = httpEntity.get();
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return "ok";
+}
+```
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+## 6. HTTP 응답
+
+- HTTP API 경우
+  - HTTP 메시지 바디에 JSON 같은 형식으로 데이터를 실어 보낸다.
+
+<br>
+
+- ResponseEntity
+  - HTTP 응답 코드 설정 가능
+  - 응답 코드 설정 시 @ResponseBody를 사용하면 설정하기 까다로움
+
+<br>
+
+- @RestController
+  - 해당 컨트롤러에 @ResponseBody가 적용되는 효과
+
+<br>
+<br>
+<br>
+<br>
+
+## 7. HTTP 메시지 컨버터
+
+<br>
+
+### 7-1. @ResponseBody 사용 원리
+
+- @ResponseBody를 사용
+  - HTTP의 BODY에 문자 내용을 직접 반환
+  - viewResolver 대신에 HttpMessageConverter가 동작
+  - 기본 문자처리 : StringHttpMessageConverter
+  - 기본 객체처리 : MappingJackson2HttpMessageConverter
+  - byte처리 등등 기타 여러 HttpMessageConverter가 기본으로 되어 있다.
+
+<br>
+<br>
+<br>
+
+### 7-2. HttpMessageConverter 선택하는법
+
+- 응답의 경우 클라이언트의 HTTP Accept 해더와 서버의 컨트롤러 반환 타입 정보를 조합해서 선택한다.
+
+<br>
+<br>
+<br>
+
+### 7-3. 스프링 부트 기본 메시지 컨버터 
+
+```
+0 = ByteArrayHttpMessageConverter
+1 = StringHttpMessageConverter
+2 = MappingJackson2HttpMessageConverter
+```
+
+<br>
+
+스프링 부트는 대상 클래스 타입과 미디어 타입을 체크해서 사용 여부를 결정한다.
+
+- ByteArrayHttpMessageConverter
+  - byte[] 데이터를 처리한다.
+  - 클래스 타입 : byte[]
+  - 미디어 타입 : */*
+  - 요청 ex) @RequestBody byte[] data
+  - 응답 ex) @ResponseBody return byte[] 
+  - 쓰기 미디어 타입 : application/octet-stream
+- StringHttpMessageConverter
+  - String 문자로 데이터를 처리한다.
+  - 클래스 타입 : String
+  - 미디어 타입 : */*
+  - 요청 ex) @RequestBody String data
+  - 응답 ex) @ResponseBody return "ok" 
+  - 쓰기 미디어 타입 : text/plain
+- MappingJackson2HttpMessageConverter
+  - 클래스 타입 : 객체 또는 HashMap
+  - 미디어 타입 : application/json
+  - 요청 ex) @RequestBody HelloData data
+  - 응답 ex) @ResponseBody return helloData
+  - 쓰기 미디어 타입 : application/json
+
+<br>
+<br>
+<br>
+
+### 7-4. HTTP 요청 데이터 읽기
+
+- HTTP 요청이 오고, 컨트롤러에서 @RequestBody, HttpEntity 파라미터 사용
+- 메시지 컨버터 canRead() 호출
+  - 대상 클래스 타입 지원 ?
+    - @RequestBody의 대상 클래스 (byte[], String, HelloData)
+  - HTTP 요청 Content-Type 미디어 타입 지원 ?
+    - text/plain, application/json, */*
+- canRead() 조건을 만족하면 read()를 호출해서 객체 생성하고, 반환한다.
+
+<br>
+<br>
+<br>
+
+### 7-5. HTTP 응답 데이터 생성
+
+- 컨트롤러에서 @ResponseBody, HttpEntity로 값이 반환된다.
+- 메시지 컨버터가 메시지를 쓸 수 있는지 확인하기 위해 canWrite()를 호출한다.
+  - 대상 클래스 타입 지원 ?
+    - return의 대상 클래스 (byte[], String, HelloData)
+  - HTTP 요청의 Accept 미디어 타입을 지원하는가 ?
+    - @RequestMapping의 produces를 의미한다.
+    - text/plain, application/json, */*
+- canWrite() 조건을 만족하면 write()를 호출해서 HTTP 응답 메시지 바디에 데이터를 생성
+
+<br>
+<br>
+<br>
+<br>
+
+## 8. 요청 매핑 핸들러 어뎁터 구조
+
+- @RequestMapping을 처리하는 핸들러 어댑터인 RequestMappingHandlerAdapter에 있다.
+
+<br>
+<br>
+
+### 8-1. RequestMappingHandlerAdapter 동작 방식
+
+- DispatcherServlet -> 핸들러 어댑터 -> ArgumentResolver -> 핸들러(컨트롤러)
+- DispatcherServlet -> 핸들러 어댑터 -> ReturnValueHandler -> 핸들러(컨트롤러)
+
+<br>
+<br>
+<br>
+
+### 8-2. ArgumentResolver
+
+- HttpServletRequest
+- Model
+- @RequestParam
+- @ModelAttribute
+- @RequestBody
+- HttpEntity
+
+이와 같은 HTTP 메세지를 처리하는 부분까지 ArgumentResolver 유연하게 처리해줬다.
+
+<br>
+
+애노테이션 기반 컨트롤러를 처리하는 RequestMappingHandlerAdapter는 ArgumentResolver를 호출해서 컨트롤러가 필요로 하는 다양한 파라미터의 값을 생성한다.
+
+파라미터의 값이 모두 준비되면 컨트롤러를 호출하면서 값을 넘긴다.
+
+- 스프링은 30개가 넘는 ArgumentResolver를 기본으로 제공한다.
+
+<br>
+<br>
+<br>
+
+### 8-3. ArgumentResolver (HandlerMethodArgumentResolver)
+
+<br>
+
+```java
+public interface HandlerMethodArgumentResolver {
+
+  boolean supportsParameter(MethodParameter parameter);
+  
+  @Nullable
+  Object resolveArgument(MethodParameter parameter, 
+                         @Nullable ModelAndViewContainer mavContainer, 
+                         NativeWebRequest webRequest, 
+                         @Nullable WebDataBinderFactory binderFactory) throws Exception;
+}
+```
+
+<br>
+
+- 동작 방식
+  - ArgumentResolver의 supportsParameter()를 호출해서 해당 파라미터를 지원하는지 체크한다.
+  - 지원하면 resolveArgument() 호출해서 실제 객체 생성
+  - 생성된 객체 컨트롤러 호출시 넘어간다.
+
+<br>
+<br>
+<br>
+
+### 8-4. ReturnValueHandler (HandlerMethodReturnValueJandler)
+
+- ArgumentResolver와 비슷한데, 이것은 응답 값을 변환하고 처리한다.
+- 컨트롤러에서 String으로 뷰 이름을 반환해도, 동작하는 이유가 바로 ReturnValueHandler 덕분
+- 스프링은 10개가 넘는 ReturnValueHandler를 지원한다.
+- ModelAndView, @ResponseBody, HttpEntity, String
+
+<br>
+<br>
+<br>
+<br>
+
+### 8-5. HTTP 메시지 컨버터
+
+- DispatcherServlet -> 핸들어 어탭터 -> ArgumentResolver -> HTTP 메시지 컨버터 -> ArgumentResolver -> 핸들러
+- DispatcherServlet <- 핸들어 어탭터 <- ReturnValueHandler <- HTTP 메시지 컨버터 <- ReturnValueHandler <- 핸들러
+
+<br>
+<br>
+
+- 요청의 경우
+  - @RequestBody를 처리하는 ArgumentResolver가 있다.
+  - HttpEntity를 처리하는 ArgumentResolver가 있다.
+  - ArgumentResolver들이 HTTP 메시지 컨버터를 사용해서 필요한 객체를 생성한다.
+- 응답의 경우
+  - @ResponseBody와 HttpEntity를 처리하는 ReturnValueHandler가 있다.
+
+<br>
+<br>
+
+- @RequestBody, @ResponseBody가 있으면
+  - RequestResponseBodyMethodProcessor (ArgumentResolver)
+- HttpEntity가 있으면 
+  - HttpEntityMethodProcessor (ArgumentResolver)를 사용한다.
