@@ -736,3 +736,370 @@ public class MemberController {
 <br>
 
 ## 15. Web 확장 - 페이징과 정렬
+e
+- 스프링 데이터가 제공하는 페이징과 정렬 기능을 스프링 MVC
+
+```java
+@GetMapping("/members")
+public Page<Member> list(Pageable pageable) {
+    Page<Member> page = new memberRepository.findAll(pageable);
+    return page;
+}
+```
+
+- 파라미터로 Pageable 사용 가능
+- Pageable은 <<interface>> 이며 org.springframework.data.domain.PageRequest 객체를 생성한다.
+
+<br>
+<br>
+
+### 15-1. 페이징 요청 파라미터
+
+- ex) `/members?page=0&size=3&sort=id,desc&sort=username,desc`
+  - page : 현재 페이지, 0부터 시작
+  - size : 한 페이지에 노출할 데이터 건수
+  - sort : 정렬 조건을 정의한다.
+
+<br>
+<br>
+<br>
+
+### 15-2. 기본값
+
+- 글로벌 설정 : 스프링부트
+
+```java
+spring.data.web.pageable.default-page-size=20
+spring.data.web.pageable.max-page-size=2000
+```
+
+<br>
+<br>
+<br>
+
+### 15-3. 개별 설정
+
+- @PageableDefault 어노테이션 사용
+
+```java
+@RequestMapping(value = "/members_page", method = RequestMethod.GET)
+public String list(@PageableDefault(size = 12, sort = "username",
+        direction = Sort.Direction.DESC) Pageable pageable) {
+        ...
+}
+```
+
+<br>
+<br>
+<br>
+
+### 15-4. 접두사
+
+- 페이징 정보가 둘 이상이면 접두사로 구분한다.
+- @Qualifier에 접두사명 추가 "{접두사명}_xxx"
+- ex) /members?member_pate=0&order_page=1
+
+```java
+public String list(
+        @Qualifier("member") Pageable memberPageable,
+        @Qualifier("order") Pageable orderPageable, ...
+        )
+```
+
+<br>
+<br>
+<br>
+
+### 15-5. Page -> DTO 변환
+
+- Page는 map()을 지원해서 내부 데이터를 다른 것으로 변경할 수 있다.
+
+```java
+@Data
+public class MemberDto {
+    private Long id;
+    private String username;
+    
+    public MemberDto(Member m) {
+        this.id = m.getId();
+        this.username = m.getUsername();
+    }
+}
+
+@GetMapping("/members")
+public Page<MemberDto> list(Pageable pageable) {
+    return memberRepository.findAll(pageable).map(MemberDto::new);
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 16. 스프링 데이터 JPA 구현체 분석
+
+- 스프링 데이터 JPA가 제공하는 공통 인터페이스의 구현체
+- org.springframework.data.jpa.repository.support.SimpleJpaRepository
+
+<br>
+<br>
+
+### 16-1. SimpleJpaRepository를 살펴보자
+
+```java
+@Repository
+@Transactional(readOnly = true)
+public class SimpleJpaRepository<T, ID> ... {
+    
+    @Transactional
+    public <S extends T> S save(S entity) {
+        
+        if (entityInformation.isNew(entity)) {
+            em.persist(entity);
+            return entity;
+        } else {
+            return em.merge(entity);
+        }
+    }
+}
+```
+
+- @Repository 적용
+  - JPA 예외를 스프링이 추상화한 Exception으로 변환
+    - 스프링에서 쓸 수 있는 Exception으로 변환
+- @Transactional 트랜잭션 적용
+  - JPA의 모든 변경은 트랜잭션 안에서 동작
+  - 스프링 데이터 JPA는 변경 메서들르 트랙잭션 처리
+  - 서비스 계층에서 트랜잭션을 시작하지 않으면 리포지터리에서 트랜잭션 시작
+  - 서비스 계층에서 트랜잭션을 시작하면 리포지터리는 해당 트랜잭션을 전파 받아서 사용
+  - 스프링 데이터 JPA를 사용할 때 트랜잭션이 없어도 데이터 등록, 변경이 가능
+    - 트랜잭션이 리포지터리 계층에 걸려있기 때문이다.
+
+<br>
+<br>
+<br>
+
+### 16-2. Transactional 성능 향상
+
+- @Transactional(readOnly = true)
+  - 데이터를 단순히 조회만하고 변경하지 않은 트랜잭션에서 readOnly = true 옵션을 사용하면 flush를 생략해서 약간의 성능 향상을 얻을 수 있다.
+
+<br>
+<br>
+<br>
+<br>
+
+## 17. 새로운 엔티티를 구별하는 방법
+
+<br>
+<br>
+
+### 17-1. *save() 메서드*
+
+- 새로운 엔티티면 저장( persist )
+- 새로운 엔티티가 아니면 병합( merge )
+  - DB Select 해서 가져온다음에 덮어쓴다.
+  - 변경을 할 때 merge가 아닌 "변경 감지"를 이용하는 것이 정석이다.
+
+<br>
+<br>
+<br>
+
+### 17-2. 새로운 엔티티를 판단하는 기본 전략
+
+- 식별자가 객체일 때 null로 판단
+- 식별자가 자바 기본 타입일 때 0으로 판단
+- Persistable 인터페이스를 구현해서 판단 로직 변경 가능하다.
+
+<br>
+
+```java
+public interface Persistable<ID> {
+    ID getId();
+    boolean isNew();
+}
+```
+
+<br>
+
+- JPA 식별자 생성 전략이 @GeneratedValue면 
+  - save() 호출 시점에 식별자가 없으므로 새로운 엔티티로 인식해서 정상 동작한다.
+- JPA 식별자 생성 전략이 @Id만 사용해서 직접 할당이면 
+  - 이미 식별자 값이 있는 상태로 save()를 호출한다.
+  - 이 경우 merge()가 호출된다.
+    - merge()는 DB를 호출해서 값을 확인하고, DB에 값이 없으면 새로운 엔티티로 인지하므로 비효율적이다.
+  - 따라서 Persistable를 사용해서 새로운 엔티티 확인 여부를 직접 구현하는게 효과적이다.
+    - @CreatedDate을 조합해서 사용하면 새로운 엔티티 여부를 편리하게 확인할 수 있다.
+
+<br>
+<br>
+
+```java
+public class Item implements Persistable<String> {
+    
+    @Id
+    private String id;
+    
+    @CratedDate
+    private LocalDate createdDate;
+    
+    public Item(String id) {
+        this.id = id;
+    }
+    
+    @Override
+    public String getId() {
+        return;
+    }
+    
+    @Override
+    public isNew() {
+        return createdDate == null;
+    }
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 18. Projections
+
+- 엔티티 대신에 DTO를 편리하게 조회할 때 사용
+
+<br>
+<br>
+
+- 조회할 엔티티의 필드를 getter 형식으로 지정
+  - 해당 필드만 선택해서 조회된다.
+- 메서드 이름은 자유
+- 반환 타입으로 인지한다.
+
+<br>
+<br>
+<br>
+
+### 18-1. 인터페이스 기반 Closed Projections
+
+- 프로퍼티 형식(getter)의 인터페이스를 제공하면, 구현체는 스프링 데이터 JPA가 제공한다.
+
+```java
+public interface UsernameOnly {
+    String getUsername();
+}
+
+public interface MemberRepository .. {
+    List<UsernameOnly> findProjectionsByUsername(String username);
+}
+
+@Test
+public void projections() .. {
+    
+    List<UsernameOnly> result = memberRepository.findProjectionsByUsername("m1");
+}
+```
+
+SQL문은 다음과 같다.
+
+```sql
+select m.username from member m where m.username = 'm1';
+```
+
+<br>
+<br>
+<br>
+
+### 18-2. 인터페이스 기반 Open Projections
+
+- 스프링의 SpEL 문법 지원
+- SpEL 문법을 사용하면, DB에서 엔티티 필드를 다 조회해온 다음에 계산한다.
+- 즉, JPQL SELECT 절 최적화가 되지 않는다.
+
+```java
+public interface UsernameOnly {
+    @Value("#{target.username + ' ' + target.age}")
+  String getUsername();
+}
+```
+
+<br>
+<br>
+<br>
+
+### 18-3. 클래스 기반 Projection
+
+- 인터페이스가 아닌 구체적인 DTO 형식도 가능
+- 생성자의 파라미터 이름으로 매칭
+
+```java
+public class UsernameOnlyDto {
+    
+    private final String username;
+    
+    public UsernameOnlyDto(String username) {
+        this.username = username;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+}
+```
+
+<br>
+<br>
+<br>
+
+### 18-4. 동적 Projections
+
+- Generic type을 주면, 동적 프로젝션 데이터 변경 가능하다.
+
+```java
+<T> List<T findProjectionsByUsername(String username, Class<T> type);
+```
+
+<br>
+<br>
+<br>
+
+### 18-5. 중첩 구조 처리
+
+```java
+public interface4 NestedClosedProjection {
+    
+    String getUsername();
+    TeamInfo getTeam();
+    
+    interface TeamInfo {
+        String getName();
+    }
+}
+```
+
+```sql
+select
+   m.username as col_0_0_,
+   t.teamid as col_1_0_,
+   t.teamid as teamid1_2_,
+   t.name as name2_2_
+from
+    member m
+left outer join
+   team t
+   on m.teamid=t.teamid
+where
+    m.username=?
+```
+
+<br>
+<br>
+<br>
+
+### 18-6. 정리
+
+- 프로젝션 대상이 root 엔티티면 유용
+- 프로젝션 대상이 root 엔티티를 넘어가면 JPQL SELECT 최적화가 안된다
+- 실무의 복잡한 쿼리 해결 한계
+- 단순할 때만 사용, 복잡해지면 QueryDSL
