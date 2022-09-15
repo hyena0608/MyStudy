@@ -597,4 +597,382 @@ String result = queryFactory
 <br>
 <br>
 
-# 13. 
+# 13. 프로젝션 - 튜플
+
+<br>
+
+## 13-1. 프로젝션 대상이 하나
+
+- 타입을 명확하게 지정할 수 있다.
+
+```java
+List<String> result = queryFactory
+        .select(member.username)
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+
+## 13-2. 튜플 조회 - 프로젝션 대상 둘 이상
+
+```java
+List<Tuple> result = queryFactory
+        .select(member.username, member.age)
+        .from(member)
+        .fetch();
+
+for (Tuple tuple : result) {
+    String username = tuple.get(member.username);
+    Integer age = tuple.get(member.age);
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# 14. DTO 조회
+
+- MemberDto
+
+```java
+@Data
+@NoArgsConstructor
+public class MemberDto {
+
+  private String username;
+  private int age;
+
+  public MemberDto(String username, int age) {
+    this.username = username;
+    this.age = age;
+  }
+}
+```
+
+<br>
+<br>
+
+## 14-1. 순수 JPA에서 DTO 조회
+
+- new 명령어 사용
+- DTO의 package 이름 적어야한다.
+- 생성자 방식만 지원한다.
+
+```java
+List<MemberDto> result = em.createQuery(
+        "select new study.querydsl.dto.MemberDto(m.username, m.age) " +
+                "from Member m", MemberDto.class)
+        .getResultList();
+```
+
+<br>
+<br>
+<br>
+
+## 14-2. 프로젝션 결과 반환 - Querydsl 빈 생성
+
+- DTO 반환할 때 사용
+  - 프로퍼티 접근
+  - 필드 직접 접근
+  - 생성자 사용
+
+<br>
+<br>
+<br>
+
+### 14-2-1. 프로퍼티 접근 - `Projections.bean()`
+
+```java
+List<MemberDto> result = queryFactory
+        .select(Projections.bean(MemberDto.class,
+                member.username,
+                member.age))
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+
+### 14-2-2. 필드 직접 접근 - `Projections.fields()`
+
+```java
+List<MemberDto> result = queryFactory
+        .select(Projections.fields(MemberDto.class,
+                member.username,
+                member.age))
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+
+### 14-2-3. 별칭이 다를 때 - `member.username.as("name")`
+
+- ExpressionUtils.as(source, alias)
+  - 필드나, 서브쿼리에 별칭 적용
+- `username.as("memberName")`
+  - 필드에 별칭 적용
+
+- 프로퍼티나, 필드 접근 생성 방식에서 이름이 다를 때 해결한다.
+
+```java
+List<UserDto> result = queryFactory
+        .select(Projections.fields(UserDto.class,
+                member.username.as("name"),
+                
+                ExpressionUtils.as(
+                        JPAExpressions
+                          .select(memberSub.age.max())
+                          .from(memberSub), "age")
+                ))
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+
+### 14-2-4. 생성자 사용 - `Projections.constructor()`
+
+```java
+List<MemberDto> result = queryFactory
+        .select(Projections.constructor(MemberDto.class,
+                member.username,
+                member.age))
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## 14-3. 프로젝션 결과 반환 - `@QueryProjection`
+
+- 생성자 + @QueryProjection
+
+<br>
+<br>
+
+### 14-3-1. 먼저 QMemberDto를 생성해야 한다.
+
+- `@QueryProjection`을 생성자에 추가해준다.
+- `./gradlew compileQuerydsl`
+- `QMemberDto` 생성을 확인한다.
+
+```java
+@Data
+@NoArgsConstructor
+public class MemberDto {
+
+    private String username;
+    private int age;
+
+    @QueryProjection
+    public MemberDto(String username, int age) {
+        this.username = username;
+        this.age = age;
+    }
+}
+```
+
+<br>
+<br>
+<br>
+
+### 14-3-2. @QueryProjection 활용
+
+- 장점
+  - 컴파일러로 타입 체크를 할 수 있다.
+  - 안전한 방법
+- 단점
+  - DTO에 QueryDSL 어노테이션을 유지해야 한다.
+  - DTO까지 Q 파일을 생성해야 한다.
+
+<br>
+
+```java
+List<MemberDto> result = queryFactory
+        .select(new QMemberDto(member.username, member.age))
+        .from(member)
+        .fetch();
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# 15. 동적 쿼리 - `BooleanBuilder`, `Where` 다중 파라미터
+
+- 동적 쿼리를 해결하는 두가지 방식
+  - BooleanBuilder
+  - Where 다중 파라미터
+
+<br>
+<br>
+
+## 15-1. 동적 쿼리 - BooleanBuilder
+
+```java
+public void 동적쿼리_BooleanBuilder() throws Exception{
+    String usernameParam="member1";
+    Integer ageParam=10;
+
+    List<Member> result = searchMember(usernameParam,ageParam);
+}
+
+private List<Member> searchMember(String usernameCond, Integer ageCond) {
+    BooleanBuilder builder = new BooleanBuilder();
+    
+    if (usernameCond != null) {
+        builder.and(member.username.eq(usernameCond));
+    }
+    
+    if (ageCond != null) {
+        builder.and(member.age.eq(ageCond));
+    }
+    
+    return queryFactory
+        .selectFrom(member)
+        .where(builder)
+        .fetch();
+}
+```
+
+<br>
+<br>
+<br>
+
+## 15-2. 동적 쿼리 - Where 다중 파라미터 사용
+
+- where 조건에 null 값은 무시된다.
+- 메서드를 다른 쿼리에서도 재활용 할 수 있다.
+- 쿼리 자체의 가독성이 높아진다.
+
+<br>
+
+```java
+public void 동적쿼리_WhereParam() throws Exception {
+    String usernameParam="member1";
+    Integer ageParam=10;
+
+    List<Member> result = searchMember(usernameParam,ageParam);
+}
+
+private List<Member> searchMember(String usernameCond, Integer ageCond){
+    return queryFactory
+        .selectFrom(member)
+        .where(usernameEq(usernameCond), ageEq(ageCond))
+        .fetch();
+}
+
+private BooleanExpression usernameEq(String usernameCond) {
+    return usernameCond != null ? member.username.eq(usernameCond) : null; 
+}
+
+private BooleanExpression ageEq(Integer ageCond) {
+    return ageCond != null ? member.age.eq(ageCond) : null;
+}
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# 16. 수정, 삭제 벌크 연산
+
+- 벌크 연산 시 주의 할 점
+  - 영속성 컨텍스트에 있는 엔티티를 무시하고 실행된다.
+  - 배치 쿼리를 실행하고 나면 영속성 컨텍스틀 초기화하는 것이 안전
+
+```java
+em.flush();
+em.clear();
+```
+
+<br>
+<br>
+
+## 16-1. 쿼리 한번으로 대량 데이터 수정
+
+```java
+queryFactory
+        .update(member)
+        .set(member.username, "비회원")
+        .where(member.age.lt(20))
+        .execute();
+```
+
+<br>
+<br>
+<br>
+
+## 16-2. 기존 숫자에 1 더하기
+
+```java
+queryFactory
+        .update(member)
+        .set(member.age, member.age.add(1))
+        .execute();
+```
+
+<br>
+<br>
+<br>
+
+## 16-3. 쿼리 한번으로 대량 데이터 삭제
+
+```java
+queryFactory
+        .delete(member)
+        .where(member.age.lt(10))
+        .execute();
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# 17. SQL function
+
+- JPA와 같이 Dialect에 등록된 내용만 호출할 수 있다.
+
+<br>
+
+```java
+String result = queryFactory
+        .select(
+                Expressions.stringTemplate(
+                        "function('replace', {0}, {1}, {2}",
+                        member.username, "member", "M"))
+        .from(member)
+        .fetchFirst();
+```
+
+<br>
+<br>
+
+- querydsl 내장하는 것들이 있다.
+  - ansi 표준 함수
+
+```java
+queryFactory
+        .select(member.username)
+        .from(member)
+        .where(member.username.eq(member.username.lower()))
+        .fetch();
+```
