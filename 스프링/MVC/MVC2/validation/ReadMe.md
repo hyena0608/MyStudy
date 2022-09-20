@@ -853,22 +853,30 @@ class ItemController {
 
 ## 7-2. WebDataBinder
 
-- `WebDataBinder`는 스프링의 파라미터 바인딩의 역할을 해주고 검증 기능도 내부에 포함됩니다.
+- `Validator` 인터페이스를 별도로 제공
+  - 체계적으로 검증 기능을 도입하기 위함
+  - 검증기를 만들면 스프링의 추가적인 도움을 받을 수 있다.
+- `WebDataBinder`
+  - 스프링의 파라미터 바인딩의 역할
+  - 검증 기능도 내부에 포함
+
+<br>
+
 - ItemController에 다음과 같은 코드를 추가해줍니다.
 
 ```java
 ...
-private final ItemValidator itemValidator;
+class ValidationItemControllerV2 {
+  private final ItemValidator itemValidator;
 
-@InitBinder
-public void init(WebDataBinder dataBinder) {
-    dataBinder.addValidators(itemValidator);    
+  @InitBinder
+  public void init(WebDataBinder dataBinder) {
+    dataBinder.addValidators(itemValidator);
+  }
 }
 ```
 
-<br>
-
-- WebDataBinder 검증기를 추가하면 해당 컨트롤러에서는 검증기를 자동으로 적용할 수 있다.
+- `WebDataBinder`에 검증기를 추가하면 해당 컨트롤러에서는 검증기를 자동으로 적용할 수 있다.
 - @InitBinder : 해당 컨트롤러에만 영향
 
 <br>
@@ -877,8 +885,8 @@ public void init(WebDataBinder dataBinder) {
 
 ### 7-2-1. @Validated
 
-- validator를 직접 호출하는 부분이 사라진다.
-- 검증 대상 앞에 @Validated 가 붙는다.
+- `validator`를 직접 호출하는 부분이 사라진다.
+- 검증 대상 앞에 `@Validated` 가 붙는다.
 
 ```java
 ...
@@ -912,11 +920,11 @@ public String addItemV6(@Validated @ModelAttribute Item item, BindingResult bind
 
 ### 7-2-2. 동작 방식 - `@Validated`
 
-- @Validated는 검증기를 실행하라는 어노테이션
-- WebDataBinder에 등록한 검증기를 찾아서 실행
-- 여러 검증기를 등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분이 필요
-  - 이때 `supports()`를 사용한다.
-
+- @Validated
+  - 검증기를 실행하라는 어노테이션
+  - WebDataBinder에 등록한 검증기를 찾아서 실행
+  - `supports()` 사용
+  - 여러 검증기를 등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분한다.
 
 <br>
 <br>
@@ -924,6 +932,190 @@ public String addItemV6(@Validated @ModelAttribute Item item, BindingResult bind
 
 ### 7-2-3. @Validated, @Valid
 
-- javax.validation.@Valid
+- `javax.validation.@Valid`
   - build.gradle 의존관계 추가 필요하다.
-- import org.springframework.validation.annotation.Validated;
+- `import org.springframework.validation.annotation.Validated`
+
+<br>
+<br>
+<br>
+<br>
+
+# 8. Bean Validation
+
+- 검증 기능 어노테이션으로 구현
+- 아래와 같은 검증 로직을 모든 프로젝트에 적용할 수 있게 표쥰화 한 것이 Bean Validation이다.
+
+```java
+public class Item {
+    private Long id;
+    
+    @NotBlank
+    private String itemName;
+    
+    @NotNull
+    @Range(min = 1000, max = 1000000)
+    private Integer price;
+    
+    @NotNull
+    @Max(9999)
+    private Integer quantity;
+    
+    // ...
+}
+```
+
+<br>
+<br>
+<br>
+
+## 8-1. Bean Validation 이란 ?
+
+- Bean Validation
+  - 검증 어노테이션과 여러 인터페이스의 모음
+  - 일반적으로 사용하는 구현체는 하이버네이트 Validator
+
+<br>
+<br>
+<br>
+
+## 8-2. Bean Validation Without Spring
+
+- 의존 관계 추가
+- `implementation 'org.springframework.boot:spring-boot-starter-validation'`
+
+```java
+@Data
+public class Item {
+    private Long id;
+    
+    @NotBlank
+    private String itemName;
+    
+    @NotNull
+    @Range(min = 1000, max = 1000000)
+    private Integer price;
+    
+    @NotNull
+    @Max(9999)
+    private Integer quantity;
+    
+    public Item() {}
+  
+    public Item(String itemName, Integer price, Integer quantity) {
+        this.itemName = itemName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+}
+```
+
+<br>
+<br>
+
+- `ValidatorFactory`
+  - 검증기를 생성한다
+- `ConstraintViolation`
+  - 검증 결과를 받는다.
+  - 출력 결과를 보면 검증 오류가 발생한 객체, 필드, 메시지 정보등 다양한 정보를 확인할 수 있다.
+
+```java
+@Test
+void beanValidation() {
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
+    
+    Item item = new Item();
+    item.setItemName(" ");
+    item.setPrice(0);
+    item.setQuantity(10000);
+        
+    Set<ConstraintViolation<Item>> violations = validator.validate(item);
+}
+```
+
+<br>
+<br>
+<br>
+
+## 8-3. Bean Validation With Spring
+
+- Spring MVC가 Bean Validation 사용하는 법
+  - `spring-boot-starter-validation` 라이브러리를 넣으면 자동으로 Bean Validator를 인지한다.
+- 자동 글로벌 Validator
+  - `LocalValidatorFactoryBean`을 글로벌 Validator로 등록한다.
+  - Validator는 `@NotNull`같은 어노테이션을 보고 검증을 수행
+  - 글로벌 Validator가 적용되어 있다.
+    - `@Valid`, `@Validated`만 적용하면 된다.
+
+<br>
+<br>
+<br>
+
+### 8-3-1. 검증 순서
+
+- `@ModelAttribute` 각각의 필드에 타입 변환 시도
+  - 실패 시 `typeMismatch`로 `FieldError` 추가
+- Validator 적용
+
+<br>
+
+- 바인딩에 성공한 필드 (타입 변환에 성공)
+  - Bean Validation 적용
+
+<br>
+<br>
+<br>
+<br>
+
+## 8-4. Bean Validation - 에러 코드
+
+- Bean Validation이 기본 제공하는 오류 메시지를 좀 더 자세히 변경
+
+<br>
+
+- `bindingResult`를 보면
+- 오류 코드가 어노테이션 이름을 등록된다.
+  - `typeMismatch`와 유사하다.
+- `NotBlank`라는 오류 코드를 기반으로 `MessageCodesResolver`를 통해 다양한 메시지 코드가 생성된다.
+
+```java
+@NotBlank
+NotBlank.item.itemName
+NotBlank.itemName
+NotBlank.java.lang.String
+NotBlank
+
+@Range
+Range.item.price
+Range.price
+Range.java.lang.Integer
+Range
+```
+
+<br>
+
+여기서 우리가 메시지를 또 등록 할 수 있다.
+
+- `{0}` : 필드명
+- `{1}, {2}`은 각 어노테이션 마다 다름
+
+- errors.properties
+```properties
+# Bean Validation 추가
+NotBlank={0} 공백 X
+Range={0}, {2} ~ {1} 허용
+Max={0}, 최대 {1}
+```
+
+<br>
+<br>
+<br>
+
+# 9. Bean Validation 검증 오류
+
+- `ObjectError`는 `@ScriptAssert()`를 사용하면된다.
+- 단점
+  - 제약이 많고 복잡하다.
+  - 실무에서 검증 기능이 해당 객체의 범위를 넘어선다. -> 대응이 어렵다.
+  - 오브젝트 오류(글로벌 오류)의 경우  `@ScriptAssert`을 사용하기 보다 직접 자바 코드로 작성하는 것이 권장된다.
