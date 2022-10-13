@@ -8,6 +8,10 @@ import java.util.List;
 
 /**
  * 예제 2-1 모든 거래 내역의 합 계산하기
+ * 문제 가능성 :
+ *      1. 파일이 비어 있을 때,
+ *      2. 데이터 문제 (파싱 문제),
+ *      3. 행의 데이터가 완벽하지 않을 때
  */
 public class BankTransactionAnalyzerSimple {
 
