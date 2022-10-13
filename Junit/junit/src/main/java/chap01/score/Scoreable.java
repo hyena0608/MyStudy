@@ -1,2 +1,6 @@
-package chap01;public class Scoreable {
+package chap01.score;
+
+@FunctionalInterface
+public interface Scoreable {
+    int getScore();
 }
