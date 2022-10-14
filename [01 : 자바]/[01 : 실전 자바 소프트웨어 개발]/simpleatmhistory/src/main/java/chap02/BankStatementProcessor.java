@@ -1,7 +1,5 @@
 package chap02;
 
-import chap01.BankTransaction;
-
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;

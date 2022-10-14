@@ -1,7 +1,5 @@
 package chap02;
 
-import chap01.BankTransaction;
-
 /**
  * 예제 3-4
  * BankTransactionFilter 인터페이스
