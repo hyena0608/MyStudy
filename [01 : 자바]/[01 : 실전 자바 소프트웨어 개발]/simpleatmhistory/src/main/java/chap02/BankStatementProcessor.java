@@ -25,6 +25,9 @@ import java.util.List;
  *  - 검색 속성 조합시 코드가 복잡해진다.
  *  - 반복 로직과 비즈니스 로직이 결합되어 분리하기 어렵다.
  *  - 코드 반복
+ *
+ *  예제 3-5
+ *  - OCP를 적용한 후 유연해진 findTransactions() 메서드
  */
 public class BankStatementProcessor {
 
@@ -86,6 +89,16 @@ public class BankStatementProcessor {
         final List<BankTransaction> result = new ArrayList<>();
         for (final BankTransaction bankTransaction : bankTransactions) {
             if (bankTransaction.getDate().getMonth() == month && bankTransaction.getAmount() >= amount) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
+    }
+
+    public List<BankTransaction> findTransactions(final BankTransactionFilter bankTransactionFilter) {
+        final List<BankTransaction> result = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if (bankTransactionFilter.test(bankTransaction)) {
                 result.add(bankTransaction);
             }
         }
