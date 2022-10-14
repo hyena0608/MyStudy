@@ -5,33 +5,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 예제 2-5
- * - 입출금 내역 CSV 파서 이용하기
- * 예제 2-6
- * - 입출금 내역 목록 처리
- * 예제 2-8
- *  - BankStatementProcessor 클래스를 이용해 입출금 내역 목록 처리
+ * 예제 2-12
+ * 특정 파서와의 결합 제거
  */
-public class BankTransactionAnalyzer {
+public class BankStatementAnalyzer {
 
     private static final String RESOURCES = "src/main/resources/";
-    private static final BankStatementCSVParser bankStatementParse = new BankStatementCSVParser();
 
-    public static void main(final String[] args) throws IOException {
+    public void analyze(final String fileName,
+                        final BankStatementParser bankStatementParser) throws IOException {
 
-        final String fileName = args[0];
         final Path path = Paths.get(RESOURCES + fileName);
         final List<String> lines = Files.readAllLines(path);
 
-        final List<BankTransaction> bankTransactions = bankStatementParse.parseLinesFromCSV(lines);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
+
         final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
 
         collectSummary(bankStatementProcessor);
-
     }
 
     private static void collectSummary(final  BankStatementProcessor bankStatementProcessor) {
@@ -47,5 +41,4 @@ public class BankTransactionAnalyzer {
         System.out.println("The total for all transactions in January is = "
                 + bankStatementProcessor.calculateTotalForCategory("Salary"));
     }
-
 }
