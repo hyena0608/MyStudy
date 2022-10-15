@@ -1,4 +1,4 @@
-package chap01;
+package chap02;
 
 import java.io.IOException;
 import java.nio.file.Files;

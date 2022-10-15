@@ -1,4 +1,6 @@
-package chap02;
+package chap03;
+
+import chap02.BankTransaction;
 
 /**
  * 예제 3-4

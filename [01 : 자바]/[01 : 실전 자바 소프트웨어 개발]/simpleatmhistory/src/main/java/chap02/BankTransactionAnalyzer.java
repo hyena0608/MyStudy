@@ -1,11 +1,12 @@
-package chap01;
+package chap02;
+
+import chap01.BankTransaction;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,4 +1,6 @@
-package chap01;
+package chap02;
+
+import chap01.BankTransaction;
 
 import java.io.IOException;
 import java.nio.file.Files;
