@@ -1,7 +1,6 @@
 package chap03;
 
-import chap02.BankTransaction;
-import chap03.BankTransactionFilter;
+import chap02.BankTransactionFilter;
 
 import java.time.Month;
 
