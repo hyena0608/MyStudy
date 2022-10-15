@@ -1,7 +1,5 @@
 package chap02;
 
-import chap01.BankTransaction;
-
 import java.time.Month;
 import java.util.List;
 
@@ -16,15 +14,15 @@ import java.util.List;
  */
 public class BankStatementProcessor {
 
-    private final List<chap01.BankTransaction> bankTransactions;
+    private final List<BankTransaction> bankTransactions;
 
-    public BankStatementProcessor(final List<chap01.BankTransaction> bankTransactions) {
+    public BankStatementProcessor(final List<BankTransaction> bankTransactions) {
         this.bankTransactions = bankTransactions;
     }
 
     public double calculateTotalAmount() {
         double total = 0d;
-        for (final chap01.BankTransaction bankTransaction : bankTransactions) {
+        for (final BankTransaction bankTransaction : bankTransactions) {
             total += bankTransaction.getAmount();
         }
         return total;
@@ -32,7 +30,7 @@ public class BankStatementProcessor {
 
     public double calculateToTotalInMonth(final Month month) {
         double total = 0d;
-        for (final chap01.BankTransaction bankTransaction : bankTransactions) {
+        for (final BankTransaction bankTransaction : bankTransactions) {
             if (bankTransaction.getDate().getMonth() == month) {
                 total += bankTransaction.getAmount();
             }
