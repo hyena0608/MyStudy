@@ -3,10 +3,8 @@ package chap04;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 예제 4-6
@@ -18,6 +16,7 @@ import java.util.Map;
 public class DocumentManagementSystem {
 
     private final List<Document> documents = new ArrayList<>();
+    private final List<Document> documentsView = Collections.unmodifiableList(documents);
     private final Map<String, Importer> extensionToImporter = new HashMap<>();
 
     public DocumentManagementSystem() {
@@ -48,5 +47,15 @@ public class DocumentManagementSystem {
         } else {
             throw new UnknownFileTypeException("No extension found For file: " + path);
         }
+    }
+
+    public List<Document> contents() {
+        return documentsView;
+    }
+
+    public List<Document> search(final String query) {
+        return documents.stream()
+                .filter(Query.parse(query))
+                .collect(Collectors.toList());
     }
 }
