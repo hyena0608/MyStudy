@@ -2,6 +2,7 @@ package chap01;
 
 import chap02.BankStatementCSVParser;
 import chap02.BankStatementParser;
+import chap02.BankTransaction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
