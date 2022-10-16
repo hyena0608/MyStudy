@@ -8,6 +8,8 @@ import java.util.List;
  * 비즈니스 규칙 엔진의 기본 API
  * 예제 5-4
  * 비즈니스 규칙 엔진 기본 구현
+ * 예제 5-6
+ * run() 메서드 구현
  */
 public class BusinessRuleEngine {
 
@@ -26,6 +28,6 @@ public class BusinessRuleEngine {
     }
 
     public void run() {
-        throw new UnsupportedOperationException();
+        this.actions.forEach(Action::execute);
     }
 }
