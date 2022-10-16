@@ -60,6 +60,6 @@ class BusinessRuleEngineTest {
         });
         businessRuleEngine.run();
 
-        verify(mockAction).perform(mockFacts);
+        verify(mockAction).execute(mockFacts);
     }
 }
