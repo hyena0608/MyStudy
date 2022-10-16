@@ -2,8 +2,8 @@ package chap05;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * 예제 5-3
@@ -12,6 +12,8 @@ import static org.mockito.Mockito.*;
  * 모킹으로 Action 객체 상호작용 검증
  * 예제 5-13
  * Facts를 이용하는 액션
+ * 예제 5-16
+ * 지역 변수 추론 var
  */
 class BusinessRuleEngineTest {
 
@@ -50,9 +52,9 @@ class BusinessRuleEngineTest {
         final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine(mockFacts);
 
         businessRuleEngine.addAction(facts -> {
-            final String jobTitle = facts.getFact("jobTitle");
+            var jobTitle = facts.getFact("jobTitle");
             if ("CEO".equals(jobTitle)) {
-                final String name = facts.getFact("name");
+                var name = facts.getFact("name");
                 Mailer.sendEmail("aaa@aaa.com", "Relevant customer: " + name);
             }
         });
