@@ -99,3 +99,32 @@
 - `접근 제어 메커니즘`
   - 내부와 외부를 명확하게 경계 지을 수 있게 한다.
   - 내부 구현을 은닉할 수 있게 한다.
+
+<br>
+
+- 할인 정책과 할인 조건
+  - `Movie 객체에 할인 정책을 판단하는 코드는 존재하지 않는다.`
+  - discountPolicy에게 메시지를 전송할 뿐이다.
+  - `Template Method Pattern` 을 이용한다.
+- 할인 정책 구성
+  - 영화에 대해 하나의 할인 정책만 설정할 수 있다.
+  - 할인 조건의 경우 여러 개를 적용할 수 있다.
+  - `Movie와 DiscountPolicy 생성자는 이 제약을 강제한다.`
+
+```java
+  public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
+      ...
+      this.discountPolicy = discountPolicy;
+  }
+```
+
+- DiscountPolicy는 여러 개의 DiscountCondition 인스턴스를 허용한다.
+```java
+public abstract class DiscountPolicy {
+  public DiscountPolicy(DiscountCondition... conditions) {
+    this.conditions = Arrays.asList(conditions);
+  }
+}
+```
+
+![할인 정책과 할인 조건](image/chap02_step01.png)

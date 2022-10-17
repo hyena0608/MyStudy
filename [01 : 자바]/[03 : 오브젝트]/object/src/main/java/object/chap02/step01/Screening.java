@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Screening {
 
     private Movie movie;
-    private int sequence;
+    private int sequence; // 할인 여부 판단
     private LocalDateTime whenScreened;
 
     public Screening(Movie movie, int sequence, LocalDateTime whenScreened) {
@@ -22,7 +22,7 @@ public class Screening {
         return movie.calculateMovieFee(this).times(audienceCount);
     }
 
-    public LocalDateTime getWhenScreened() {
+    public LocalDateTime getStartTime() {
         return whenScreened;
     }
 
@@ -30,7 +30,7 @@ public class Screening {
         return this.sequence == sequence;
     }
 
-    public Movie getMovieFee() {
+    public Money getMovieFee() {
         return movie.getFee();
     }
 }
