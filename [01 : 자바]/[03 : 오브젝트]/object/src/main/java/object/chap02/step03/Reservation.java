@@ -1,4 +1,4 @@
-package object.chap02.step3;
+package object.chap02.step03;
 
 public class Reservation {
 

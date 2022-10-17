@@ -1,6 +1,6 @@
-package object.chap02.step3;
+package object.chap02.step03;
 
-public class PercentDiscountPolicy extends DiscountPolicy {
+public class PercentDiscountPolicy extends DefaultDiscountPolicy {
 
     private double percent;
 

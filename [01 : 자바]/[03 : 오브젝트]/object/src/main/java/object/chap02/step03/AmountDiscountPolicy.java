@@ -1,6 +1,6 @@
-package object.chap02.step3;
+package object.chap02.step03;
 
-public class AmountDiscountPolicy extends DiscountPolicy {
+public class AmountDiscountPolicy extends DefaultDiscountPolicy {
 
     private Money discountAmount;
 
