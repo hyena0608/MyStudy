@@ -128,3 +128,23 @@ public abstract class DiscountPolicy {
 ```
 
 ![할인 정책과 할인 조건](image/chap02_step01.png)
+
+
+<br>
+
+- `상속과 다형성`
+  - `컴파일 시간 의존성과 실행 시간 의존성`
+    - `컴파일 시간 의존성 (초기 바인딩, 정적 바인딩)`
+      - 컴파일 시점에 실행될 함수나 프로시저를 결정하는 것
+      - 컴파일 시간 의존성 : Movie에서 DiscountPolicy로 향한다. 
+    - `실행 시간 의존성 (지연 바인딩, 동적 바인딩)`
+      - 실행 시간 의존성 : Movie에서 AmountDiscountPolicy나 PercentDiscountPolicy로 향한다.
+- `구현 상속과 인터페이스 상속`
+  - `구현 상속 (서브클래싱 subclassing)`
+    - 순수하게 코드를 재사용하기 위한 목적으로 상속 
+  - `인터페이스 상속 (서브타이핑 subtyping)`
+    - 다형적인 협력 부모 클래스와 자식 클래스가 인터페이스를 공유할 수 있도록 상속을 이용하는 것
+- DiscountPolicy - 추상 클래스
+  - 구현을 공유할 필요가 있었다.
+- DiscountCondition - 인터페이스
+  - 구현을 공유할 필요가 없었다.
