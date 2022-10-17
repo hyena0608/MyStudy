@@ -164,3 +164,8 @@ public abstract class DiscountPolicy {
 
 ![기능 추가](image/chap02_step02.png)
 
+<br>
+
+# Chap02 Step03
+
+- 추상 클래스와 인터페이스 트레이드 오프
