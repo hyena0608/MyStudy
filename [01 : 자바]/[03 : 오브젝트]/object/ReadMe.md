@@ -148,3 +148,7 @@ public abstract class DiscountPolicy {
   - 구현을 공유할 필요가 있었다.
 - DiscountCondition - 인터페이스
   - 구현을 공유할 필요가 없었다.
+
+<br>
+
+# Chap02 Step02
