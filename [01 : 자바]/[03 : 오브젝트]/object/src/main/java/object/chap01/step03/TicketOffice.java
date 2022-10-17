@@ -14,15 +14,19 @@ public class TicketOffice {
         this.tickets.addAll(Arrays.asList(tickets));
     }
 
-    public Ticket getTicket() {
+    /**
+     * sellTicketTo 메서드
+     * - TicketSeller로 부터 침해받은 자율권을 되찾는다.
+     */
+    public void sellTicketTo(Audience audience) {
+        plusAmount(audience.buy(getTicket()));
+    }
+
+    private Ticket getTicket() {
         return tickets.remove(0);
     }
 
-    public void minusAmoun(Long amount) {
-        this.amount -= amount;
-    }
-
-    public void plusAmount(Long amount) {
+    private void plusAmount(Long amount) {
         this.amount += amount;
     }
 }

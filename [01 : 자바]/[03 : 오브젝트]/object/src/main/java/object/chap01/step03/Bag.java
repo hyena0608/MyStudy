@@ -14,23 +14,31 @@ public class Bag {
         this.amount = amount;
     }
 
-    public boolean hasInvitation() {
+    /**
+     * Bag 자율적인 존재로 변환
+     * - Bag 내부 상태에 접근하는 모든 로직을 Bag 안으로 캡슐화해서 결합도를 낮춘다.
+     */
+    public Long hold(Ticket ticket) {
+        if (hasInvitation()) {
+            setTicket(ticket);
+            return 0L;
+        }              else {
+            setTicket(ticket);
+            minusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
+    }
+
+    private boolean hasInvitation() {
         return invitation != null;
     }
 
-    public boolean hasTicket() {
-        return ticket != null;
-    }
-
-    public void setTicket(Ticket ticket) {
+    private void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
 
-    public void minusAmount(Long amount) {
+    private void minusAmount(Long amount) {
         this.amount -= amount;
     }
 
-    public void plusAmount(Long amount) {
-        this.amount += amount;
-    }
 }
