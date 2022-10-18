@@ -1,4 +1,4 @@
-package chap05.step03;
+package chap05.step03.원칙을_지키지_않는_문제;
 
 public class Square extends Rectangle {
 
