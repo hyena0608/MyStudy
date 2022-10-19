@@ -42,6 +42,9 @@ public class Movie {
        return fee;
    }
 
+    /**
+     * 시그니처를 통한 객체 내부 상태 노출 : condition.isDiscountable()
+     */
    public boolean isDiscountable(LocalDateTime whenScreened, int sequence) {
        for (DiscountCondition condition : discountConditions) {
            if (condition.getType() == DiscountConditionType.PERIOD) {

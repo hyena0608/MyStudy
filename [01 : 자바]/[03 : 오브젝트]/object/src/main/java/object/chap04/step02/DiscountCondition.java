@@ -18,6 +18,12 @@ public class DiscountCondition {
     private LocalTime startTime;
     private LocalTime endTime;
 
+    /**
+     * @param dayOfWeek
+     * @param time
+     *
+     * 자신의 정보를 파라미터로 받는다. -> 내부의 변경이 외부로 퍼져나간다. -> 캡슐화 위반
+     */
     public boolean isDiscountable(DayOfWeek dayOfWeek, LocalTime time) {
         if (type != DiscountConditionType.PERIOD) {
             throw new IllegalArgumentException();
