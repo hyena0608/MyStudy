@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id "me.champeau.jmh" version "0.6.6"
 }
 
 group 'hyena'
@@ -13,9 +12,6 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.35'
-    testImplementation group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.35'
-
 }
 
 test {
